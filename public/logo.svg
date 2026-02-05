@@ -1,0 +1,11 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" fill="#1e1e1e" rx="40" />
+  
+  <g font-family="'Courier New', Courier, monospace" font-weight="bold" font-size="140" text-anchor="middle">
+    <text x="110" y="290" fill="#61dafb">&lt;</text>
+    
+    <text x="250" y="290" fill="#ffffff">NP</text>
+    
+    <text x="390" y="290" fill="#61dafb">/&gt;</text>
+  </g>
+</svg>
