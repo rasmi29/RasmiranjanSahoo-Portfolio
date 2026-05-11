@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useEffect, memo } from "react";
-import Head from "next/head";
 import { 
   motion, 
   useScroll, 
@@ -38,8 +37,8 @@ const experiences = [
     title: "Continuous Learning",
     company: "Self-Development",
     date: "Ongoing",
-    description: "Deepening expertise in Generative Ai. Currently learning Agent sdk and gen ai.",
-    tags: ["OpenAi", "Langchain", "Agent SDK"],
+    description: "Certified in Generative AI Fundamentals by Chai Code. Actively building with LLMs, Langchain, and Agentic SDKs to create autonomous AI systems.",
+    tags: ["Generative AI", "Langchain", "Agent SDK", "OpenAI"],
   },
 ];
 
@@ -142,11 +141,11 @@ export default function AboutSection({
       ref={containerRef}
       className="relative min-h-screen bg-neutral-950 py-32 text-white overflow-hidden"
     >
-      <Head>
-        <title>About — Rasmiranjan Sahoo</title>
-        <meta name="description" content="About Rasmiranjan Sahoo — Fullstack Developer." />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Head>
+      {/* JSON-LD for SEO (Rendered as a regular script tag in App Router) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Static Background Noise (Optimized: No Animation) */}
       <div className="pointer-events-none absolute inset-0 z-0 opacity-20">

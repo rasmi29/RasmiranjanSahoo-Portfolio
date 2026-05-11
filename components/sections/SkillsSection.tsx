@@ -67,6 +67,18 @@ const skillData: CategoryData[] = [
       
     ],
   },
+  {
+    id: "ai",
+    title: "Gen AI",
+    description: "Leveraging Large Language Models and Agentic frameworks to build the next generation of intelligent applications.",
+    color: "#10B981", // Emerald Green
+    skills: [
+      { name: "Generative AI", icon: "googlecloud" },
+      { name: "OpenAI", icon: "openai" },
+      { name: "Langchain", icon: "langchain" },
+      { name: "Agent SDK", icon: "deepseek" },
+    ],
+  },
 ];
 
 // --- UTILS ---
