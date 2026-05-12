@@ -266,6 +266,21 @@
     background-size: 300% 300%;
     animation: gradientBorder 4s ease infinite;
   }
+  /* Marquee Animation */
+  .animate-marquee {
+    display: flex;
+    width: fit-content;
+    animation: marquee var(--duration, 40s) linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused !important;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 }
 
 /* Keyframes */

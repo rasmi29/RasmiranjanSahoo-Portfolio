@@ -18,44 +18,17 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "Fullstack Next.js store with Stripe payments, inventory management, and optimized performance for scale.",
-    image: "/e-commerce.png",
-    link: "https://delacruash.vercel.app/",
-    type: "Fullstack",
-    year: "2024",
-    tech: ["Next.js", "Stripe", "PostgreSQL"],
-  },
-  {
-    title: "EdTech Website",
-    description: "Interactive online learning platform with teacher dashboards, student progress tracking, and live classes.",
-    image: "/edtech.webp",
-    link: "#",
-    type: "EdTech",
-    year: "2024",
-    tech: ["React", "Node.js", "WebRTC"],
-  },
-  {
-    title: "Weather App",
-    description: "A responsive weather dashboard built with React, consuming external weather APIs and providing forecasts.",
-    image: "/weather.png",
-    link: "https://weather-app-by-nirupampal.vercel.app/",
-    type: "Frontend",
-    year: "2023",
-    tech: ["React", "API", "Tailwind"],
-  },
-  {
-    title: "Calculator App",
-    description: "A simple and intuitive calculator app built with React, featuring basic arithmetic operations and a clean UI.",
-    image: "/calculator.png",
-    link: "https://calculator-app-alpha-olive.vercel.app//",
-    type: "Frontend",
-    year: "2023",
-    tech: ["React", "CSS"],
+    title: "Vedrastores Ecosystem",
+    description: "A complete e-commerce infrastructure for Kenya, featuring 4 web platforms and 2 mobile apps. Built from scratch in 4 months using cutting-edge tools.",
+    image: "/Projects/Vedrastore/vedrastore-banner.png",
+    link: "/works/vedrastores",
+    type: "E-Commerce",
+    year: "2026",
+    tech: ["Next.js", "React Native", "Shadcn", "Node.js", "M-Pesa"],
   }
 ];
 
-const categories = ["All", "Fullstack", "Frontend", "EdTech"];
+const categories = ["All", "E-Commerce", "Fullstack", "Mobile"];
 
 // --- COMPONENTS ---
 
@@ -63,62 +36,69 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: index * 0.1 }}
+      className="mb-20 last:mb-0"
     >
-      <Link href={project.link} target="_blank" className="group relative block h-[450px] w-full overflow-hidden rounded-2xl bg-neutral-900 border border-white/5">
+      <Link 
+        href={project.link} 
+        target={project.link.startsWith("http") ? "_blank" : "_self"} 
+        className="group relative flex flex-col lg:flex-row h-auto lg:h-[420px] w-full overflow-hidden rounded-[2.5rem] bg-neutral-900/50 border border-white/10 backdrop-blur-sm transition-all duration-500 hover:border-emerald-500/30 shadow-2xl"
+      >
         
-        {/* Background Image with Zoom Effect */}
-        <div className="absolute inset-0 z-0 h-full w-full transition-transform duration-700 ease-in-out group-hover:scale-110">
+        {/* 70% Image Section - Full Color */}
+        <div className="relative lg:w-[70%] h-[280px] lg:h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10">
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover opacity-60 transition-all duration-500 group-hover:opacity-40 group-hover:blur-sm grayscale group-hover:grayscale-0"
+            priority
+            className="object-cover object-center opacity-100 transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          {/* Dark Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
         </div>
 
-        {/* Content Content */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-between p-8">
-          
-          {/* Top: Year & Type */}
-          <div className="flex justify-between items-start translate-y-[-20px] opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-             <span className="rounded-full border border-white/10 bg-black/50 px-3 py-1 text-[10px] uppercase tracking-widest text-neutral-400 backdrop-blur-md">
-                {project.year}
-             </span>
-             <div className="h-8 w-8 rounded-full bg-white text-black flex items-center justify-center transform rotate-45 group-hover:rotate-0 transition-transform duration-500">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-             </div>
-          </div>
-
-          {/* Bottom: Info */}
-          <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-            <span className="mb-3 block text-xs font-medium uppercase tracking-[0.2em] text-emerald-500">
-              {project.type}
-            </span>
-            <h3 className="mb-3 text-3xl font-bold text-white leading-tight">
+        {/* 30% Content Section */}
+        <div className="lg:w-[30%] p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden bg-black/40">
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-4">
+                <span className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest text-neutral-400 font-mono">
+                    {project.year}
+                </span>
+                <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">
+                    {project.type}
+                </span>
+            </div>
+            
+            <h3 className="mb-4 text-4xl lg:text-5xl font-bold text-white tracking-tighter leading-[0.9]">
               {project.title}
             </h3>
-            <p className="max-w-[90%] text-sm leading-relaxed text-neutral-400 opacity-0 transition-all duration-500 group-hover:opacity-100">
+            
+            <p className="mb-6 text-base leading-relaxed text-neutral-400 font-light line-clamp-3">
               {project.description}
             </p>
             
-            {/* Tech Stack Pills */}
-            <div className="mt-6 flex flex-wrap gap-2 opacity-0 transition-all duration-500 delay-100 group-hover:opacity-100">
+            {/* Tech Stack */}
+            <div className="flex flex-wrap gap-2 mb-8">
                {project.tech.map((t) => (
-                  <span key={t} className="text-[10px] uppercase tracking-wide text-neutral-300 border border-white/10 px-2 py-1 rounded-md bg-white/5">
+                  <span key={t} className="text-[9px] uppercase tracking-widest text-neutral-300 border border-white/10 px-3 py-1.5 rounded-full bg-white/5 font-mono">
                     {t}
                   </span>
                ))}
             </div>
+
+            <div className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-white group-hover:text-emerald-500 transition-colors">
+                View Case Study
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </div>
           </div>
+
+          {/* Decorative Backglow */}
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/5 blur-[100px] -z-0" />
         </div>
       </Link>
     </motion.div>
@@ -185,7 +165,7 @@ export default function WorksSection() {
         {/* Project Grid */}
         <motion.div 
             layout 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+            className="grid grid-cols-1 gap-12"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
