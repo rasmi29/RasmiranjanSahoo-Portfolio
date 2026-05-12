@@ -18,26 +18,24 @@ export default function Home() {
       <main className=""> {/* Sidebar is absolutely positioned, no margin needed */}
         <HeroSection />
         <WorksSection />
+        <AboutSection />
         
-        {/* Parallax Break - Innovation */}
+        {/* Parallax Break - Philosophy */}
         <ParallaxSection
           heading="Building the Future"
           subheading="Philosophy"
           quote="Great software is not just about code—it's about solving real problems with elegant solutions."
         />
         
-        {/* Certificates Parallax Section */}
-
-        <AboutSection />
         <SkillsSection/>
-        
+        <CertificatesParallax />
+
         {/* Parallax Break - Vision */}
         <ParallaxSection
           heading="Crafting Digital Experiences"
           subheading="Vision"
           quote="Every line of code is an opportunity to create something that matters."
         />
-        <CertificatesParallax />
 
         <ContactSection />
       </main>

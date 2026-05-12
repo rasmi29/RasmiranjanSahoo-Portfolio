@@ -236,16 +236,16 @@ export default function AboutSection({
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-20 space-y-6 text-lg md:text-xl font-light leading-relaxed text-neutral-300"
+                    className="mb-20 space-y-8 text-lg md:text-xl font-light leading-relaxed text-neutral-400"
                 >
                     <p>
-                        I build <span className="text-white font-normal">production-ready</span> web applications with a relentless focus on performance and scalability.
+                        I am a <span className="text-white font-normal underline decoration-emerald-500/30 underline-offset-8">Freelance Fullstack Developer</span> based in <span className="text-white">Odisha, India</span>. My mission is to architect digital products that don't just work, but excel in performance and user experience.
                     </p>
-                    <p className="text-neutral-400">
-                        Currently leading engineering efforts at <span className="text-white">Gravitones</span>, I bridge the gap between complex backend logic and fluid user interfaces. My philosophy is simple: code should be as clean as the design it powers.
+                    <p>
+                        Currently engineering at <span className="text-white underline decoration-white/10 underline-offset-8">Gravitones</span>, I also partner with global clients as a specialist freelancer—bridging the gap between robust backend architecture and cinematic frontend interfaces.
                     </p>
-                    <p className="text-neutral-400">
-                        When I'm not pushing code, I'm likely exploring UI UX frameworks, optimizing CI/CD pipelines, or contributing to the developer community in India.
+                    <p>
+                        My focus lies at the intersection of <span className="text-white font-normal">Gen AI integration</span> and high-scale applications. Whether it's building with <span className="text-white">Next.js</span> or <span className="text-white">React Native</span>, I provide the technical edge needed for modern businesses to thrive in a competitive landscape.
                     </p>
                 </motion.div>
 

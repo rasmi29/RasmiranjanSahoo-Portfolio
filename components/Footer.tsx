@@ -82,10 +82,10 @@ export default function Footer() {
           {/* Brand / Intro */}
           <div className="md:col-span-2">
              <div className="mb-8 h-10 w-10 flex items-center justify-center border border-white/20 bg-white/5 font-mono text-sm font-bold text-emerald-500">
-                NP
+                RS
              </div>
              <p className="max-w-sm text-lg font-light text-neutral-400 leading-relaxed">
-                Fullstack developer crafting minimal, functional, and aesthetically refined digital experiences.
+                Fullstack developer and Gen AI specialist delivering bespoke digital solutions for visionary brands.
              </p>
              
              {/* System Status Pill */}

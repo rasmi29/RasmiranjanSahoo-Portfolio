@@ -140,18 +140,28 @@ const CategorySection = ({ data, index }: { data: CategoryData; index: number })
         {/* Left: Title & Description */}
         <div className="relative">
           <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="sticky top-1/2">
-            <span 
-                className="text-sm font-mono mb-4 block opacity-50" 
-                style={{ color: data.color }}
-            >
-                0{index + 1} / CATEGORY
-            </span>
+            <div className="flex items-center gap-4 mb-4">
+              <span 
+                  className="text-sm font-mono block opacity-50" 
+                  style={{ color: data.color }}
+              >
+                  0{index + 1} / CATEGORY
+              </span>
+              {data.id === 'ai' && (
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-500 font-mono animate-pulse">
+                  CORE_EXPERTISE
+                </span>
+              )}
+            </div>
             <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tighter">
               {data.title}
             </h2>
             <p className="text-lg text-neutral-400 font-light leading-relaxed max-w-md border-l-2 border-white/5 pl-6">
               {data.description}
             </p>
+            {data.id === 'ai' && (
+              <div className="absolute -inset-x-12 -inset-y-8 bg-emerald-500/5 blur-[80px] -z-10 rounded-full opacity-50" />
+            )}
           </motion.div>
         </div>
 

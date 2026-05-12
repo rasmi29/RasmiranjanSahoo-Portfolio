@@ -1,6 +1,5 @@
 "use client";
 
-import Head from "next/head";
 import Link from "next/link";
 import React, { useRef } from "react";
 import { 
@@ -164,18 +163,6 @@ export default function HeroSection({
 
   return (
     <>
-      <Head>
-        <title>Rasmiranjan Sahoo — Fullstack Developer | Modern UI & Scalable Backend</title>
-        <meta name="description" content="Rasmiranjan Sahoo is a Fullstack Developer specializing in modern user interfaces and scalable backend solutions using Next.js and Node.js." />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Rasmiranjan Sahoo — Fullstack Developer" />
-        <meta property="og:description" content="Building modern UIs and scalable backends." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${siteUrl}#home`} />
-        <meta property="og:image" content={ogImage} />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Head>
-
       <section
         ref={containerRef}
         id="home"
@@ -198,54 +185,69 @@ export default function HeroSection({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md shadow-lg"
+                className="group inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl shadow-2xl hover:border-emerald-500/30 transition-colors duration-500"
             >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span className="text-xs font-mono text-neutral-300 tracking-wider uppercase">
+                <span className="text-[10px] font-mono text-neutral-400 group-hover:text-neutral-200 tracking-[0.2em] uppercase transition-colors">
                     Available for new projects
                 </span>
             </motion.div>
 
-            {/* Main Title */}
+            {/* Main Title Area */}
             <div className="relative">
                 <motion.h1 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[12vw] leading-[0.8] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-500"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter"
                 >
-                    RASMIRANJAN
-                    <br />
-                    <span className="text-neutral-800 outline-text">SAHOO</span>
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-400">
+                        RASMIRANJAN
+                    </span>
+                    <span className="block mt-2 text-neutral-900 outline-text hover:text-white/5 transition-colors duration-700 cursor-default">
+                        SAHOO
+                    </span>
                 </motion.h1>
+
+                {/* Decorative Geometric Shapes */}
+                <div className="absolute -left-12 top-1/2 -translate-y-1/2 hidden xl:block opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <circle cx="20" cy="20" r="19" stroke="white" strokeWidth="0.5" strokeDasharray="4 4" />
+                    </svg>
+                </div>
+                <div className="absolute -right-12 bottom-0 hidden xl:block opacity-20 group-hover:opacity-40 transition-opacity duration-1000 delay-300">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <rect x="0.5" y="0.5" width="39" height="39" stroke="white" strokeWidth="0.5" strokeDasharray="4 4" />
+                    </svg>
+                </div>
             </div>
 
-            {/* Subheading */}
+            {/* Subheading - Refined Typography */}
             <motion.p 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.4 }}
-                className="text-lg md:text-2xl font-light text-neutral-400 max-w-2xl leading-relaxed"
+                transition={{ duration: 1, delay: 0.6 }}
+                className="text-lg md:text-xl lg:text-2xl font-light text-neutral-400 max-w-4xl leading-relaxed mt-4"
             >
-                Engineering <span className="text-white font-normal">digital excellence</span>. 
-                I build scalable backend architecture and fluid interfaces that define the modern web.
+                Engineering <span className="text-white border-b border-white/10">digital excellence</span>. 
+                I deliver premium <span className="text-emerald-400/90 font-medium">Freelance Development</span> & <span className="text-emerald-400/90 font-medium">Gen AI solutions</span> for high-impact businesses globally.
             </motion.p>
 
             {/* CTA Actions */}
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-6 mt-8"
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex flex-col sm:flex-row gap-8 mt-4"
             >
                 <MagneticButton href="#works" primary>
-                    View Selected Works
+                    Explore Portfolio
                 </MagneticButton>
                 <MagneticButton href="https://drive.google.com/file/d/1ppX0jXZ7ipvF5q_grkefQOPvcpDLU2LY/view">
-                    Download CV
+                    Get In Touch
                 </MagneticButton>
             </motion.div>
 
@@ -256,25 +258,29 @@ export default function HeroSection({
             style={{ opacity }}
             className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30"
         >
-            <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">Scroll</span>
-            <div className="h-12 w-[1px] bg-gradient-to-b from-neutral-800 to-transparent overflow-hidden">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-neutral-500 font-mono">Explore</span>
+            <div className="h-16 w-[1px] bg-gradient-to-b from-neutral-800 via-neutral-500 to-transparent overflow-hidden">
                 <motion.div 
                     animate={{ y: ["-100%", "100%"] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    className="h-1/2 w-full bg-white"
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="h-1/2 w-full bg-emerald-500"
                 />
             </div>
         </motion.div>
 
         <style jsx global>{`
             .outline-text {
-                -webkit-text-stroke: 2px #333;
+                -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.15);
                 color: transparent;
+                letter-spacing: 0.05em;
             }
             @media (min-width: 768px) {
                 .outline-text {
-                    -webkit-text-stroke: 3px #333;
+                    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
                 }
+            }
+            .outline-text:hover {
+                -webkit-text-stroke: 2px rgba(255, 255, 255, 0.4);
             }
             /* Hardware acceleration helper */
             .translate-z-0 {

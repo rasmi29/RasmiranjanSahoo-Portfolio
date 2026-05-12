@@ -40,8 +40,8 @@ const TiltCard = ({ certificate, index }: { certificate: typeof certificates[0],
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -69,72 +69,75 @@ const TiltCard = ({ certificate, index }: { certificate: typeof certificates[0],
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`group relative bg-white/5 dark:bg-neutral-900/40 backdrop-blur-xl border rounded-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)] ${
+      className={`group relative bg-neutral-900/40 backdrop-blur-2xl border rounded-3xl transition-all duration-700 hover:shadow-[0_0_50px_rgba(16,185,129,0.15)] ${
         certificate.featured 
-        ? 'border-emerald-500/30' 
-        : 'border-white/10'
+        ? 'border-emerald-500/40 shadow-[0_0_30px_rgba(16,185,129,0.1)]' 
+        : 'border-white/5'
       }`}
     >
-      {/* Dynamic Glow Effect */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className={`absolute inset-0 bg-[radial-gradient(circle_at_var(--x)_var(--y),rgba(16,185,129,0.15)_0%,transparent_70%)]`} 
-               style={{ "--x": "50%", "--y": "50%" } as any} />
-      </div>
+      {/* Glossy Overlay */}
+      <div className="absolute inset-0 z-20 rounded-3xl pointer-events-none bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-700" />
 
-      {/* Featured Background Animation */}
+      {/* Featured Aura */}
       {certificate.featured && (
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-2xl">
-          <div className="absolute -inset-[100%] animate-spin-slow bg-[conic-gradient(from_0deg,transparent_0%,transparent_70%,rgba(16,185,129,0.1)_80%,transparent_100%)]" />
-        </div>
+        <div className="absolute -inset-[1px] z-0 rounded-3xl bg-gradient-to-r from-emerald-500/20 via-emerald-400/40 to-emerald-500/20 opacity-50 blur-[2px]" />
       )}
 
-      <div className="relative z-10 p-2" style={{ transform: "translateZ(50px)" }}>
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-inner bg-neutral-800">
+      <div className="relative z-10 p-4" style={{ transform: "translateZ(30px)" }}>
+        <div className="relative w-full h-56 rounded-2xl overflow-hidden bg-neutral-800 border border-white/5 shadow-2xl">
           <Image 
             src={certificate.image} 
             alt={`${certificate.issuer} - ${certificate.title}`} 
             fill 
-            className="object-cover transition-all duration-700 group-hover:scale-110" 
+            className="object-cover transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1" 
           />
-          <div className="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors" />
+          {/* Subtle Scanline Effect */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.02),rgba(0,255,0,0.01),rgba(0,0,255,0.02))] z-10 bg-[length:100%_2px,3px_100%] pointer-events-none opacity-20" />
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-white mb-2">
-              {certificate.title}
-            </h3>
-            <p className="text-sm font-mono text-emerald-500 uppercase tracking-widest">{certificate.issuer}</p>
+          <div className="mb-6 flex items-start justify-between">
+            <div className="max-w-[70%]">
+              <h3 className="text-xl font-bold text-white mb-2 tracking-tight leading-tight group-hover:text-emerald-400 transition-colors duration-500">
+                {certificate.title}
+              </h3>
+              <p className="text-[10px] font-mono text-emerald-500 uppercase tracking-[0.3em] font-black">{certificate.issuer}</p>
+            </div>
+            {certificate.type === 'ai' && (
+              <div className="flex items-center justify-center h-10 w-10 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+            )}
           </div>
 
-          <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/5">
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/5">
             <div className="space-y-1">
-              <p className="text-[10px] text-neutral-500 uppercase tracking-widest font-medium">Issue Reference</p>
-              <p className="text-xs text-neutral-400 font-mono tracking-tighter uppercase"> {certificate.id.slice(0, 12)}...</p>
+              <p className="text-[9px] text-neutral-500 uppercase tracking-widest">ID Reference</p>
+              <p className="text-[10px] text-neutral-400 font-mono tracking-tight uppercase"> {certificate.id.slice(0, 14)}</p>
             </div>
             <div className="text-right space-y-1">
-              <p className="text-[10px] text-neutral-500 uppercase tracking-widest font-medium">Timestamp</p>
-              <p className="text-sm text-neutral-300 font-medium">{certificate.issuedOn}</p>
+              <p className="text-[9px] text-neutral-500 uppercase tracking-widest">Completed</p>
+              <p className="text-xs text-neutral-300 font-medium">{certificate.issuedOn}</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link 
-              href={certificate.verifyUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={`flex-1 inline-flex items-center justify-center gap-3 px-6 py-3 text-xs font-black uppercase tracking-[0.15em] transition-all duration-300 rounded-xl ${
-                certificate.featured
-                ? 'bg-emerald-500 text-black hover:bg-white hover:scale-[1.02] shadow-[0_10px_20px_rgba(16,185,129,0.2)]'
-                : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
-              }`}
-            >
-              Verify Identity
-              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
+          <Link 
+            href={certificate.verifyUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={`w-full inline-flex items-center justify-center gap-3 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 rounded-xl ${
+              certificate.featured
+              ? 'bg-emerald-500 text-black hover:bg-white shadow-[0_10px_20px_rgba(16,185,129,0.2)]'
+              : 'bg-white/5 border border-white/10 text-white hover:bg-white hover:text-black'
+            }`}
+          >
+            Authenticate Credentials
+            <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </div>
     </motion.article>
