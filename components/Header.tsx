@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -85,8 +86,14 @@ export default function Header() {
           
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/5 transition-colors group-hover:border-emerald-500 group-hover:bg-emerald-500/10">
-               <span className="font-mono text-sm font-bold text-white">RS</span>
+            <div className="relative flex h-10 w-10 overflow-hidden items-center justify-center border border-white/20 bg-white/5 transition-colors group-hover:border-emerald-500 group-hover:bg-emerald-500/10">
+               <Image 
+                 src="/image.png" 
+                 alt="Rasmiranjan Sahoo Logo" 
+                 fill 
+                 sizes="40px"
+                 className="object-cover" 
+               />
             </div>
             <div className="hidden sm:flex flex-col">
                 <span className="text-xs font-bold text-white tracking-widest uppercase">Rasmiranjan Sahoo</span>

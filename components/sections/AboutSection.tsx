@@ -18,7 +18,7 @@ import Link from "next/link";
 const experiences = [
   {
     id: "01",
-    title: "Junior Software Development Engineer",
+    title: "Software Development Engineer",
     company: "Gravitones",
     date: "Oct 2025 — Present",
     description: "Architecting scalable web platforms and app platforms. Delivered 5+ end-to-end solutions including E-commerce platforms and real-time chat apps. Handled database design, API development, and UI implementation",
@@ -130,8 +130,8 @@ export default function AboutSection({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Rasmiranjan Sahoo",
-    jobTitle: "Junior Software Engineer",
-    url: "https://nirupampal.vercel.app",
+    jobTitle: "Software Development Engineer",
+    url: "https://rasmiranjan.in",
     sameAs: ["https://github.com/rasmi29", "https://www.linkedin.com/in/rasmiranjansahoo702/"],
   };
 
@@ -185,7 +185,7 @@ export default function AboutSection({
                 >
                     <div className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-sm bg-neutral-900 border border-white/10">
                         <Image
-                            src="/rasmi.jpg"
+                            src="/rasmi.png"
                             alt="Rasmiranjan Sahoo"
                             fill
                             priority // Critical for LCP

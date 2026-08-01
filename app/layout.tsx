@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: "https://rasmiranjan.me",
     images: [
       {
-        url: "/rasmi.jpg",
+        url: "/rasmi.png",
         width: 1200,
         height: 630,
         alt: "Rasmiranjan Sahoo Portfolio",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rasmiranjan Sahoo | Freelance Web & App Developer",
     description: "Expert digital solutions in Web, App, and AI based in Odisha, India.",
-    images: ["/rasmi.jpg"],
+    images: ["/rasmi.png"],
     creator: "@rasmiranjan29",
   }
 };
@@ -56,7 +56,7 @@ const jsonLd = {
   "name": "Rasmiranjan Sahoo",
   "url": siteUrl,
   "logo": `${siteUrl}/image.png`,
-  "image": `${siteUrl}/rasmi.jpg`,
+  "image": `${siteUrl}/rasmi.png`,
   "description": "Best Freelance Web and App Developer in Odisha, India. Expertise in React, Next.js, React Native, and Generative AI.",
   "address": {
     "@type": "PostalAddress",
