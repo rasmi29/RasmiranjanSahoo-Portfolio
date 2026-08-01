@@ -1,0 +1,56 @@
+# Rasmiranjan Sahoo
+
+> Freelance full-stack developer (Bhubaneswar, Odisha, India — working worldwide)
+> specialising in React, Next.js, React Native/Expo, Node.js and Gen-AI integration.
+
+## Summary
+
+Rasmiranjan Sahoo is a freelance full-stack and mobile developer available for
+contract work internationally. His flagship project is the Vedrastores
+e-commerce ecosystem for the Kenyan market: four interconnected web platforms
+and two React Native apps, including M-Pesa payment integration, designed and
+built single-handedly in four months.
+
+## Services
+
+- Web application development — Next.js, React, TypeScript, Tailwind CSS
+- Mobile app development — React Native, Expo (Android and iOS)
+- E-commerce and multi-vendor marketplace development
+- Payment integration — M-Pesa (Safaricom Daraja API)
+- Generative AI integration — OpenAI API, LangChain, agentic SDKs
+- Backend and infrastructure — Node.js, Express, MongoDB, Redis, Firebase, AWS S3/CloudFront
+
+## Notable work
+
+- **Vedrastores Ecosystem** (2026, Kenya) — https://rasmiranjan.in/works/vedrastores
+  Multi-vendor e-commerce infrastructure: marketing site, buyer portal, vendor
+  dashboard and admin panel, plus buyer and rider mobile apps.
+  Stack: Next.js, React Native, Expo, Shadcn UI, Node.js, Firebase, AWS, M-Pesa.
+  Outcome: 4 web platforms + 2 apps shipped in 4 months by a single developer.
+  Live: https://vedrastores.co.ke
+
+## Experience
+
+- Software Development Engineer, Gravitones (Oct 2025 – present)
+- MERN Intern, Gravity Engineering Services (Sept 2025 – Oct 2025)
+
+## Credentials
+
+- Generative AI Fundamentals — Chai Code (May 2026)
+- Web Development Certificate — Chai Code (July 2025)
+- Frontend Development by Meta — Coursera (Oct 2024)
+
+## Contact
+
+- Website: https://rasmiranjan.in
+- Email: rasmiranjansahoo702@gmail.com
+- GitHub: https://github.com/rasmi29
+- LinkedIn: https://www.linkedin.com/in/rasmiranjansahoo702/
+- Availability: open to freelance projects and full-time roles
+- Typical response time: within 24 hours
+
+## Key pages
+
+- https://rasmiranjan.in/ — homepage: overview, works, skills, contact
+- https://rasmiranjan.in/works — all case studies
+- https://rasmiranjan.in/works/vedrastores — Vedrastores case study

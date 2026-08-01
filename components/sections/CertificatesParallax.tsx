@@ -1,8 +1,9 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from 'framer-motion';
+import GrainOverlay from '@/components/ui/GrainOverlay';
 
 const certificates = [
   {
@@ -10,7 +11,7 @@ const certificates = [
     title: 'Generative AI Fundamentals',
     issuer: 'Chai Code',
     issuedOn: '11 May 2026',
-    image: '/genai-certificate.png',
+    image: '/genai-certificate.webp',
     verifyUrl: 'https://courses.chaicode.com/learn/certificate/10993325-239664', 
     featured: true,
     type: 'ai'
@@ -20,7 +21,7 @@ const certificates = [
     title: 'Web Development Certificate',
     issuer: 'Chai Code',
     issuedOn: '31 July 2025',
-    image: '/mern-certificate.png',
+    image: '/mern-certificate.webp',
     verifyUrl: 'https://courses.chaicode.com/learn/certificate/10993325-214298',
   },
   {
@@ -28,12 +29,13 @@ const certificates = [
     title: 'Frontend Development by Meta',
     issuer: 'Coursera',
     issuedOn: '7 Oct 2024',
-    image: '/frontend-certificate.png',
+    image: '/frontend-certificate.webp',
     verifyUrl: 'https://www.coursera.org/account/accomplishments/verify/LO6148UTS7YI',
   },
 ];
 
 const TiltCard = ({ certificate, index }: { certificate: typeof certificates[0], index: number }) => {
+  const reduce = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -44,6 +46,7 @@ const TiltCard = ({ certificate, index }: { certificate: typeof certificates[0],
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (reduce) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -146,16 +149,17 @@ const TiltCard = ({ certificate, index }: { certificate: typeof certificates[0],
 
 export default function CertificatesParallax() {
   return (
-    <section className="relative min-h-screen py-32 bg-neutral-950 overflow-hidden selection:bg-emerald-500/30">
+    <section
+      aria-labelledby="certificates-heading"
+      className="relative py-32 bg-neutral-950 overflow-hidden selection:bg-emerald-500/30"
+    >
       {/* Deep Space Background */}
-      <div className="absolute inset-0 z-0">
+      <div aria-hidden="true" className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.03)_0%,transparent_50%)]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50 contrast-150 mix-blend-overlay" />
-        
-        {/* Animated Circuit Grid */}
-        <div className="absolute inset-0 opacity-[0.03]" 
+        <div className="absolute inset-0 opacity-[0.03]"
              style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "40px 40px" }} />
       </div>
+      <GrainOverlay opacity="opacity-[0.12]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-10">
@@ -164,18 +168,19 @@ export default function CertificatesParallax() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-emerald-500 font-mono text-sm tracking-[0.3em] uppercase mb-4 block"
+              className="text-emerald-400 font-mono text-sm tracking-[0.3em] uppercase mb-4 block"
             >
-              Validated Expertise
+              04 / Validated Expertise
             </motion.span>
-            <motion.h2 
+            <motion.h2
+              id="certificates-heading"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-6xl md:text-8xl font-bold tracking-tighter text-white leading-[0.9]"
             >
               Global<br />
-              <span className="text-neutral-700">Standards.</span>
+              <span className="text-neutral-600">Standards.</span>
             </motion.h2>
           </div>
           <motion.p 

@@ -1,7 +1,15 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  animate,
+  type MotionValue,
+} from "framer-motion";
+import GrainOverlay from "@/components/ui/GrainOverlay";
 
 // --- CONSTANTS ---
 const LOG_MESSAGES = [
@@ -17,15 +25,8 @@ const LOG_MESSAGES = [
 
 // --- COMPONENTS ---
 
-// Static grain overlay (memoized or static)
-const GrainOverlay = () => (
-  <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden opacity-20">
-    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat brightness-100 contrast-150" />
-  </div>
-);
-
 // Optimized Counter Component (Updates DOM directly, no re-renders)
-const Counter = ({ value }: { value: any }) => {
+const Counter = ({ value }: { value: MotionValue<number> }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,12 +94,15 @@ export default function PageLoader() {
             y: "-100%", 
             transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
           }}
-          className="fixed inset-0 z-[9999] flex flex-col justify-between bg-neutral-950 text-white px-6 py-8 md:px-12 md:py-12"
+          role="status"
+          aria-live="polite"
+          aria-label="Loading"
+          className="fixed inset-0 z-9999 flex flex-col justify-between bg-neutral-950 text-white px-6 py-8 md:px-12 md:py-12"
         >
           <GrainOverlay />
           
           {/* Top Bar */}
-          <div className="relative z-10 flex justify-between items-start font-mono text-xs text-neutral-500 uppercase tracking-widest">
+          <div className="relative z-10 flex justify-between items-start font-mono text-xs text-neutral-400 uppercase tracking-widest">
             <div className="flex flex-col gap-1">
                 <span>System Status:</span>
                 <span className="text-emerald-500 animate-pulse">Booting Sequence</span>
@@ -127,12 +131,14 @@ export default function PageLoader() {
           {/* Bottom Bar: Big Counter */}
           <div className="relative z-10 flex justify-between items-end">
              {/* Name Reveal */}
+             {/* Was an <h1>. The page's real heading lives in the hero;
+                 a loading screen must not compete with it. */}
              <div className="hidden md:block">
-                <h1 className="text-xl font-bold tracking-tighter text-white">
+                <p className="text-xl font-bold tracking-tighter text-white">
                     RASMIRANJAN SAHOO
-                </h1>
-                <p className="text-xs text-neutral-500 font-mono mt-1">
-                    FULLSTACK DEVELOPER
+                </p>
+                <p className="text-xs text-neutral-400 font-mono mt-1">
+                    FULL-STACK DEVELOPER
                 </p>
              </div>
 
