@@ -4,13 +4,17 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { AUTHOR, NAV_ITEMS, RESUME_URL } from "@/lib/site";
+import { AUTHOR, NAV_ITEMS, PROFILES, RESUME_URL } from "@/lib/site";
 
+/*
+ * `me` in the rel attribute is the identity claim: "this profile is the same
+ * person as this site". It is only half a proof — the profile has to link back
+ * — but it is the half that lives in the codebase.
+ */
 const socialLinks = [
-  { name: "LinkedIn", href: AUTHOR.linkedin, external: true },
-  { name: "GitHub", href: AUTHOR.github, external: true },
-  { name: "Email", href: `mailto:${AUTHOR.email}`, external: false },
-  { name: "Resume", href: RESUME_URL, external: true },
+  ...PROFILES.map((p) => ({ name: p.name, href: p.url, external: true, me: true })),
+  { name: "Email", href: `mailto:${AUTHOR.email}`, external: false, me: false },
+  { name: "Resume", href: RESUME_URL, external: true, me: false },
 ];
 
 const BackToTop = () => {
@@ -103,6 +107,15 @@ export default function Footer() {
                   All Case Studies
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
+                >
+                  <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
+                  About Rasmiranjan Sahoo
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -116,7 +129,12 @@ export default function Footer() {
                   <a
                     href={link.href}
                     {...(link.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      ? {
+                          target: "_blank",
+                          rel: link.me
+                            ? "me noopener noreferrer"
+                            : "noopener noreferrer",
+                        }
                       : {})}
                     className="text-sm text-neutral-300 hover:text-emerald-400 transition-colors flex items-center gap-2 group"
                   >

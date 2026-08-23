@@ -32,6 +32,16 @@ jobs:
 
       - name: Build Next.js
         run: npm run build
+        env:
+          # Add these under Settings → Secrets and variables → Actions.
+          # Each is optional: an unset secret becomes "", and the code omits
+          # the corresponding tag rather than emitting a broken one.
+          NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
+          NEXT_PUBLIC_BING_SITE_VERIFICATION: ${{ secrets.BING_SITE_VERIFICATION }}
+          # Without this one the contact form still renders, but every submit
+          # returns "the form isn't connected yet" — so search traffic that
+          # converts has nowhere to land. Set it.
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
 
       - name: Add .nojekyll
         run: touch out/.nojekyll

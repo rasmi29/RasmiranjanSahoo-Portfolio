@@ -1,9 +1,24 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import PageLoader from "@/components/PageLoader";
 import CursorEffect from "@/components/CursorEffect";
 import ScrollProgress from "@/components/ui/ScrollProgress";
-import { AUTHOR, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import {
+  AUTHOR,
+  SAME_AS,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+  VERIFICATION,
+} from "@/lib/site";
+import {
+  jsonLdScript,
+  organizationSchema,
+  personSchema,
+  photoSchema,
+  serviceSchema,
+  websiteSchema,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -54,6 +69,12 @@ export const metadata: Metadata = {
     creator: AUTHOR.twitter,
   },
   manifest: "/manifest.webmanifest",
+  /* Tokens come from the build env, so they are never committed. An empty
+     string makes Next omit the tag rather than emit a broken one. */
+  verification: {
+    ...(VERIFICATION.google ? { google: VERIFICATION.google } : {}),
+    ...(VERIFICATION.bing ? { other: { "msvalidate.01": VERIFICATION.bing } } : {}),
+  },
 };
 
 export const viewport: Viewport = {
@@ -64,83 +85,25 @@ export const viewport: Viewport = {
 };
 
 /**
- * One consolidated entity graph. The @id cross-references are what let a
- * crawler (and an LLM) understand these as one entity rather than three
- * unrelated documents.
+ * The identity graph — emitted on every page, because these statements are
+ * true everywhere on the site.
+ *
+ * The @id cross-references are what let a crawler (and an LLM) understand
+ * these as one entity rather than several unrelated documents. Every node is
+ * built from `lib/seo.ts`, so /about and the case studies point at the same
+ * person object instead of describing a near-duplicate of it.
+ *
+ * Page-level nodes (ProfilePage, FAQPage, BreadcrumbList, CreativeWork) belong
+ * to individual pages and live there — a FAQPage in particular is only
+ * eligible where its answers are visibly rendered, which is /about alone.
  */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": `${SITE_URL}/#person`,
-      name: AUTHOR.name,
-      url: SITE_URL,
-      image: `${SITE_URL}/rasmi.webp`,
-      jobTitle: AUTHOR.jobTitle,
-      email: `mailto:${AUTHOR.email}`,
-      description: SITE_DESCRIPTION,
-      knowsAbout: [
-        "React",
-        "Next.js",
-        "React Native",
-        "Expo",
-        "Node.js",
-        "TypeScript",
-        "M-Pesa Integration",
-        "E-commerce Architecture",
-        "Multi-vendor Marketplaces",
-        "Generative AI",
-        "LangChain",
-        "Firebase",
-        "AWS",
-      ],
-      sameAs: [AUTHOR.github, AUTHOR.linkedin],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: AUTHOR.locality,
-        addressRegion: AUTHOR.region,
-        addressCountry: AUTHOR.country,
-      },
-    },
-    {
-      // Service (not the discouraged generic ProfessionalService), with
-      // areaServed instead of a storefront address so reach isn't capped local.
-      "@type": "Service",
-      "@id": `${SITE_URL}/#service`,
-      name: "Freelance Web, Mobile and AI Development",
-      provider: { "@id": `${SITE_URL}/#person` },
-      serviceType: "Web and Mobile Application Development",
-      areaServed: { "@type": "Place", name: "Worldwide" },
-      availableChannel: {
-        "@type": "ServiceChannel",
-        serviceUrl: `${SITE_URL}/#contact`,
-      },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Development Services",
-        itemListElement: [
-          "Web Application Development",
-          "Mobile App Development (React Native)",
-          "E-commerce & Marketplace Development",
-          "Generative AI Integration",
-        ].map((n) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: n },
-        })),
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      url: SITE_URL,
-      name: `${SITE_NAME} — Portfolio`,
-      description: SITE_DESCRIPTION,
-      publisher: { "@id": `${SITE_URL}/#person` },
-      inLanguage: "en",
-    },
-  ],
-};
+const jsonLd = jsonLdScript([
+  personSchema(),
+  photoSchema(),
+  organizationSchema(),
+  websiteSchema(),
+  serviceSchema(),
+]);
 
 export default function RootLayout({
   children,
@@ -149,10 +112,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        {/* rel="me" is the machine-readable half of identity verification.
+            It only pays off once each profile links back here — see
+            SEO-PLAYBOOK.md, step 3. */}
+        {SAME_AS.map((url) => (
+          <link key={url} rel="me" href={url} />
+        ))}
+      </head>
       <body className="antialiased bg-black text-white" suppressHydrationWarning>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd }}
         />
         <a
           href="#main"
@@ -162,7 +133,12 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <CursorEffect />
-        <PageLoader />
+        {/* PageLoader is deliberately NOT here any more.
+            In the App Router the root layout mounts fresh on every *direct*
+            hit, so a loader at this level ran its 2.5s boot sequence over
+            /about and /works too — i.e. precisely the pages a search visitor
+            lands on, who then stares at a black overlay before seeing a word.
+            It now lives in app/page.tsx, where the brand moment belongs. */}
         {children}
       </body>
     </html>

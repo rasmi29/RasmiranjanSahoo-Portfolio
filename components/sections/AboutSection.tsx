@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { RESUME_URL } from "@/lib/site";
+import { PORTRAIT, RESUME_URL } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
 
 const experiences = [
@@ -164,18 +164,26 @@ export default function AboutSection() {
               style={reduce ? undefined : { y, willChange: "transform" }}
               className="lg:sticky lg:top-32"
             >
-              <div className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-sm bg-neutral-900 border border-white/10">
-                <Image
-                  src="/rasmi.webp"
-                  alt="Rasmiranjan Sahoo, freelance full-stack developer"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
-                />
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-neutral-950/20 z-10" />
-                <div aria-hidden="true" className="absolute top-2 left-2 h-4 w-4 border-l-2 border-t-2 border-white/80 z-20" />
-                <div aria-hidden="true" className="absolute bottom-2 right-2 h-4 w-4 border-r-2 border-b-2 border-white/80 z-20" />
-              </div>
+              {/* A real <figure>/<figcaption> pair. The caption is what tells
+                  Google Images who the face belongs to — an alt attribute alone
+                  is a weaker signal than alt plus adjacent visible text. */}
+              <figure className="m-0">
+                <div className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-sm bg-neutral-900 border border-white/10">
+                  <Image
+                    src={PORTRAIT.portrait.src}
+                    alt={PORTRAIT.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+                  />
+                  <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-neutral-950/20 z-10" />
+                  <div aria-hidden="true" className="absolute top-2 left-2 h-4 w-4 border-l-2 border-t-2 border-white/80 z-20" />
+                  <div aria-hidden="true" className="absolute bottom-2 right-2 h-4 w-4 border-r-2 border-b-2 border-white/80 z-20" />
+                </div>
+                <figcaption className="mt-3 max-w-md text-xs leading-relaxed text-neutral-400">
+                  {PORTRAIT.caption}
+                </figcaption>
+              </figure>
 
               <dl className="mt-8 grid grid-cols-3 gap-4">
                 {stats.map((stat) => (
@@ -245,6 +253,18 @@ export default function AboutSection() {
                 applications. Whether it&apos;s <span className="text-white">Next.js</span> or{" "}
                 <span className="text-white">React Native</span>, I handle the whole stack —
                 architecture, backend, interface and release.
+              </p>
+              {/* Descriptive anchor text, pointing at the entity page. This is
+                  the internal link that tells Google which URL is canonical for
+                  the query "Rasmiranjan Sahoo". */}
+              <p className="text-base text-neutral-400">
+                <Link
+                  href="/about"
+                  className="text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500"
+                >
+                  More about Rasmiranjan Sahoo
+                </Link>{" "}
+                — background, stack, career and answers to the questions I get asked most.
               </p>
             </motion.div>
 
