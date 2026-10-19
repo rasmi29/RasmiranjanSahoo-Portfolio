@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import { AUTHOR, STUDIO, WORKS_FOR } from "@/lib/site";
 
 const webPlatforms = [
   {
@@ -52,18 +53,10 @@ const webPlatforms = [
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132512.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132525.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132533.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132814.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132822.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132836.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132903.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132913.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132920.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132929.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 132941.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 133112.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 133146.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 133153.webp",
-      "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 133253.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 133321.webp",
       "/Projects/Vedrastore/buyer-web-ss/Screenshot 2026-05-12 133328.webp"
     ],
@@ -89,14 +82,10 @@ const webPlatforms = [
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133724.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133734.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133741.webp",
-      "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133759.webp",
-      "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133804.webp",
-      "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133815.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133821.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133833.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133838.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133845.webp",
-      "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133852.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133909.webp",
       "/Projects/Vedrastore/Vedra-vendor-ss/Screenshot 2026-05-12 133917.webp"
     ],
@@ -117,11 +106,6 @@ const webPlatforms = [
     image: "/Projects/Vedrastore/Admin-banner.webp",
     gallery: [
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115145.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115211.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115230.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115239.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115310.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115328.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115346.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115355.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115431.webp",
@@ -130,11 +114,6 @@ const webPlatforms = [
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115534.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115545.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115603.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115617.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115640.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115759.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115807.webp",
-      "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115831.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115902.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115914.webp",
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115924.webp",
@@ -162,7 +141,6 @@ const mobileApps = [
       "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_161038.jpg.webp",
     gallery: [
       "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_161108.jpg.webp",
-      "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_161127.jpg.webp",
       "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_185711.jpg.webp",
       "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_185742.jpg.webp",
       "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_185750.jpg.webp",
@@ -180,13 +158,11 @@ const mobileApps = [
     tech: "React Native & Expo",
     icon: "/Projects/Vedrastore/vedrastore-rider-icon.webp",
     image:
-      "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182338.jpg.webp",
+      "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182348.jpg.webp",
     gallery: [
       "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182348.jpg.webp",
-      "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182359.jpg.webp",
       "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182453.jpg.webp",
       "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182524.jpg.webp",
-      "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182651.jpg.webp",
       "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260425_182737.jpg.webp",
       "/Projects/Vedrastore/Rider-App-Screenshots/Screenshot_20260429_161122.jpg.webp",
     ],
@@ -543,7 +519,7 @@ export default function VedrastoresCaseStudy() {
 
               <p className="max-w-xl text-xl md:text-2xl font-light text-neutral-400 leading-relaxed mb-12 border-l-2 border-emerald-500/30 pl-8">
                 A comprehensive e-commerce infrastructure developed for the
-                Kenya market. Built single-handedly from scratch in 4 months,
+                Kenya market. Built at Gravitones as the sole developer, from scratch in 4 months,
                 featuring a highly-optimized ecosystem of 4 web platforms and 2
                 mobile applications.
               </p>
@@ -693,19 +669,30 @@ export default function VedrastoresCaseStudy() {
           <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-10 italic text-neutral-800">
             Efficiency through <span className="text-white">innovation.</span>
           </h2>
-          <Link
-            href="/#contact"
+          <a
+            href={STUDIO.contact}
             className="inline-flex items-center justify-center px-10 py-5 bg-white text-black text-sm font-bold uppercase tracking-widest hover:bg-emerald-500 transition-colors"
           >
             Discuss a similar project
-          </Link>
+          </a>
+          {/* Credit and ownership — same wording as the studio site's case studies. */}
+          <p className="mx-auto mt-16 max-w-2xl text-sm leading-relaxed text-neutral-500">
+            Built at{" "}
+            <a href={WORKS_FOR.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+              {WORKS_FOR.name}
+            </a>
+            , my employer. Vedrastores and {WORKS_FOR.name} own the product, its source code, designs,
+            name and logo; this page describes my own role. Screens showing customer data or business
+            figures are blurred or left out. Own something shown here and want it changed or removed?
+            Email <a href={`mailto:${AUTHOR.email}`} className="underline hover:text-white">{AUTHOR.email}</a>.
+          </p>
         </div>
       </section>
 
       <footer className="py-12 border-t border-white/5 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-mono text-neutral-500 uppercase tracking-[0.3em]">
-          <p>© 2026 VEDRASTORES Case Study</p>
-          <p>Handled by Rasmiranjan Sahoo</p>
+          <p>Vedrastores © its owners · Case study</p>
+          <p>Built at Gravitones by Rasmiranjan Sahoo</p>
         </div>
       </footer>
     </main>

@@ -12,21 +12,30 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { PORTRAIT, RESUME_URL } from "@/lib/site";
+import { PORTRAIT, RESUME_URL, STUDIO } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
 
 const experiences = [
   {
     id: "01",
+    title: "Founder",
+    company: "Rathaworks",
+    date: "2026 — Present",
+    description:
+      "A one-developer studio for websites, apps and business software — fixed-price proposals, weekly demos, and code the client owns from day one. work.rasmiranjan.in",
+    tags: ["Client Projects", "Full-Stack", "React Native", "Fixed Price"],
+  },
+  {
+    id: "02",
     title: "Software Development Engineer",
     company: "Gravitones",
     date: "Oct 2025 — Present",
     description:
-      "Architecting scalable web and mobile platforms. Delivered 5+ end-to-end solutions including e-commerce platforms and real-time chat apps, covering database design, API development and UI implementation.",
+      "Lead developer on client platforms: the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the QuickBite creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
     tags: ["Architecture", "React Native", "MERN", "Leadership"],
   },
   {
-    id: "02",
+    id: "03",
     title: "MERN Intern",
     company: "Gravity Engineering Services",
     date: "Sept 2025 — Oct 2025",
@@ -35,7 +44,7 @@ const experiences = [
     tags: ["Node.js", "DB Design", "React"],
   },
   {
-    id: "03",
+    id: "04",
     title: "Continuous Learning",
     company: "Self-Development",
     date: "Ongoing",
@@ -230,10 +239,13 @@ export default function AboutSection() {
               <p>
                 I am a{" "}
                 <span className="text-white font-normal underline decoration-emerald-500/30 underline-offset-8">
-                  freelance full-stack developer
+                  full-stack developer
                 </span>{" "}
-                based in <span className="text-white">Odisha, India</span>, working with clients
-                worldwide. I architect digital products that don&apos;t just work, but hold up
+                based in <span className="text-white">Odisha, India</span>, and the founder of{" "}
+                <a href={STUDIO.url} className="text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500">
+                  Rathaworks
+                </a>
+                , my studio for client projects worldwide. I architect digital products that don&apos;t just work, but hold up
                 under real traffic.
               </p>
               <p>
@@ -245,7 +257,7 @@ export default function AboutSection() {
                   Vedrastores commerce ecosystem
                 </Link>{" "}
                 for the Kenyan market — four web platforms and two React Native apps with M-Pesa
-                payments, shipped solo in four months.
+                payments, built as the sole developer at Gravitones in four months.
               </p>
               <p>
                 I work at the intersection of{" "}
@@ -285,6 +297,13 @@ export default function AboutSection() {
               >
                 Let&apos;s talk &rarr;
               </Link>
+              <p className="mt-4 text-sm text-neutral-400">
+                Have a project to build? It runs through my studio,{" "}
+                <a href={STUDIO.contact} className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
+                  Rathaworks
+                </a>
+                .
+              </p>
             </div>
           </div>
         </div>

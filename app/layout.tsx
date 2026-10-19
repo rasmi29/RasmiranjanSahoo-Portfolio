@@ -17,6 +17,7 @@ import {
   personSchema,
   photoSchema,
   serviceSchema,
+  studioSchema,
   websiteSchema,
 } from "@/lib/seo";
 
@@ -101,6 +102,7 @@ const jsonLd = jsonLdScript([
   personSchema(),
   photoSchema(),
   organizationSchema(),
+  studioSchema(),
   websiteSchema(),
   serviceSchema(),
 ]);

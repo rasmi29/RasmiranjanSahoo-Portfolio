@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import ContactForm from "@/components/sections/ContactForm";
-import { AUTHOR, RESUME_URL } from "@/lib/site";
+import { AUTHOR, RESUME_URL, STUDIO } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
 import { motion } from "framer-motion";
 
@@ -149,8 +149,12 @@ export default function ContactSection() {
 
           <div className="mb-2">
             <p className="text-neutral-300 text-sm mb-4 max-w-xs leading-relaxed">
-              Currently open for freelance projects and full-time opportunities.
-              I reply to every enquiry within 24 hours.
+              Client projects run through my studio,{" "}
+              <a href={STUDIO.contact} className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
+                Rathaworks
+              </a>
+              . For roles, collaborations or anything else, write here — I reply
+              within 24 hours.
             </p>
             <IndiaClock />
           </div>

@@ -8,6 +8,7 @@ import {
   PORTRAIT,
   PROFILES,
   SITE_URL,
+  STUDIO,
   WORKS_FOR,
 } from "@/lib/site";
 import {
@@ -31,9 +32,9 @@ import {
  * a page that reads as written-for-crawlers is the one Google discounts.
  */
 
-const TITLE = "About Rasmiranjan Sahoo — Freelance Full-Stack Developer";
+const TITLE = "About Rasmiranjan Sahoo — Developer & Founder of Rathaworks";
 const DESCRIPTION =
-  "Rasmiranjan Sahoo is a freelance full-stack and React Native developer in Bhubaneswar, Odisha, India, working worldwide. Software Development Engineer at Gravitones and the sole builder of the Vedrastores commerce ecosystem for Kenya.";
+  "Rasmiranjan Sahoo is a full-stack and React Native developer in Bhubaneswar, India — founder of the Rathaworks studio and an engineer at Gravitones.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -90,7 +91,18 @@ const jsonLd = jsonLdScript([
 const FACTS: { term: string; detail: React.ReactNode }[] = [
   { term: "Full name", detail: AUTHOR.name },
   { term: "Also written as", detail: ALTERNATE_NAMES.join(" · ") },
-  { term: "Role", detail: "Freelance full-stack & React Native developer" },
+  { term: "Role", detail: "Full-stack & React Native developer" },
+  {
+    term: "Studio",
+    detail: (
+      <a
+        href={STUDIO.url}
+        className="underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500"
+      >
+        Founder, Rathaworks — work.rasmiranjan.in
+      </a>
+    ),
+  },
   {
     term: "Current position",
     detail: `${WORKS_FOR.role}, ${WORKS_FOR.name} (since October 2025)`,
@@ -121,11 +133,18 @@ const FACTS: { term: string; detail: React.ReactNode }[] = [
 
 const CAREER = [
   {
+    role: "Founder",
+    org: "Rathaworks",
+    period: "2026 — Present",
+    detail:
+      "A one-developer studio for websites, apps and business software, with fixed-price proposals, weekly demos and code the client owns. Client projects start at work.rasmiranjan.in.",
+  },
+  {
     role: "Software Development Engineer",
     org: "Gravitones",
     period: "Oct 2025 — Present",
     detail:
-      "Architecting web and mobile platforms end to end — database design, API development and UI implementation across e-commerce and real-time products.",
+      "Lead developer on client platforms — the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the QuickBite creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
   },
   {
     role: "MERN Intern",
@@ -210,10 +229,13 @@ export default function AboutPage() {
               <span className="text-neutral-400">Sahoo</span>
             </h1>
             <p className="border-l-2 border-emerald-500/30 pl-6 text-lg font-light leading-relaxed text-neutral-200">
-              I am a <strong className="font-normal text-white">freelance
-              full-stack and React Native developer</strong> based in
-              Bhubaneswar, Odisha, India, working with clients worldwide. I
-              build production e-commerce platforms, cross-platform mobile apps
+              I am a <strong className="font-normal text-white">full-stack
+              and React Native developer</strong> based in Bhubaneswar, Odisha,
+              India, and the founder of{" "}
+              <a href={STUDIO.url} className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
+                Rathaworks
+              </a>
+              , a one-developer studio for clients worldwide. I build production e-commerce platforms, cross-platform mobile apps
               and Gen-AI integrations — and I handle the whole stack:
               architecture, backend, interface and release.
             </p>
@@ -289,7 +311,8 @@ export default function AboutPage() {
               marketing site, a buyer portal, a vendor dashboard and an admin
               panel — plus two React Native apps for buyers and riders, with
               live M-Pesa payments through the Safaricom Daraja API. Six
-              codebases, designed and built single-handedly in four months.
+              codebases, designed and built as the sole developer at
+              Gravitones in four months.
             </p>
             <p>
               Day to day that means Next.js, React and TypeScript on the front

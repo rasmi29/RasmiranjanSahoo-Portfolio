@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Screenshots with personal data or client figures — never publish
+/private-screens/
+/public/**/*.zip

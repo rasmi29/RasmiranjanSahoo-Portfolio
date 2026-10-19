@@ -51,13 +51,13 @@ export const projects: Project[] = [
     tagline:
       "Vedrastores — 4-Platform E-Commerce Ecosystem with M-Pesa for Kenya",
     metaDescription:
-      "Case study: building a complete multi-vendor e-commerce infrastructure for Kenya — 4 web platforms and 2 React Native apps with M-Pesa payments, shipped solo in 4 months.",
+      "Case study: building a complete multi-vendor e-commerce infrastructure for Kenya — 4 web platforms and 2 React Native apps with M-Pesa payments, built at Gravitones as sole developer in 4 months.",
     description:
-      "A complete multi-vendor e-commerce infrastructure for the Kenyan market: 4 interconnected web platforms and 2 React Native apps, with M-Pesa payments, built solo in 4 months.",
+      "A complete multi-vendor e-commerce infrastructure for the Kenyan market: 4 interconnected web platforms and 2 React Native apps, with M-Pesa payments, built at Gravitones by a single developer in 4 months.",
     year: "2026",
     type: "E-Commerce",
     featured: true,
-    role: "Sole Developer — architecture, backend, web and mobile",
+    role: "Sole developer at Gravitones — architecture, backend, web and mobile",
     duration: "4 months",
     client: "Vedrastores (Kenya)",
     outcomes: [

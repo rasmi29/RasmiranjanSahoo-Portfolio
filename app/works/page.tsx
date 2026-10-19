@@ -7,7 +7,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Case Studies — E-Commerce, Mobile & AI Builds",
   description:
-    "Selected freelance work by Rasmiranjan Sahoo: multi-vendor e-commerce platforms, React Native apps and Gen-AI integrations, with the architecture decisions and outcomes behind each build.",
+    "Selected work by Rasmiranjan Sahoo, founder of Rathaworks: multi-vendor e-commerce platforms, React Native apps and Gen-AI integrations, with the architecture decisions and outcomes behind each build.",
   alternates: { canonical: "/works" },
   openGraph: {
     type: "website",

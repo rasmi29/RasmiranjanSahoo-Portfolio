@@ -18,6 +18,7 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_URL,
+  STUDIO,
   WORKS_FOR,
 } from "./site";
 
@@ -27,6 +28,8 @@ export const ID = {
   service: `${SITE_URL}/#service`,
   photo: `${SITE_URL}/#photo`,
   organization: `${SITE_URL}/#gravitones`,
+  /** The studio's own @id on its site — both sites describe one business. */
+  studio: STUDIO.id,
 } as const;
 
 const abs = (p: string) => (p.startsWith("http") ? p : `${SITE_URL}${p}`);
@@ -83,7 +86,7 @@ export const personSchema = () => ({
   jobTitle: AUTHOR.jobTitle,
   description: SITE_DESCRIPTION,
   disambiguatingDescription:
-    "Freelance full-stack, React Native and Gen-AI developer based in Bhubaneswar, Odisha, India — not to be confused with others sharing the name. Builder of the Vedrastores multi-vendor commerce ecosystem for the Kenyan market.",
+    "Full-stack, React Native and Gen-AI developer based in Bhubaneswar, Odisha, India — not to be confused with others sharing the name. Founder of the Rathaworks studio (work.rasmiranjan.in) and lead developer of the Vedrastores multi-vendor commerce ecosystem for Kenya, built at Gravitones.",
   email: `mailto:${AUTHOR.email}`,
   knowsLanguage: [
     { "@type": "Language", name: "English", alternateName: "en" },
@@ -120,7 +123,8 @@ export const personSchema = () => ({
     "Firebase",
     "AWS",
   ],
-  sameAs: SAME_AS,
+  // The studio's About page describes the same person and links back here.
+  sameAs: [...SAME_AS, `${STUDIO.url}/about`],
   homeLocation: {
     "@type": "Place",
     address: {
@@ -142,7 +146,20 @@ export const organizationSchema = () => ({
   "@type": "Organization",
   "@id": ID.organization,
   name: WORKS_FOR.name,
+  url: WORKS_FOR.url,
   employee: { "@id": ID.person },
+});
+
+/** The studio, referenced by the same @id its own site uses. */
+export const studioSchema = () => ({
+  "@type": "ProfessionalService",
+  "@id": ID.studio,
+  name: STUDIO.name,
+  url: STUDIO.url,
+  logo: `${STUDIO.url}/icon.svg`,
+  founder: { "@id": ID.person },
+  foundingDate: STUDIO.since,
+  areaServed: { "@type": "Place", name: "Worldwide" },
 });
 
 export const websiteSchema = () => ({
@@ -164,13 +181,13 @@ export const websiteSchema = () => ({
 export const serviceSchema = () => ({
   "@type": "Service",
   "@id": ID.service,
-  name: "Freelance Web, Mobile and AI Development",
-  provider: { "@id": ID.person },
+  name: "Web, Mobile and AI Development by Rathaworks",
+  provider: { "@id": ID.studio },
   serviceType: "Web and Mobile Application Development",
   areaServed: { "@type": "Place", name: "Worldwide" },
   availableChannel: {
     "@type": "ServiceChannel",
-    serviceUrl: `${SITE_URL}/#contact`,
+    serviceUrl: STUDIO.contact,
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -238,17 +255,17 @@ export const IDENTITY_FAQ = [
   {
     question: "Who is Rasmiranjan Sahoo?",
     answer:
-      "Rasmiranjan Sahoo is a freelance full-stack and React Native developer based in Bhubaneswar, Odisha, India, working with clients worldwide. He builds production e-commerce platforms, cross-platform mobile apps and Gen-AI integrations with Next.js, React Native and Node.js. He is currently a Software Development Engineer at Gravitones, and his portfolio is at rasmiranjan.in.",
+      "Rasmiranjan Sahoo is a full-stack and React Native developer based in Bhubaneswar, Odisha, India, and the founder of Rathaworks, a one-developer web, app and software studio at work.rasmiranjan.in. Rasmiranjan builds production e-commerce platforms, cross-platform mobile apps and Gen-AI integrations with Next.js, React Native and Node.js, and is a Software Development Engineer at Gravitones. The personal portfolio is at rasmiranjan.in.",
   },
   {
     question: "What has Rasmiranjan Sahoo built?",
     answer:
-      "His flagship project is the Vedrastores commerce ecosystem for the Kenyan market: four interconnected web platforms (marketing site, buyer portal, vendor dashboard and admin panel) plus two React Native apps for buyers and riders, including live M-Pesa payment integration. He designed and built all six codebases single-handedly in four months.",
+      "The flagship project is the Vedrastores commerce ecosystem for the Kenyan market: four interconnected web platforms (marketing site, buyer portal, vendor dashboard and admin panel) plus two React Native apps for buyers and riders, with live M-Pesa payments — all six codebases built in four months as the sole developer at Gravitones. Rasmiranjan has also led the Bookiee bus-booking platform, a five-app restaurant delivery system, the QuickBite creator app and the Bidyasagar Classes coaching platform at Gravitones.",
   },
   {
     question: "Is Rasmiranjan Sahoo available for hire?",
     answer:
-      "Yes. Rasmiranjan Sahoo takes on freelance and contract work worldwide, and is open to full-time roles. Enquiries go through the contact form at rasmiranjan.in or by email at rasmiranjansahoo702@gmail.com, and he replies to every enquiry within 24 hours.",
+      "Yes. Client projects — websites, apps and business software — run through Rasmiranjan Sahoo's studio, Rathaworks, at work.rasmiranjan.in, with fixed-price proposals and weekly demos. Other enquiries go through the contact form at rasmiranjan.in or rasmiranjansahoo702@gmail.com, and every enquiry gets a reply within 24 hours.",
   },
   {
     question: "What technologies does Rasmiranjan Sahoo work with?",
@@ -263,7 +280,7 @@ export const IDENTITY_FAQ = [
   {
     question: "How can I contact Rasmiranjan Sahoo?",
     answer:
-      "Through the contact form at rasmiranjan.in, by email at rasmiranjansahoo702@gmail.com, on LinkedIn at linkedin.com/in/rasmiranjansahoo702, or on GitHub at github.com/rasmi29.",
+      "For a project, through the Rathaworks studio at work.rasmiranjan.in/contact. Otherwise through the contact form at rasmiranjan.in, by email at rasmiranjansahoo702@gmail.com, on LinkedIn at linkedin.com/in/rasmiranjansahoo702, or on GitHub at github.com/rasmi29.",
   },
 ];
 

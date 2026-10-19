@@ -7,16 +7,15 @@ export const SITE_URL = "https://rasmiranjan.in";
 
 export const SITE_NAME = "Rasmiranjan Sahoo";
 
-export const SITE_TAGLINE =
-  "Freelance Full-Stack & React Native Developer";
+export const SITE_TAGLINE = "Full-Stack Developer · Rathaworks";
 
 export const SITE_DESCRIPTION =
-  "Freelance full-stack developer building production e-commerce platforms, React Native apps and Gen-AI integrations. Shipped a 4-platform, 2-app commerce ecosystem for the Kenyan market in 4 months. Available worldwide.";
+  "Full-stack and React Native developer in Bhubaneswar, India — founder of the Rathaworks studio and lead developer of the Vedrastores marketplace at Gravitones.";
 
 export const AUTHOR = {
   name: "Rasmiranjan Sahoo",
   email: "rasmiranjansahoo702@gmail.com",
-  jobTitle: "Freelance Full-Stack Developer",
+  jobTitle: "Full-Stack Developer",
   locality: "Bhubaneswar",
   region: "Odisha",
   country: "IN",
@@ -68,8 +67,23 @@ export const SAME_AS = PROFILES.map((p) => p.url);
 /** Employment and credentials — all corroborated by the site's own content. */
 export const WORKS_FOR = {
   name: "Gravitones",
+  url: "https://gravitones.com",
   role: "Software Development Engineer",
   since: "2025-10",
+} as const;
+
+/**
+ * The studio that takes client projects. Its site is the place to send anyone
+ * who wants something built; this site stays the personal/identity page.
+ * `id` must match the studio site's own JSON-LD @id, so both sites describe
+ * one business. When rathaworks.com is live, change url, contact and id.
+ */
+export const STUDIO = {
+  name: "Rathaworks",
+  url: "https://work.rasmiranjan.in",
+  contact: "https://work.rasmiranjan.in/contact",
+  id: "https://work.rasmiranjan.in/#business",
+  since: "2026",
 } as const;
 
 export const CREDENTIALS = [
@@ -91,9 +105,9 @@ export const PORTRAIT = {
   square: { src: "/rasmiranjan-sahoo-square.jpg", width: 1200, height: 1200 },
   /** 3:4 — the aspect the About section actually renders. */
   portrait: { src: "/rasmiranjan-sahoo-portrait.webp", width: 900, height: 1200 },
-  alt: "Rasmiranjan Sahoo, freelance full-stack and React Native developer based in Bhubaneswar, Odisha, India",
+  alt: "Rasmiranjan Sahoo, full-stack and React Native developer and founder of Rathaworks, based in Bhubaneswar, Odisha, India",
   caption:
-    "Rasmiranjan Sahoo — freelance full-stack, React Native and Gen-AI developer.",
+    "Rasmiranjan Sahoo — full-stack, React Native and Gen-AI developer, founder of Rathaworks.",
 } as const;
 
 /**

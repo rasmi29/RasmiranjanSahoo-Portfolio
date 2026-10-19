@@ -54,7 +54,9 @@ const jsonLd = {
       name: "Vedrastores",
       applicationCategory: "ShoppingApplication",
       operatingSystem: "Android, iOS, Web",
-      author: { "@id": `${SITE_URL}/#person` },
+      // The app belongs to its owner and was built by Gravitones; the developer contributed.
+      author: { "@type": "Organization", name: "Gravitones", url: "https://gravitones.com" },
+      contributor: { "@id": `${SITE_URL}/#person` },
       url: project.links.playStore ?? project.links.live,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },

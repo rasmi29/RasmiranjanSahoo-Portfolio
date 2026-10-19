@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import { EASE } from "@/lib/motion";
+import { STUDIO } from "@/lib/site";
 
 /** Ambient aurora. Skipped entirely under prefers-reduced-motion. */
 const AuroraBackground = () => {
@@ -189,8 +190,8 @@ export default function HeroSection() {
             className="text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter"
           >
             <span className="sr-only">
-              Rasmiranjan Sahoo — Freelance Full-Stack, React Native and Gen-AI
-              Developer
+              Rasmiranjan Sahoo — Full-Stack, React Native and Gen-AI
+              Developer, Founder of Rathaworks
             </span>
             <span
               aria-hidden="true"
@@ -232,7 +233,11 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.6 }}
           className="text-lg md:text-xl lg:text-2xl font-light text-neutral-300 max-w-4xl leading-relaxed mt-4"
         >
-          Freelance full-stack developer. I shipped a{" "}
+          Full-stack developer and founder of{" "}
+          <a href={STUDIO.url} className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
+            Rathaworks
+          </a>
+          . At Gravitones I shipped a{" "}
           <span className="text-white border-b border-white/20">
             4-platform, 2-app e-commerce ecosystem
           </span>{" "}
@@ -253,7 +258,8 @@ export default function HeroSection() {
             View Case Studies
           </MagneticButton>
           {/* Previously labelled "Get In Touch" but linked to a Google Drive PDF. */}
-          <MagneticButton href="#contact">Start a Project</MagneticButton>
+          {/* Client projects go to the studio, which has the full brief form. */}
+          <MagneticButton href={STUDIO.contact}>Start a Project</MagneticButton>
         </motion.div>
       </motion.div>
 

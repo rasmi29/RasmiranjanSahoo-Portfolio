@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { AUTHOR, NAV_ITEMS, PROFILES, RESUME_URL } from "@/lib/site";
+import { AUTHOR, NAV_ITEMS, PROFILES, RESUME_URL, STUDIO } from "@/lib/site";
 
 /*
  * `me` in the rel attribute is the identity claim: "this profile is the same
@@ -69,9 +69,9 @@ export default function Footer() {
               RS
             </div>
             <p className="max-w-sm text-lg font-light text-neutral-300 leading-relaxed">
-              Freelance full-stack developer building production e-commerce
-              platforms, React Native apps and Gen-AI integrations. Based in
-              Bhubaneswar, working worldwide.
+              Full-stack developer and founder of Rathaworks, building production
+              e-commerce platforms, React Native apps and Gen-AI integrations.
+              Based in Bhubaneswar, working worldwide.
             </p>
 
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3 py-1">
@@ -115,6 +115,17 @@ export default function Footer() {
                   <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
                   About Rasmiranjan Sahoo
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={STUDIO.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
+                >
+                  <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
+                  Rathaworks — my studio ↗
+                </a>
               </li>
             </ul>
           </div>
