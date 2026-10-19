@@ -10,7 +10,13 @@ export const SITE_NAME = "Rasmiranjan Sahoo";
 export const SITE_TAGLINE = "Full-Stack Developer · Rathaworks";
 
 export const SITE_DESCRIPTION =
-  "Full-stack and React Native developer in Bhubaneswar, India — founder of the Rathaworks studio and lead developer of the Vedrastores marketplace at Gravitones.";
+  "Full-stack & React Native developer in Bhubaneswar, India, founder of Rathaworks. 17 websites and 8 apps shipped — marketplaces, booking, delivery, EdTech.";
+
+/**
+ * Lifetime totals, as reported by Rasmiranjan — the same numbers the studio
+ * site shows (studio repo lib/site.ts STATS). Keep the two in step.
+ */
+export const STATS = { websites: 17, apps: 8 } as const;
 
 export const AUTHOR = {
   name: "Rasmiranjan Sahoo",

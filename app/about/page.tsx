@@ -8,6 +8,7 @@ import {
   PORTRAIT,
   PROFILES,
   SITE_URL,
+  STATS,
   STUDIO,
   WORKS_FOR,
 } from "@/lib/site";
@@ -300,19 +301,22 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg font-light leading-relaxed text-neutral-200">
             <p>
-              My flagship project is the{" "}
-              <Link
-                href="/works/vedrastores"
-                className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500"
-              >
+              {STATS.websites} websites and {STATS.apps} apps shipped so far. Over
+              the last year I&apos;ve led marketplace, booking, delivery and
+              learning platforms at Gravitones: the{" "}
+              <Link href="/works/vedrastores" className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
                 Vedrastores commerce ecosystem
               </Link>{" "}
-              for the Kenyan market: four interconnected web platforms — a
-              marketing site, a buyer portal, a vendor dashboard and an admin
-              panel — plus two React Native apps for buyers and riders, with
-              live M-Pesa payments through the Safaricom Daraja API. Six
-              codebases, designed and built as the sole developer at
-              Gravitones in four months.
+              for Kenya (four web platforms and two React Native apps with live
+              M-Pesa payments, built as the sole developer in four months), the
+              Bookiee bus-booking platform, a five-app restaurant delivery
+              system, the QuickBite creator app and the Bidyasagar Classes
+              coaching platform. For my own clients I built a 32-page website
+              and CMS for QCS.{" "}
+              <Link href="/works" className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
+                All case studies
+              </Link>
+              .
             </p>
             <p>
               Day to day that means Next.js, React and TypeScript on the front

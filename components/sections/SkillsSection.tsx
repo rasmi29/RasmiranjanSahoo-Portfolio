@@ -1,249 +1,204 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useInView, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import { fadeIn, fadeUp, stagger, staggerChild } from "@/lib/motion";
 
-type Skill = { name: string; icon: string };
+/**
+ * One bento screen instead of five full-height category slides. Every tool
+ * listed here appears in at least one shipped project on this site — the
+ * "used in" line under each category says where, so a claim is checkable.
+ */
 
-type CategoryData = {
+type Skill = { name: string; icon?: string };
+
+type Category = {
   id: string;
   title: string;
-  description: string;
-  skills: Skill[];
+  usedIn: string;
   color: string;
+  span: string;
+  skills: Skill[];
 };
 
-/* Icons are self-hosted in /public/icons (see the audit: 37 requests to
-   cdn.simpleicons.org, no width/height, and `openai` now 404s there). */
-const skillData: CategoryData[] = [
+const categories: Category[] = [
   {
     id: "frontend",
     title: "Frontend",
-    description:
-      "Crafting pixel-perfect, responsive user interfaces with a focus on performance and accessibility. I specialise in the React ecosystem.",
+    usedIn: "Every web platform — marketplaces, portals, admin panels",
     color: "#61DAFB",
+    span: "lg:col-span-2",
     skills: [
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextdotjs" },
       { name: "TypeScript", icon: "typescript" },
       { name: "Tailwind CSS", icon: "tailwindcss" },
-      { name: "React Native", icon: "react" },
       { name: "Shadcn UI", icon: "shadcnui" },
+      { name: "Vite", icon: "vite" },
+    ],
+  },
+  {
+    id: "mobile",
+    title: "Mobile",
+    usedIn: "6 iOS & Android apps across 4 products on this page",
+    color: "#A78BFA",
+    span: "",
+    skills: [
+      { name: "React Native", icon: "react" },
+      { name: "Expo", icon: "expo" },
+      { name: "Expo Router", icon: "expo" },
     ],
   },
   {
     id: "backend",
-    title: "Backend",
-    description:
-      "Architecting scalable server-side solutions. I build robust APIs and handle real-time communication.",
+    title: "Backend & real time",
+    usedIn: "One API behind each multi-app product — 150 to 400+ endpoints",
     color: "#68A063",
+    span: "",
     skills: [
       { name: "Node.js", icon: "nodedotjs" },
       { name: "Express", icon: "express" },
-      { name: "Socket.io", icon: "socketdotio" },
+      { name: "Socket.IO", icon: "socketdotio" },
     ],
   },
   {
-    id: "database",
-    title: "Database",
-    description:
-      "Designing efficient data schemas. I work with both relational and document-based databases to ensure data integrity.",
+    id: "data",
+    title: "Data",
+    usedIn: "Seat locks, ledgers, real-time order state",
     color: "#336791",
+    span: "",
     skills: [
+      { name: "PostgreSQL", icon: "postgresql" },
       { name: "MongoDB", icon: "mongodb" },
       { name: "Redis", icon: "redis" },
       { name: "Firebase", icon: "firebase" },
     ],
   },
   {
-    id: "tools",
-    title: "Tools",
-    // Previously a verbatim copy of the Database description.
-    description:
-      "The workflow around the code: version control, API testing and research tooling that keeps delivery predictable.",
-    color: "#F1502F",
+    id: "payments",
+    title: "Payments & cloud",
+    usedIn: "M-Pesa live in Kenya, Razorpay in India",
+    color: "#10B981",
+    span: "",
     skills: [
-      { name: "Git & GitHub", icon: "git" },
-      { name: "Postman", icon: "postman" },
-      { name: "Perplexity", icon: "perplexity" },
+      { name: "M-Pesa (Daraja)" },
+      { name: "Razorpay", icon: "razorpay" },
+      { name: "AWS S3 & CloudFront" },
+      { name: "Google Cloud", icon: "googlecloud" },
     ],
   },
   {
     id: "ai",
-    title: "Gen AI",
-    description:
-      "Leveraging large language models and agentic frameworks to build the next generation of intelligent applications.",
-    color: "#10B981",
+    title: "AI & tooling",
+    usedIn: "LLM features where they earn their place; Git and Postman daily",
+    color: "#F1502F",
+    span: "lg:col-span-2",
     skills: [
-      { name: "Generative AI", icon: "ai-spark" },
       { name: "OpenAI API", icon: "ai-spark" },
       { name: "LangChain", icon: "langchain" },
       { name: "Agent SDK", icon: "agent" },
-      { name: "Google Cloud", icon: "googlecloud" },
+      { name: "Git & GitHub", icon: "git" },
+      { name: "Postman", icon: "postman" },
     ],
   },
 ];
 
-const SkillCard = ({
-  name,
-  icon,
-  color,
-}: {
-  name: string;
-  icon: string;
-  color: string;
-}) => (
-  <motion.div
-    variants={{
-      hidden: { opacity: 0, x: -20 },
-      visible: { opacity: 1, x: 0 },
-    }}
-    whileHover={{ scale: 1.02 }}
-    className="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-neutral-900/40 backdrop-blur-sm transition-colors hover:bg-white/[0.03] group cursor-default"
-  >
-    <div className="relative w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg group-hover:bg-neutral-700 transition-colors">
-      {/* Explicit width/height — the old <img> had none, which caused CLS. */}
-      <Image
-        src={`/icons/${icon}.svg`}
-        alt=""
-        aria-hidden="true"
-        width={20}
-        height={20}
-        className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"
-      />
-      <div
-        className="absolute inset-0 rounded-lg blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300"
-        style={{ backgroundColor: color }}
-      />
-    </div>
-    <span className="text-neutral-300 font-light tracking-wide group-hover:text-white transition-colors">
-      {name}
-    </span>
-  </motion.div>
-);
-
-const CategorySection = ({ data, index }: { data: CategoryData; index: number }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-10% 0px -10% 0px" });
-  const reduce = useReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const opacityParallax = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
+function SkillChip({ skill, color }: { skill: Skill; color: string }) {
   return (
-    <div
-      ref={ref}
-      className="relative min-h-[70vh] flex items-center py-20 border-l border-white/10 ml-4 md:ml-12 pl-8 md:pl-16"
+    <motion.li
+      variants={staggerChild}
+      className="group/chip flex items-center gap-3 rounded-xl border border-white/5 bg-neutral-900/50 px-3 py-2.5 transition-colors hover:border-white/15 hover:bg-white/[0.04]"
     >
-      <span
-        aria-hidden="true"
-        className={`absolute -left-[5px] top-1/2 w-2.5 h-2.5 rounded-full transition-colors duration-500 ${
-          isInView ? "bg-white shadow-[0_0_10px_white]" : "bg-neutral-800"
-        }`}
-      />
-
-      <div className="grid lg:grid-cols-2 gap-16 w-full max-w-6xl">
-        <div className="relative">
-          <motion.div
-            style={reduce ? undefined : { y: yParallax, opacity: opacityParallax }}
-            className="sticky top-1/2"
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-sm font-mono block opacity-70" style={{ color: data.color }}>
-                0{index + 1} / CATEGORY
-              </span>
-              {data.id === "ai" && (
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono">
-                  CORE_EXPERTISE
-                </span>
-              )}
-            </div>
-            <h3 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tighter">
-              {data.title}
-            </h3>
-            <p className="text-lg text-neutral-400 font-light leading-relaxed max-w-md border-l-2 border-white/5 pl-6">
-              {data.description}
-            </p>
-            {data.id === "ai" && (
-              <div
-                aria-hidden="true"
-                className="absolute -inset-x-12 -inset-y-8 bg-emerald-500/5 blur-[80px] -z-10 rounded-full opacity-50"
-              />
-            )}
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            visible: { transition: { staggerChildren: 0.08 } },
-            hidden: {},
-          }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 content-center"
-        >
-          {data.skills.map((skill) => (
-            <SkillCard key={skill.name} name={skill.name} icon={skill.icon} color={data.color} />
-          ))}
-        </motion.div>
-      </div>
-    </div>
+      <span className="relative grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-neutral-800">
+        {skill.icon ? (
+          <Image
+            src={`/icons/${skill.icon}.svg`}
+            alt=""
+            aria-hidden="true"
+            width={16}
+            height={16}
+            className="h-4 w-4 opacity-70 transition-opacity group-hover/chip:opacity-100"
+          />
+        ) : (
+          <span aria-hidden="true" className="font-mono text-[11px] font-bold text-neutral-300">
+            {skill.name.charAt(0)}
+          </span>
+        )}
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-lg opacity-0 blur-md transition-opacity duration-300 group-hover/chip:opacity-40"
+          style={{ backgroundColor: color }}
+        />
+      </span>
+      <span className="text-sm font-light text-neutral-300 transition-colors group-hover/chip:text-white">{skill.name}</span>
+    </motion.li>
   );
-};
+}
 
 export default function SkillsSection() {
   return (
-    /* id="skills" — this was missing entirely, so the Skills link in both the
-       header and the footer silently did nothing. */
-    <section
-      id="skills"
-      aria-labelledby="skills-heading"
-      className="relative bg-black text-white overflow-hidden selection:bg-white/20"
-    >
-      {/* Was `fixed inset-0`, which escaped this section and tinted every
-          other section of the page for the entire scroll. */}
-      <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-900/20 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-blue-900/10 blur-[120px]" />
+    <section id="skills" aria-labelledby="skills-heading" className="relative overflow-hidden bg-black py-32 text-white">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/20 blur-[120px]" />
+        <div className="absolute right-[-10%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-blue-900/10 blur-[120px]" />
       </div>
       <GrainOverlay opacity="opacity-[0.15]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
-        <div className="mb-24 pl-4 md:pl-12">
-          {/* Was an <h1> — the page already has one in the hero. */}
-          <motion.h2
-            id="skills-heading"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-6xl md:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-700"
-          >
-            Tech
-            <br /> Stack.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1 }}
-            className="mt-8 text-neutral-400 max-w-xl text-lg"
-          >
-            The technologies I use to ship production software — from the
-            interface layer down to payments, data and AI.
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
+              03 / STACK
+            </motion.span>
+            <motion.h2
+              id="skills-heading"
+              {...fadeUp}
+              className="bg-gradient-to-b from-white to-neutral-600 bg-clip-text text-5xl font-bold tracking-tighter text-transparent md:text-7xl"
+            >
+              Tech Stack.
+            </motion.h2>
+          </div>
+          <motion.p {...fadeUp} className="max-w-md text-lg font-light leading-relaxed text-neutral-400">
+            Mainstream, well-supported tools, so any competent developer can pick a project up after me.
+            Each one is in production somewhere on this page.
           </motion.p>
         </div>
 
-        <div className="flex flex-col gap-0 pb-24">
-          {skillData.map((category, index) => (
-            <CategorySection key={category.id} data={category} index={index} />
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {categories.map((c, i) => (
+            <motion.article
+              key={c.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
+              className={`group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-7 transition-colors duration-500 hover:border-white/20 ${c.span}`}
+            >
+              <div
+                aria-hidden="true"
+                className="absolute -top-20 -right-20 h-48 w-48 rounded-full opacity-10 blur-3xl transition-opacity duration-700 group-hover:opacity-25"
+                style={{ backgroundColor: c.color }}
+              />
+              <div className="relative">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-2xl font-bold tracking-tight text-white">{c.title}</h3>
+                  <span className="font-mono text-xs" style={{ color: c.color }}>
+                    0{i + 1}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-neutral-400">{c.usedIn}</p>
+                <motion.ul
+                  {...stagger(0.05)}
+                  className={`mt-6 grid gap-2.5 ${c.span ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"}`}
+                >
+                  {c.skills.map((s) => (
+                    <SkillChip key={s.name} skill={s} color={c.color} />
+                  ))}
+                </motion.ul>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

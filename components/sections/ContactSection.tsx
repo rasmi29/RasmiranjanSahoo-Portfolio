@@ -134,7 +134,7 @@ export default function ContactSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
-              05 / CONTACT
+              06 / CONTACT
             </motion.span>
             <motion.h2
               id="contact-heading"

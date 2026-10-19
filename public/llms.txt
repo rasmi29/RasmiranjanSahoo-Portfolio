@@ -28,10 +28,12 @@ https://rasmiranjan.in/rasmiranjan-sahoo-square.jpg
 
 Rasmiranjan Sahoo is a full-stack and mobile developer and the founder of
 Rathaworks, a one-developer studio that takes client projects worldwide at
-https://work.rasmiranjan.in. Rasmiranjan is also a Software Development Engineer
-at Gravitones, where the flagship project was the Vedrastores e-commerce
-ecosystem for the Kenyan market: four interconnected web platforms and two React
-Native apps with M-Pesa payments, built as the sole developer in four months.
+https://work.rasmiranjan.in — 17 websites and 8 mobile apps shipped so far.
+As a Software Development Engineer at Gravitones, Rasmiranjan has been lead
+developer on five client platforms: a multi-vendor marketplace (Vedrastores,
+Kenya), a bus-booking marketplace (Bookiee), a five-app restaurant delivery
+system, a creator-led food app (QuickBite) and an online coaching platform
+(Bidyasagar Classes).
 
 ## Services
 
@@ -50,8 +52,16 @@ Native apps with M-Pesa payments, built as the sole developer in four months.
   Stack: Next.js, React Native, Expo, Shadcn UI, Node.js, Firebase, AWS, M-Pesa.
   Outcome: 4 web platforms + 2 apps shipped in 4 months, built at Gravitones as
   the sole developer. Live: https://vedrastores.co.ke
-- More case studies (Bookiee, restaurant delivery, QuickBite, Bidyasagar Classes,
-  QCS) on the studio site: https://work.rasmiranjan.in/work
+- **Bookiee** (2026, India, at Gravitones) — passenger app, operator and admin
+  portals on one API; Redis seat locks, Razorpay. 110+ screens, 160+ endpoints.
+- **Restaurant delivery platform** (2026, India, at Gravitones) — five apps for one
+  restaurant: customer app and site, rider app, kitchen portal, owner panel.
+- **QuickBite** (2026, in development, at Gravitones) — creator-led food app with
+  QR offer redemption, Postgres ledger and MongoDB read models.
+- **Bidyasagar Classes** (2026, India, at Gravitones, lead since May 2026) —
+  three portals, automated Zoom live classes, negative-marking exam engine.
+- **QCS website & CMS** (2026, freelance) — 32-page corporate site, 12-module CMS.
+- Full case studies for all of these: https://work.rasmiranjan.in/work
 
 ## Experience
 

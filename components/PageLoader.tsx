@@ -12,6 +12,9 @@ import {
 import GrainOverlay from "@/components/ui/GrainOverlay";
 
 // --- CONSTANTS ---
+/** Length of the first-visit intro. */
+const INTRO_SECONDS = 1.2;
+
 const LOG_MESSAGES = [
   "Initializing core modules...",
   "Loading shader kernels...",
@@ -51,20 +54,39 @@ const Counter = ({ value }: { value: MotionValue<number> }) => {
 
 export default function PageLoader() {
   const [isLoading, setIsLoading] = useState(true);
+  /** Repeat visit or reduced motion: leave instantly, no slide-out. */
+  const [skip, setSkip] = useState(false);
   const [currentLogIndex, setCurrentLogIndex] = useState(0);
-  
+
   // Motion values for animations (bypasses React state)
   const progress = useMotionValue(0);
   const scaleX = useTransform(progress, [0, 100], [0, 1]);
 
   useEffect(() => {
+    // The intro plays once per browser session. It used to hold every visit
+    // for 3.3 s (2.5 s count + 0.8 s exit), which is where visitors bounced.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("intro-seen") === "1";
+      sessionStorage.setItem("intro-seen", "1");
+    } catch {
+      // Storage blocked — just play it.
+    }
+    if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const frame = requestAnimationFrame(() => {
+        setSkip(true);
+        setIsLoading(false);
+      });
+      return () => cancelAnimationFrame(frame);
+    }
+
     // 1. Lock Body Scroll
     document.body.style.overflow = "hidden";
 
     // 2. Animate Progress (0 -> 100)
     // using framer's 'animate' helper is much more performant than setInterval
     const controls = animate(progress, 100, {
-      duration: 2.5,
+      duration: INTRO_SECONDS,
       ease: "easeInOut",
       onComplete: () => {
         setIsLoading(false);
@@ -76,7 +98,7 @@ export default function PageLoader() {
     // We only update this a few times, so React state is fine here
     const logInterval = setInterval(() => {
       setCurrentLogIndex((prev) => (prev + 1) % LOG_MESSAGES.length);
-    }, 2500 / LOG_MESSAGES.length);
+    }, (INTRO_SECONDS * 1000) / LOG_MESSAGES.length);
 
     return () => {
       controls.stop();
@@ -90,10 +112,11 @@ export default function PageLoader() {
       {isLoading && (
         <motion.div
           initial={{ y: 0 }}
-          exit={{ 
-            y: "-100%", 
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
-          }}
+          exit={
+            skip
+              ? { opacity: 0, transition: { duration: 0 } }
+              : { y: "-100%", transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } }
+          }
           role="status"
           aria-live="polite"
           aria-label="Loading"

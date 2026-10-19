@@ -69,9 +69,9 @@ export default function Footer() {
               RS
             </div>
             <p className="max-w-sm text-lg font-light text-neutral-300 leading-relaxed">
-              Full-stack developer and founder of Rathaworks, building production
-              e-commerce platforms, React Native apps and Gen-AI integrations.
-              Based in Bhubaneswar, working worldwide.
+              Full-stack developer and founder of Rathaworks, building
+              marketplaces, booking and delivery platforms, mobile apps and
+              business software. Based in Bhubaneswar, working worldwide.
             </p>
 
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3 py-1">

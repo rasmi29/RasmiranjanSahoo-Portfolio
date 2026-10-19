@@ -86,7 +86,7 @@ export const personSchema = () => ({
   jobTitle: AUTHOR.jobTitle,
   description: SITE_DESCRIPTION,
   disambiguatingDescription:
-    "Full-stack, React Native and Gen-AI developer based in Bhubaneswar, Odisha, India — not to be confused with others sharing the name. Founder of the Rathaworks studio (work.rasmiranjan.in) and lead developer of the Vedrastores multi-vendor commerce ecosystem for Kenya, built at Gravitones.",
+    "Full-stack, React Native and Gen-AI developer based in Bhubaneswar, Odisha, India — not to be confused with others sharing the name. Founder of the Rathaworks studio (work.rasmiranjan.in) and lead developer at Gravitones on marketplace, bus-booking, food-delivery, creator and EdTech platforms, including the Vedrastores commerce ecosystem for Kenya.",
   email: `mailto:${AUTHOR.email}`,
   knowsLanguage: [
     { "@type": "Language", name: "English", alternateName: "en" },
@@ -260,7 +260,7 @@ export const IDENTITY_FAQ = [
   {
     question: "What has Rasmiranjan Sahoo built?",
     answer:
-      "The flagship project is the Vedrastores commerce ecosystem for the Kenyan market: four interconnected web platforms (marketing site, buyer portal, vendor dashboard and admin panel) plus two React Native apps for buyers and riders, with live M-Pesa payments — all six codebases built in four months as the sole developer at Gravitones. Rasmiranjan has also led the Bookiee bus-booking platform, a five-app restaurant delivery system, the QuickBite creator app and the Bidyasagar Classes coaching platform at Gravitones.",
+      "Rasmiranjan Sahoo has shipped 17 websites and 8 mobile apps. As lead developer at Gravitones: the Vedrastores multi-vendor marketplace for Kenya (four web platforms and two React Native apps with M-Pesa, built as the sole developer in four months), the Bookiee bus-booking platform, a five-app restaurant delivery system, the QuickBite creator app and the Bidyasagar Classes coaching platform. For clients of the Rathaworks studio: a 32-page corporate website and CMS for QCS.",
   },
   {
     question: "Is Rasmiranjan Sahoo available for hire?",
@@ -275,7 +275,7 @@ export const IDENTITY_FAQ = [
   {
     question: "Where is Rasmiranjan Sahoo based?",
     answer:
-      "Rasmiranjan Sahoo is based in Bhubaneswar, Odisha, India (IST, UTC+5:30) and works remotely with clients internationally, including delivered projects for the Kenyan market.",
+      "Rasmiranjan Sahoo is based in Bhubaneswar, Odisha, India (IST, UTC+5:30) and works remotely with clients internationally — so far in India and Kenya.",
   },
   {
     question: "How can I contact Rasmiranjan Sahoo?",

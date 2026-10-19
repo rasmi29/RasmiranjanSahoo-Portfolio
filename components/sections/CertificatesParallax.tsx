@@ -170,7 +170,7 @@ export default function CertificatesParallax() {
               viewport={{ once: true }}
               className="text-emerald-400 font-mono text-sm tracking-[0.3em] uppercase mb-4 block"
             >
-              04 / Validated Expertise
+              05 / Learning
             </motion.span>
             <motion.h2
               id="certificates-heading"
@@ -179,8 +179,8 @@ export default function CertificatesParallax() {
               viewport={{ once: true }}
               className="text-6xl md:text-8xl font-bold tracking-tighter text-white leading-[0.9]"
             >
-              Global<br />
-              <span className="text-neutral-600">Standards.</span>
+              Certifications<br />
+              <span className="text-neutral-600">&amp; courses.</span>
             </motion.h2>
           </div>
           <motion.p 
@@ -189,7 +189,7 @@ export default function CertificatesParallax() {
             viewport={{ once: true }}
             className="text-neutral-400 text-lg md:text-xl font-light max-w-sm lg:mb-4 border-l border-white/10 pl-8"
           >
-            A collection of professional benchmarks earned through rigorous testing and real-world application.
+            Courses completed alongside client work — the fundamentals behind what the projects above put into production.
           </motion.p>
         </div>
 

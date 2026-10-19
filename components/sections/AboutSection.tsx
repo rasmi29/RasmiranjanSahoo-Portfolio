@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { PORTRAIT, RESUME_URL, STUDIO } from "@/lib/site";
+import { PORTRAIT, RESUME_URL, STATS, STUDIO } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
 
 const experiences = [
@@ -60,9 +60,9 @@ const experiences = [
  * history starting Sept 2025; "20+ Projects" above a single project.)
  */
 const stats = [
-  { value: 6, suffix: "", label: "Codebases Shipped" },
-  { value: 4, suffix: "mo", label: "Delivery Time" },
-  { value: 2, suffix: "", label: "Apps in Production" },
+  { value: STATS.websites, suffix: "", label: "Websites Shipped" },
+  { value: STATS.apps, suffix: "", label: "Mobile Apps" },
+  { value: 5, suffix: "", label: "Platforms Led at Gravitones" },
 ];
 
 const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
@@ -249,20 +249,29 @@ export default function AboutSection() {
                 under real traffic.
               </p>
               <p>
-                Most recently I built the entire{" "}
+                In the last year I&apos;ve been lead developer on five client platforms at
+                Gravitones — the{" "}
                 <Link
                   href="/works/vedrastores"
                   className="text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500"
                 >
-                  Vedrastores commerce ecosystem
+                  Vedrastores marketplace
                 </Link>{" "}
-                for the Kenyan market — four web platforms and two React Native apps with M-Pesa
-                payments, built as the sole developer at Gravitones in four months.
+                for Kenya, the Bookiee bus-booking platform, a five-app restaurant delivery system, the
+                QuickBite creator app and the Bidyasagar Classes coaching platform — and built a
+                CMS-driven corporate site for my own client, QCS.{" "}
+                <Link
+                  href="#works"
+                  className="text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500"
+                >
+                  See them all
+                </Link>
+                .
               </p>
               <p>
-                I work at the intersection of{" "}
-                <span className="text-white font-normal">Gen AI integration</span> and high-scale
-                applications. Whether it&apos;s <span className="text-white">Next.js</span> or{" "}
+                I work across the{" "}
+                <span className="text-white font-normal">whole product</span> — web, mobile and the
+                backend behind them. Whether it&apos;s <span className="text-white">Next.js</span> or{" "}
                 <span className="text-white">React Native</span>, I handle the whole stack —
                 architecture, backend, interface and release.
               </p>

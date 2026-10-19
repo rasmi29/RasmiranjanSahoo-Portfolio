@@ -33,11 +33,11 @@ const webPlatforms = [
       "/Projects/Vedrastore/vedrastore-marketing-ss/Screenshot 2026-05-12 125243.webp",
     ],
     description:
-      "The public-facing brand engine. A high-performance marketing platform designed for extreme SEO efficiency and conversion optimization.",
+      "The public-facing brand site: an SEO-first Next.js marketing platform that drives buyer and vendor sign-ups.",
     features: [
-      "SEO Masterclass",
-      "Conversion Optimized",
-      "Brand Identity Showcase",
+      "SEO-first Next.js",
+      "Buyer & vendor sign-ups",
+      "Brand & campaign pages",
     ],
     color: "bg-blue-500/10 border-blue-500/20",
   },
@@ -100,7 +100,7 @@ const webPlatforms = [
     color: "bg-purple-500/10 border-purple-500/20",
   },
   {
-    title: "Admin Masterpiece",
+    title: "Admin Panel",
     url: "admin.vedrastores.co.ke",
     liveUrl: "https://admin.vedrastores.co.ke",
     image: "/Projects/Vedrastore/Admin-banner.webp",
@@ -128,6 +128,38 @@ const webPlatforms = [
       "Shadcn UI Dashboards",
     ],
     color: "bg-red-500/10 border-red-500/20",
+  },
+];
+
+/** Same facts as the studio case study (work.rasmiranjan.in). */
+const CHALLENGE =
+  "Vedrastores wanted to launch a multi-vendor marketplace in Kenya: independent sellers list and manage their own stock, buyers order on the web or a phone, riders deliver, and the business collects payment through M-Pesa — the way most Kenyans pay. They didn't need a storefront. They needed the entire operating system for a marketplace, delivered by one accountable person, fast.";
+
+const RESULTS = [
+  { value: "6", label: "connected products — 4 web platforms + 2 mobile apps" },
+  { value: "4 mo", label: "from first commit to launch, one developer" },
+  { value: "M-Pesa", label: "mobile-money payments live in production" },
+  { value: "Live", label: "buyer app published on Google Play" },
+];
+
+const DECISIONS = [
+  {
+    title: "Paying the way Kenya pays",
+    problem: "Most buyers pay with M-Pesa, not cards — a checkout without it would lose most of the market.",
+    decision: "Integrated Safaricom's Daraja API end to end: STK push to the buyer's phone, callback confirmation and order updates.",
+    outcome: "Mobile-money payments run live in production across web and app.",
+  },
+  {
+    title: "One order, four viewpoints",
+    problem: "Buyers, vendors, riders and admins all touch the same order and must never disagree about its state.",
+    decision: "A single shared backend and real-time data layer that every surface reads from.",
+    outcome: "Status changes made anywhere appear everywhere — from checkout to doorstep.",
+  },
+  {
+    title: "Two apps, one codebase",
+    problem: "Buyers and riders both need native apps, and one developer can't maintain two separate mobile stacks.",
+    decision: "Built the buyer and rider apps from one React Native / Expo codebase on the same backend and order model.",
+    outcome: "Both apps shipped inside the same four months, with live order status for each side.",
   },
 ];
 
@@ -168,7 +200,7 @@ const mobileApps = [
     ],
     playStoreUrl: "#", // Usually APK for riders
     description:
-      "The logistics powerhouse built with Expo. Real-time order tracking via Firebase and secure M-Pesa earnings management.",
+      "The delivery app built with Expo. Real-time order tracking via Firebase and secure M-Pesa earnings management.",
   },
 ];
 
@@ -503,7 +535,7 @@ export default function VedrastoresCaseStudy() {
               <div className="flex items-center gap-4 mb-8">
                 <div className="h-px w-8 bg-emerald-500" />
                 <span className="text-emerald-500 font-mono text-[10px] uppercase tracking-[0.4em] font-bold">
-                  Masterpiece Collection
+                  Case study · Built at Gravitones
                 </span>
               </div>
 
@@ -574,10 +606,10 @@ export default function VedrastoresCaseStudy() {
 
                 <div className="absolute bottom-8 left-8">
                   <h3 className="text-xl md:text-3xl font-bold tracking-tight text-white mb-1">
-                    Ecosystem Core
+                    The Ecosystem
                   </h3>
                   <p className="text-white/50 font-mono text-[9px] uppercase tracking-[0.3em]">
-                    Full-Stack Masterpiece
+                    6 connected products
                   </p>
                 </div>
               </div>
@@ -618,6 +650,77 @@ export default function VedrastoresCaseStudy() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* The brief, the decisions and the results — same facts as the
+          studio write-up at work.rasmiranjan.in. */}
+      <section aria-labelledby="results-heading" className="px-6 py-32 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <h2 id="results-heading" className="sr-only">Results</h2>
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 lg:grid-cols-4">
+            {RESULTS.map((r, i) => (
+              <motion.div
+                key={r.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="bg-black p-6 md:p-8"
+              >
+                <dt className="sr-only">{r.label}</dt>
+                <dd className="text-4xl md:text-5xl font-black tracking-tighter text-emerald-400">{r.value}</dd>
+                <dd className="mt-3 text-sm leading-snug text-neutral-400">{r.label}</dd>
+              </motion.div>
+            ))}
+          </dl>
+
+          <div className="mt-24 grid gap-16 lg:grid-cols-2">
+            <div>
+              <span className="text-emerald-500 font-mono text-xs uppercase tracking-widest">The challenge</span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">What the client needed.</h2>
+              <p className="mt-6 text-lg font-light leading-relaxed text-neutral-300">{CHALLENGE}</p>
+              <p className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm text-neutral-200">
+                <span className="mb-1 block font-mono text-[10px] uppercase tracking-widest text-neutral-500">My role</span>
+                Sole developer at Gravitones — architecture, backend, web, mobile and deployment.
+              </p>
+            </div>
+            <div>
+              <span className="text-emerald-500 font-mono text-xs uppercase tracking-widest">Key engineering decisions</span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">The hard problems.</h2>
+              <ol className="mt-6 space-y-4">
+                {DECISIONS.map((d, i) => (
+                  <motion.li
+                    key={d.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-10%" }}
+                    transition={{ duration: 0.6, delay: i * 0.08 }}
+                    className="rounded-2xl border border-white/10 bg-neutral-900/40 p-6"
+                  >
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-mono text-sm text-emerald-400">0{i + 1}</span>
+                      <h3 className="text-xl font-bold tracking-tight">{d.title}</h3>
+                    </div>
+                    <dl className="mt-4 grid gap-3 text-sm leading-relaxed">
+                      <div>
+                        <dt className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Problem</dt>
+                        <dd className="mt-1 text-neutral-300">{d.problem}</dd>
+                      </div>
+                      <div>
+                        <dt className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Decision</dt>
+                        <dd className="mt-1 text-neutral-300">{d.decision}</dd>
+                      </div>
+                      <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3">
+                        <dt className="font-mono text-[10px] uppercase tracking-widest text-emerald-400">Outcome</dt>
+                        <dd className="mt-1 text-white">{d.outcome}</dd>
+                      </div>
+                    </dl>
+                  </motion.li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </section>
@@ -667,7 +770,7 @@ export default function VedrastoresCaseStudy() {
       <section className="py-40 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-10 italic text-neutral-800">
-            Efficiency through <span className="text-white">innovation.</span>
+            Need something <span className="text-white">like this?</span>
           </h2>
           <a
             href={STUDIO.contact}

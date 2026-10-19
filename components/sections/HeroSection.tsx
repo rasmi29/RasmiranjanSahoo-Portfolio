@@ -12,7 +12,7 @@ import {
 } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import { EASE } from "@/lib/motion";
-import { STUDIO } from "@/lib/site";
+import { STATS, STUDIO } from "@/lib/site";
 
 /** Ambient aurora. Skipped entirely under prefers-reduced-motion. */
 const AuroraBackground = () => {
@@ -237,14 +237,14 @@ export default function HeroSection() {
           <a href={STUDIO.url} className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
             Rathaworks
           </a>
-          . At Gravitones I shipped a{" "}
+          . I&apos;ve shipped{" "}
           <span className="text-white border-b border-white/20">
-            4-platform, 2-app e-commerce ecosystem
+            {STATS.websites} websites and {STATS.apps} apps
           </span>{" "}
-          with M-Pesa payments for the Kenyan market in 4 months — building with{" "}
+          — marketplaces, bus booking, food delivery, EdTech and creator platforms — building with{" "}
           <span className="text-emerald-400 font-medium">Next.js</span>,{" "}
           <span className="text-emerald-400 font-medium">React Native</span> and{" "}
-          <span className="text-emerald-400 font-medium">Gen&nbsp;AI</span>.
+          <span className="text-emerald-400 font-medium">Node.js</span>.
           Available worldwide.
         </motion.p>
 
@@ -266,7 +266,7 @@ export default function HeroSection() {
       <motion.div
         style={{ opacity }}
         aria-hidden="true"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30"
+        className="absolute bottom-10 left-1/2 z-30 hidden -translate-x-1/2 flex-col items-center gap-3 [@media(min-height:1000px)]:flex"
       >
         <span className="text-[10px] uppercase tracking-[0.4em] text-neutral-400 font-mono">
           Explore
