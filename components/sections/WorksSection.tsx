@@ -10,7 +10,8 @@ import { AUTHOR, STUDIO } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
 
 const atGravitones = projects.filter((p) => p.engagement === "Gravitones").length;
-const freelance = projects.length - atGravitones;
+const freelance = projects.filter((p) => p.engagement === "Freelance").length;
+const personal = projects.filter((p) => p.engagement === "Personal").length;
 
 export default function WorksSection() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -38,8 +39,9 @@ export default function WorksSection() {
               <span className="text-neutral-500">Works.</span>
             </motion.h2>
             <motion.p {...fadeUp} className="mt-6 max-w-xl text-lg font-light leading-relaxed text-neutral-300">
-              {projects.length} products from the last year — {atGravitones} as lead developer at Gravitones and{" "}
-              {freelance} for my own {freelance === 1 ? "client" : "clients"}. Every card says which.
+              {projects.length} products from the last year — {atGravitones} as lead developer at Gravitones,{" "}
+              {freelance} for my own {freelance === 1 ? "client" : "clients"} and {personal} personal{" "}
+              {personal === 1 ? "build" : "builds"}. Every card says which.
             </motion.p>
           </div>
 

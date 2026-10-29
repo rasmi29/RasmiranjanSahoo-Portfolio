@@ -13,7 +13,7 @@
 export type ProjectType = "E-Commerce" | "AI" | "SaaS" | "Mobile" | "Realtime" | "Web";
 
 /** Who the work was delivered through — shown on every card. */
-export type Engagement = "Gravitones" | "Freelance";
+export type Engagement = "Gravitones" | "Freelance" | "Personal";
 
 export interface Project {
   slug: string;
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     ],
     links: {
       live: "https://vedrastores.co.ke",
-      playStore: "https://play.google.com/store/apps/details?id=co.ke.vedrastores.app",
+      playStore: "https://play.google.com/store/apps/details?id=com.nexus.buyer",
       caseStudy: `${STUDIO_WORK}/vedrastores-multi-vendor-marketplace`,
     },
     // The real product, not the client's ad banner.
@@ -252,6 +252,36 @@ export const projects: Project[] = [
       src: "/Projects/qcs/cover.svg",
       alt: "Illustration of the QCS corporate website and admin content management system",
       illustration: true,
+    },
+    hasCaseStudy: false,
+  },
+  {
+    slug: "zyrilo-landing",
+    title: "Zyrilo Landing Page",
+    tagline: "Zyrilo — Motion-Driven Landing Page in Next.js, GSAP and Motion",
+    metaDescription:
+      "A personal UI build: a 20-section landing page for a food-reels app in Next.js, GSAP ScrollTrigger and Motion, with smooth scroll and reduced-motion support.",
+    description:
+      "A design showcase for a creator-led food discovery app: 20 animated sections — a pinned horizontal scroll, 3D tilt cards, a parallax photo wall — that all respect reduced motion.",
+    year: "2026",
+    type: "Web",
+    engagement: "Personal",
+    status: "Live",
+    featured: false,
+    role: "Personal project — UI design and front-end",
+    duration: "Oct 2026",
+    outcomes: [
+      { label: "Animated sections", value: "20" },
+      { label: "Pages", value: "8" },
+      { label: "Motion stack", value: "GSAP + Motion" },
+      { label: "Reduced motion", value: "Respected" },
+    ],
+    tech: ["Next.js", "React 19", "TypeScript", "Tailwind CSS", "GSAP", "Motion", "Lenis", "Aceternity UI"],
+    keywords: ["Next.js landing page", "GSAP ScrollTrigger animation", "motion UI developer"],
+    links: { live: "https://quickbyte-xi.vercel.app" },
+    cover: {
+      src: "/Projects/zyrilo/cover.webp",
+      alt: "Zyrilo landing page hero: 'See it. Save it. Go eat it.' beside a phone playing a biryani food reel, ringed by dish cards",
     },
     hasCaseStudy: false,
   },
