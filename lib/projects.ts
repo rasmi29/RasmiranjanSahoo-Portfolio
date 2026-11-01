@@ -256,6 +256,36 @@ export const projects: Project[] = [
     hasCaseStudy: false,
   },
   {
+    slug: "wayline-landing",
+    title: "Wayline Landing Page",
+    tagline: "Wayline — Bus-Booking Brand Site with Story-Led Motion in React, GSAP and Lottie",
+    metaDescription:
+      "A personal UI build: a 12-section website for an intercity bus-booking brand in React, GSAP and Lottie — a story-led journey, live demos, light and dark modes.",
+    description:
+      "Brand and website for an intercity bus-booking app: a loader where a bus drives the logo, a swipeable trip story and a live seat-lock demo.",
+    year: "2026",
+    type: "Web",
+    engagement: "Personal",
+    status: "Live",
+    featured: false,
+    role: "Personal project — brand, UI design and front-end",
+    duration: "Oct – Nov 2026",
+    outcomes: [
+      { label: "Home sections", value: "12" },
+      { label: "Pages", value: "8" },
+      { label: "Themes", value: "Light + dark" },
+      { label: "Reduced motion", value: "Respected" },
+    ],
+    tech: ["React 19", "Vite", "TypeScript", "Tailwind CSS", "GSAP", "Lottie", "Motion", "Lenis"],
+    keywords: ["React landing page", "GSAP ScrollTrigger animation", "Lottie animation developer", "bus booking website design"],
+    links: { live: "https://bus-booking-murex.vercel.app" },
+    cover: {
+      src: "/Projects/wayline/cover.webp",
+      alt: "Wayline landing page hero: 'Every seat, accounted for.' beside a night illustration of a Wayline coach driving through the city under a route to its destination",
+    },
+    hasCaseStudy: false,
+  },
+  {
     slug: "zyrilo-landing",
     title: "Zyrilo Landing Page",
     tagline: "Zyrilo — Motion-Driven Landing Page in Next.js, GSAP and Motion",
