@@ -43,7 +43,7 @@ export const articles: Article[] = [
     url: `${INSIGHTS}/social-app-architecture-ledger-read-models`,
     date: "2026-10-18",
     category: "Engineering",
-    project: "QuickBite",
+    project: "Zyrilo",
   },
   {
     title: "Scheduling dozens of live classes on a limited pool of Zoom licences",

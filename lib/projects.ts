@@ -160,9 +160,9 @@ export const projects: Project[] = [
     hasCaseStudy: false,
   },
   {
-    slug: "quickbite",
-    title: "QuickBite Creator App",
-    tagline: "QuickBite — Creator-Led Food Discovery App",
+    slug: "zyrilo",
+    title: "Zyrilo Creator App",
+    tagline: "Zyrilo — Creator-Led Food Discovery App",
     metaDescription:
       "Food reels, restaurant offers redeemed by QR and a creator campaign marketplace — a React Native app on a Postgres ledger with MongoDB read models.",
     description:
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     featured: true,
     role: "Lead developer at Gravitones — architecture, backend, app, admin and site",
     duration: "Sep 2026 – present",
-    client: "QuickBite (India)",
+    client: "Zyrilo (India)",
     outcomes: [
       { label: "App screens", value: "80+" },
       { label: "Admin screens", value: "50+" },
@@ -183,10 +183,11 @@ export const projects: Project[] = [
     ],
     tech: ["React Native", "Expo Router", "TypeScript", "Node.js", "PostgreSQL", "PostGIS", "MongoDB", "Redis"],
     keywords: ["creator app developer", "React Native social app", "PostgreSQL ledger"],
+    // The studio write-up still lives at its original address.
     links: { caseStudy: `${STUDIO_WORK}/quickbite-creator-food-discovery-app` },
     cover: {
-      src: "/Projects/quickbite/cover.webp",
-      alt: "Illustration of the QuickBite app: a food reel, a restaurant offer and an in-store QR redemption",
+      src: "/Projects/zyrilo/cover.webp",
+      alt: "Illustration of the Zyrilo app: a food reel, a restaurant offer and an in-store QR redemption",
       illustration: true,
     },
     hasCaseStudy: false,
@@ -286,9 +287,9 @@ export const projects: Project[] = [
     hasCaseStudy: false,
   },
   {
-    slug: "zyrilo-landing",
-    title: "Zyrilo Landing Page",
-    tagline: "Zyrilo — Motion-Driven Landing Page in Next.js, GSAP and Motion",
+    slug: "quickbite-landing",
+    title: "QuickBite Landing Page",
+    tagline: "QuickBite — Motion-Driven Landing Page in Next.js, GSAP and Motion",
     metaDescription:
       "A personal UI build: a 20-section landing page for a food-reels app in Next.js, GSAP ScrollTrigger and Motion, with smooth scroll and reduced-motion support.",
     description:
@@ -310,8 +311,8 @@ export const projects: Project[] = [
     keywords: ["Next.js landing page", "GSAP ScrollTrigger animation", "motion UI developer"],
     links: { live: "https://quickbyte-xi.vercel.app" },
     cover: {
-      src: "/Projects/zyrilo/cover.webp",
-      alt: "Zyrilo landing page hero: 'See it. Save it. Go eat it.' beside a phone playing a biryani food reel, ringed by dish cards",
+      src: "/Projects/quickbite-landing/cover.webp",
+      alt: "QuickBite landing page hero: 'See it. Save it. Go eat it.' beside a phone playing a steamed-momos food reel, ringed by illustrated dishes",
     },
     hasCaseStudy: false,
   },

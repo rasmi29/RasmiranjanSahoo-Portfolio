@@ -31,7 +31,7 @@ const experiences = [
     company: "Gravitones",
     date: "Oct 2025 — Present",
     description:
-      "Lead developer on client platforms: the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the QuickBite creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
+      "Lead developer on client platforms: the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the Zyrilo creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
     tags: ["Architecture", "React Native", "MERN", "Leadership"],
   },
   {
@@ -258,7 +258,7 @@ export default function AboutSection() {
                   Vedrastores marketplace
                 </Link>{" "}
                 for Kenya, the Bookiee bus-booking platform, a five-app restaurant delivery system, the
-                QuickBite creator app and the Bidyasagar Classes coaching platform — and built a
+                Zyrilo creator app and the Bidyasagar Classes coaching platform — and built a
                 CMS-driven corporate site for my own client, QCS.{" "}
                 <Link
                   href="#works"

@@ -145,7 +145,7 @@ const CAREER = [
     org: "Gravitones",
     period: "Oct 2025 — Present",
     detail:
-      "Lead developer on client platforms — the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the QuickBite creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
+      "Lead developer on client platforms — the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the Zyrilo creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
   },
   {
     role: "MERN Intern",
@@ -310,7 +310,7 @@ export default function AboutPage() {
               for Kenya (four web platforms and two React Native apps with live
               M-Pesa payments, built as the sole developer in four months), the
               Bookiee bus-booking platform, a five-app restaurant delivery
-              system, the QuickBite creator app and the Bidyasagar Classes
+              system, the Zyrilo creator app and the Bidyasagar Classes
               coaching platform. For my own clients I built a 32-page website
               and CMS for QCS.{" "}
               <Link href="/works" className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
