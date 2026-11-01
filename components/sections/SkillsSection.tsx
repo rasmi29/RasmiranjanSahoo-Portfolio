@@ -91,14 +91,13 @@ const categories: Category[] = [
   },
   {
     id: "ai",
-    title: "AI & tooling",
-    usedIn: "LLM features where they earn their place; Git and Postman daily",
+    title: "Tooling & learning",
+    usedIn: "Git and Postman daily; LLM APIs in side projects, not yet in a shipped one",
     color: "#F1502F",
     span: "lg:col-span-2",
     skills: [
       { name: "OpenAI API", icon: "ai-spark" },
       { name: "LangChain", icon: "langchain" },
-      { name: "Agent SDK", icon: "agent" },
       { name: "Git & GitHub", icon: "git" },
       { name: "Postman", icon: "postman" },
     ],
@@ -109,9 +108,9 @@ function SkillChip({ skill, color }: { skill: Skill; color: string }) {
   return (
     <motion.li
       variants={staggerChild}
-      className="group/chip flex items-center gap-3 rounded-xl border border-white/5 bg-neutral-900/50 px-3 py-2.5 transition-colors hover:border-white/15 hover:bg-white/[0.04]"
+      className="group/chip flex items-center gap-2 rounded-xl border border-white/5 bg-neutral-900/50 py-1.5 pl-1.5 pr-3 transition-colors hover:border-white/15 hover:bg-white/[0.04] sm:gap-3 sm:px-3 sm:py-2.5"
     >
-      <span className="relative grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-neutral-800">
+      <span className="relative grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-neutral-800 sm:h-8 sm:w-8">
         {skill.icon ? (
           <Image
             src={`/icons/${skill.icon}.svg`}
@@ -139,7 +138,7 @@ function SkillChip({ skill, color }: { skill: Skill; color: string }) {
 
 export default function SkillsSection() {
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="relative overflow-hidden bg-black py-32 text-white">
+    <section id="skills" aria-labelledby="skills-heading" className="relative overflow-hidden bg-black py-20 text-white md:py-32">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/20 blur-[120px]" />
         <div className="absolute right-[-10%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-blue-900/10 blur-[120px]" />
@@ -147,7 +146,7 @@ export default function SkillsSection() {
       <GrainOverlay opacity="opacity-[0.15]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
           <div>
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               03 / STACK
@@ -162,7 +161,7 @@ export default function SkillsSection() {
           </div>
           <motion.p {...fadeUp} className="max-w-md text-lg font-light leading-relaxed text-neutral-400">
             Mainstream, well-supported tools, so any competent developer can pick a project up after me.
-            Each one is in production somewhere on this page.
+            Each one is in production somewhere on this page — except the LLM APIs, which I&apos;m still learning.
           </motion.p>
         </div>
 
@@ -174,7 +173,7 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
-              className={`group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-7 transition-colors duration-500 hover:border-white/20 ${c.span}`}
+              className={`group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-5 transition-colors duration-500 hover:border-white/20 sm:p-7 ${c.span}`}
             >
               <div
                 aria-hidden="true"
@@ -191,7 +190,7 @@ export default function SkillsSection() {
                 <p className="mt-2 text-sm text-neutral-400">{c.usedIn}</p>
                 <motion.ul
                   {...stagger(0.05)}
-                  className={`mt-6 grid gap-2.5 ${c.span ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"}`}
+                  className={`mt-5 flex flex-wrap gap-2 sm:mt-6 sm:grid sm:gap-2.5 ${c.span ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"}`}
                 >
                   {c.skills.map((s) => (
                     <SkillChip key={s.name} skill={s} color={c.color} />

@@ -86,7 +86,7 @@ export const personSchema = () => ({
   jobTitle: AUTHOR.jobTitle,
   description: SITE_DESCRIPTION,
   disambiguatingDescription:
-    "Full-stack, React Native and Gen-AI developer based in Bhubaneswar, Odisha, India — not to be confused with others sharing the name. Founder of the Rathaworks studio (work.rasmiranjan.in) and lead developer at Gravitones on marketplace, bus-booking, food-delivery, creator and EdTech platforms, including the Vedrastores commerce ecosystem for Kenya.",
+    "Full-stack and React Native developer based in Bhubaneswar, Odisha, India — not to be confused with others sharing the name. Founder of the Rathaworks studio (work.rasmiranjan.in) and lead developer at Gravitones on marketplace, bus-booking, food-delivery, creator and EdTech platforms, including the Vedrastores commerce ecosystem for Kenya.",
   email: `mailto:${AUTHOR.email}`,
   knowsLanguage: [
     { "@type": "Language", name: "English", alternateName: "en" },
@@ -196,7 +196,6 @@ export const serviceSchema = () => ({
       "Web Application Development",
       "Mobile App Development (React Native)",
       "E-commerce & Marketplace Development",
-      "Generative AI Integration",
     ].map((n) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: n },
@@ -255,7 +254,7 @@ export const IDENTITY_FAQ = [
   {
     question: "Who is Rasmiranjan Sahoo?",
     answer:
-      "Rasmiranjan Sahoo is a full-stack and React Native developer based in Bhubaneswar, Odisha, India, and the founder of Rathaworks, a one-developer web, app and software studio at work.rasmiranjan.in. Rasmiranjan builds production e-commerce platforms, cross-platform mobile apps and Gen-AI integrations with Next.js, React Native and Node.js, and is a Software Development Engineer at Gravitones. The personal portfolio is at rasmiranjan.in.",
+      "Rasmiranjan Sahoo is a full-stack and React Native developer based in Bhubaneswar, Odisha, India, and the founder of Rathaworks, a one-developer web, app and software studio at work.rasmiranjan.in. Rasmiranjan builds production e-commerce platforms, cross-platform mobile apps and the backends behind them with Next.js, React Native and Node.js, and is a Software Development Engineer at Gravitones. The personal portfolio is at rasmiranjan.in.",
   },
   {
     question: "What has Rasmiranjan Sahoo built?",
@@ -270,7 +269,7 @@ export const IDENTITY_FAQ = [
   {
     question: "What technologies does Rasmiranjan Sahoo work with?",
     answer:
-      "React, Next.js, TypeScript and Tailwind CSS on the front end; React Native and Expo for Android and iOS; Node.js, Express, MongoDB, Redis and Firebase on the back end; AWS S3 and CloudFront for infrastructure; and OpenAI, LangChain and agentic SDKs for Gen-AI integration. He has shipped M-Pesa payments via the Safaricom Daraja API.",
+      "React, Next.js, TypeScript and Tailwind CSS on the front end; React Native and Expo for Android and iOS; Node.js, Express, MongoDB, Redis and Firebase on the back end; AWS S3 and CloudFront for infrastructure. He is certified in Generative AI fundamentals and learning the OpenAI API and LangChain. He has shipped M-Pesa payments via the Safaricom Daraja API.",
   },
   {
     question: "Where is Rasmiranjan Sahoo based?",

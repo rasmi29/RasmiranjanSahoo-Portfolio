@@ -13,6 +13,15 @@ import {
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import { EASE } from "@/lib/motion";
 import { STATS, STUDIO } from "@/lib/site";
+import { projects } from "@/lib/projects";
+import ProjectReel from "@/components/ui/ProjectReel";
+
+/** Proof on the first screen, from the same sources the rest of the site uses. */
+const heroStats = [
+  { value: STATS.websites, label: "Websites shipped" },
+  { value: STATS.apps, label: "Mobile apps" },
+  { value: projects.filter((p) => p.engagement === "Gravitones").length, label: "Platforms led at Gravitones" },
+];
 
 /** Ambient aurora. Skipped entirely under prefers-reduced-motion. */
 const AuroraBackground = () => {
@@ -151,15 +160,16 @@ export default function HeroSection() {
       ref={containerRef}
       id="home"
       onMouseMove={handleMouseMove}
-      className="group relative min-h-screen pt-20 w-full flex flex-col items-center justify-center overflow-hidden bg-neutral-950 text-white selection:bg-white/30"
+      className="group relative min-h-[100svh] pt-20 md:pt-24 pb-2 w-full flex flex-col overflow-hidden bg-neutral-950 text-white selection:bg-white/30"
     >
       <GrainOverlay />
       <AuroraBackground />
       <Spotlight mouseX={smoothX} mouseY={smoothY} />
 
+      <div className="relative z-30 flex w-full flex-1 items-center justify-center">
       <motion.div
         style={{ y: reduce ? 0 : y1, opacity }}
-        className="relative z-30 px-6 text-center max-w-7xl mx-auto flex flex-col items-center gap-8"
+        className="relative px-6 text-center max-w-7xl mx-auto flex flex-col items-center gap-5 md:gap-6"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -187,11 +197,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: EASE.out }}
-            className="text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter"
+            className="text-[13vw] sm:text-[11vw] lg:text-[7.2vw] leading-[0.85] font-black tracking-tighter"
           >
             <span className="sr-only">
-              Rasmiranjan Sahoo — Full-Stack, React Native and Gen-AI
-              Developer, Founder of Rathaworks
+              Rasmiranjan Sahoo — Full-Stack and React Native Developer,
+              Founder of Rathaworks
             </span>
             <span
               aria-hidden="true"
@@ -231,28 +241,24 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="text-lg md:text-xl lg:text-2xl font-light text-neutral-300 max-w-4xl leading-relaxed mt-4"
+          className="text-base md:text-xl font-light text-neutral-300 max-w-3xl leading-relaxed mt-1"
         >
+          {/* The counts live in the stats row below, so they are not said twice. */}
           Full-stack developer and founder of{" "}
           <a href={STUDIO.url} className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">
             Rathaworks
-          </a>
-          . I&apos;ve shipped{" "}
-          <span className="text-white border-b border-white/20">
-            {STATS.websites} websites and {STATS.apps} apps
-          </span>{" "}
-          — marketplaces, bus booking, food delivery, EdTech and creator platforms — building with{" "}
+          </a>{" "}
+          — marketplaces, bus booking, food delivery, EdTech and creator platforms, built with{" "}
           <span className="text-emerald-400 font-medium">Next.js</span>,{" "}
           <span className="text-emerald-400 font-medium">React Native</span> and{" "}
-          <span className="text-emerald-400 font-medium">Node.js</span>.
-          Available worldwide.
+          <span className="text-emerald-400 font-medium">Node.js</span>. Available worldwide.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-8 mt-4"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6"
         >
           <MagneticButton href="#works" primary>
             View Case Studies
@@ -261,24 +267,30 @@ export default function HeroSection() {
           {/* Client projects go to the studio, which has the full brief form. */}
           <MagneticButton href={STUDIO.contact}>Start a Project</MagneticButton>
         </motion.div>
-      </motion.div>
 
-      <motion.div
-        style={{ opacity }}
-        aria-hidden="true"
-        className="absolute bottom-10 left-1/2 z-30 hidden -translate-x-1/2 flex-col items-center gap-3 [@media(min-height:1000px)]:flex"
-      >
-        <span className="text-[10px] uppercase tracking-[0.4em] text-neutral-400 font-mono">
-          Explore
-        </span>
-        <div className="h-16 w-px bg-gradient-to-b from-neutral-800 via-neutral-500 to-transparent overflow-hidden">
-          <motion.div
-            animate={reduce ? undefined : { y: ["-100%", "100%"] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="h-1/2 w-full bg-emerald-500"
-          />
-        </div>
+        {/* The numbers that used to wait deep in About. */}
+        <motion.dl
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-white/[0.03]"
+        >
+          {heroStats.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse px-4 py-3 sm:px-7">
+              <dt className="mt-1 font-mono text-[9px] uppercase tracking-widest text-neutral-400 sm:text-[10px]">
+                {s.label}
+              </dt>
+              <dd className="text-2xl font-bold tabular-nums text-white md:text-3xl">{s.value}</dd>
+            </div>
+          ))}
+        </motion.dl>
       </motion.div>
+      </div>
+
+      {/* The work itself, on the first screen. */}
+      <div className="relative z-30 mt-2 w-full md:mt-4">
+        <ProjectReel />
+      </div>
 
       <style jsx global>{`
         .outline-text {

@@ -10,7 +10,6 @@ const PROJECT_TYPES = [
   "Web application",
   "Mobile app (React Native)",
   "E-commerce / marketplace",
-  "Gen-AI integration",
   "Something else",
 ];
 

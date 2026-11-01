@@ -3,7 +3,7 @@
 > Full-stack and React Native developer (Bhubaneswar, Odisha, India — working worldwide),
 > founder of the Rathaworks studio (https://work.rasmiranjan.in) and Software
 > Development Engineer at Gravitones. Specialises in React, Next.js, React Native/Expo,
-> Node.js and Gen-AI integration.
+> Node.js and backend systems.
 > Personal portfolio and canonical source of truth about the person: https://rasmiranjan.in
 
 ## Identity and disambiguation
@@ -41,7 +41,6 @@ system, a creator-led food app (Zyrilo) and an online coaching platform
 - Mobile app development — React Native, Expo (Android and iOS)
 - E-commerce and multi-vendor marketplace development
 - Payment integration — M-Pesa (Safaricom Daraja API)
-- Generative AI integration — OpenAI API, LangChain, agentic SDKs
 - Backend and infrastructure — Node.js, Express, MongoDB, Redis, Firebase, AWS S3/CloudFront
 
 ## Notable work

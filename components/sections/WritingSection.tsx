@@ -13,11 +13,11 @@ import { fadeIn, fadeUp } from "@/lib/motion";
  */
 export default function WritingSection() {
   return (
-    <section id="writing" aria-labelledby="writing-heading" className="relative overflow-hidden bg-black py-32 text-white">
+    <section id="writing" aria-labelledby="writing-heading" className="relative overflow-hidden bg-black py-20 text-white md:py-32">
       <GrainOverlay opacity="opacity-[0.12]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
           <div>
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               04 / WRITING
@@ -40,7 +40,8 @@ export default function WritingSection() {
           </motion.a>
         </div>
 
-        <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {/* Phones: all six as a row to swipe through; from md up, the grid. */}
+        <ol className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
           {articles.map((a, i) => (
             <motion.li
               key={a.url}
@@ -48,14 +49,13 @@ export default function WritingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
-              // Phones get the first three; the full list is one tap away.
-              className={i >= 3 ? "hidden md:block" : undefined}
+              className="w-[82%] shrink-0 snap-start md:w-auto"
             >
               <a
                 href={a.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-7 transition-[border-color,transform] duration-500 hover:-translate-y-1 hover:border-emerald-500/30"
+                className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-6 transition-[border-color,transform] duration-500 hover:-translate-y-1 hover:border-emerald-500/30"
               >
                 <span
                   aria-hidden="true"

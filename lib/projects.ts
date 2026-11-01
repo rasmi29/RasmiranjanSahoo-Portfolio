@@ -10,7 +10,7 @@
  * full write-up instead of duplicating it — one canonical page per project.
  */
 
-export type ProjectType = "E-Commerce" | "AI" | "SaaS" | "Mobile" | "Realtime" | "Web";
+export type ProjectType = "E-Commerce" | "AI" | "SaaS" | "Mobile" | "Realtime" | "Web" | "Design & Motion";
 
 /** Who the work was delivered through — shown on every card. */
 export type Engagement = "Gravitones" | "Freelance" | "Personal";
@@ -265,7 +265,7 @@ export const projects: Project[] = [
     description:
       "Brand and website for an intercity bus-booking app: a loader where a bus drives the logo, a swipeable trip story and a live seat-lock demo.",
     year: "2026",
-    type: "Web",
+    type: "Design & Motion",
     engagement: "Personal",
     status: "Live",
     featured: false,
@@ -284,25 +284,25 @@ export const projects: Project[] = [
       src: "/Projects/wayline/cover.webp",
       alt: "Wayline landing page hero: 'Every seat, accounted for.' beside a night illustration of a Wayline coach driving through the city under a route to its destination",
     },
-    hasCaseStudy: false,
+    hasCaseStudy: true,
   },
   {
     slug: "quickbite-landing",
     title: "QuickBite Landing Page",
     tagline: "QuickBite — Motion-Driven Landing Page in Next.js, GSAP and Motion",
     metaDescription:
-      "A personal UI build: a 20-section landing page for a food-reels app in Next.js, GSAP ScrollTrigger and Motion, with smooth scroll and reduced-motion support.",
+      "A personal UI build: a 16-section landing page for a food-reels app in Next.js, GSAP ScrollTrigger and Motion, with smooth scroll and reduced-motion support.",
     description:
-      "A design showcase for a creator-led food discovery app: 20 animated sections — a pinned horizontal scroll, 3D tilt cards, a parallax photo wall — that all respect reduced motion.",
+      "A design showcase for a creator-led food discovery app: 16 animated sections — a pinned horizontal scroll, 3D tilt cards, a parallax photo wall — that all respect reduced motion.",
     year: "2026",
-    type: "Web",
+    type: "Design & Motion",
     engagement: "Personal",
     status: "Live",
     featured: false,
     role: "Personal project — UI design and front-end",
     duration: "Oct 2026",
     outcomes: [
-      { label: "Animated sections", value: "20" },
+      { label: "Animated sections", value: "16" },
       { label: "Pages", value: "8" },
       { label: "Motion stack", value: "GSAP + Motion" },
       { label: "Reduced motion", value: "Respected" },

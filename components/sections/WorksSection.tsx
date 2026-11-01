@@ -24,11 +24,11 @@ export default function WorksSection() {
   const [lead, rest] = activeFilter === "All" ? [filtered[0], filtered.slice(1)] : [undefined, filtered];
 
   return (
-    <section id="works" aria-labelledby="works-heading" className="relative overflow-hidden bg-black py-32 text-white">
+    <section id="works" aria-labelledby="works-heading" className="relative overflow-hidden bg-black py-20 text-white md:py-32">
       <GrainOverlay />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="mb-16 flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-8 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-10">
           <div>
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               01 / PORTFOLIO
@@ -70,7 +70,12 @@ export default function WorksSection() {
           </div>
         )}
 
-        <motion.div layout className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Phones: the rest of the work as a row to swipe through (cards peek
+            in from the right); from md up, the grid. */}
+        <motion.div
+          layout
+          className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
+        >
           <AnimatePresence mode="popLayout">
             {rest.map((project, i) => (
               <ProjectCard key={project.slug} project={project} index={i} />
@@ -78,7 +83,7 @@ export default function WorksSection() {
           </AnimatePresence>
         </motion.div>
 
-        <div className="mt-24 flex flex-col items-center justify-center gap-8 border-t border-white/10 pt-16 sm:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-center gap-8 border-t border-white/10 pt-12 sm:flex-row md:mt-24 md:pt-16">
           <Link
             href="/works"
             className="group flex items-center gap-4 text-xl font-light text-neutral-300 transition-colors hover:text-white"

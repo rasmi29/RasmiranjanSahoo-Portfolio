@@ -117,7 +117,7 @@ const FACTS: { term: string; detail: React.ReactNode }[] = [
     term: "Core stack",
     detail: "Next.js · React · TypeScript · React Native · Node.js · MongoDB",
   },
-  { term: "Also", detail: "Gen-AI integration, M-Pesa payments, AWS" },
+  { term: "Also", detail: "M-Pesa payments, AWS · learning LLM integration" },
   { term: "Languages", detail: "English · Hindi · Odia" },
   {
     term: "Contact",
@@ -237,7 +237,7 @@ export default function AboutPage() {
                 Rathaworks
               </a>
               , a one-developer studio for clients worldwide. I build production e-commerce platforms, cross-platform mobile apps
-              and Gen-AI integrations — and I handle the whole stack:
+              and the backends behind them — and I handle the whole stack:
               architecture, backend, interface and release.
             </p>
           </div>
@@ -322,9 +322,9 @@ export default function AboutPage() {
               Day to day that means Next.js, React and TypeScript on the front
               end; React Native and Expo for Android and iOS; Node.js, Express,
               MongoDB, Redis and Firebase behind them; and AWS S3 with
-              CloudFront for delivery. I also integrate LLMs — OpenAI, LangChain
-              and agentic SDKs — into products that need them rather than as
-              decoration.
+              CloudFront for delivery. I&apos;m certified in Generative AI
+              fundamentals and learning to build with LLM APIs (OpenAI,
+              LangChain) — none of the products above uses them yet.
             </p>
           </div>
           <Link

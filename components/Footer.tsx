@@ -21,7 +21,15 @@ const BackToTop = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setShow(window.scrollY > 500);
+    // On phones it sits over content, so it only shows while scrolling back
+    // up — the moment someone wants it. Larger screens keep it in place.
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const y = window.scrollY;
+      const phone = window.innerWidth < 768;
+      setShow(y > 500 && (!phone || y < lastY - 2));
+      if (Math.abs(y - lastY) > 2) lastY = y;
+    };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -37,7 +45,7 @@ const BackToTop = () => {
           exit={{ opacity: 0, y: 20 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center border border-white/20 bg-neutral-900/80 backdrop-blur-md text-white shadow-2xl transition-colors hover:border-emerald-500 hover:text-emerald-500"
+          className="fixed bottom-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 md:bottom-8 md:right-8 md:h-14 md:w-14 md:rounded-none bg-neutral-900/80 backdrop-blur-md text-white shadow-2xl transition-colors hover:border-emerald-500 hover:text-emerald-500"
           aria-label="Back to top"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

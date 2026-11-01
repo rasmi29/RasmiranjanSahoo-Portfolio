@@ -113,7 +113,7 @@ export const PORTRAIT = {
   portrait: { src: "/rasmiranjan-sahoo-portrait.webp", width: 900, height: 1200 },
   alt: "Rasmiranjan Sahoo, full-stack and React Native developer and founder of Rathaworks, based in Bhubaneswar, Odisha, India",
   caption:
-    "Rasmiranjan Sahoo — full-stack, React Native and Gen-AI developer, founder of Rathaworks.",
+    "Rasmiranjan Sahoo — full-stack and React Native developer, founder of Rathaworks.",
 } as const;
 
 /**

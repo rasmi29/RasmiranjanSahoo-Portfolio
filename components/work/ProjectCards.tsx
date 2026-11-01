@@ -155,7 +155,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       exit={{ opacity: 0, scale: 0.96 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: DUR.slow, ease: EASE.out, delay: (index % 3) * 0.08 }}
-      className="h-full"
+      className="h-full w-[85%] shrink-0 snap-start md:w-auto"
     >
       <CardLink project={project} className="h-full flex-col">
         <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-neutral-950">

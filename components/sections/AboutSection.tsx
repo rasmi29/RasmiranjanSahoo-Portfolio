@@ -49,8 +49,8 @@ const experiences = [
     company: "Self-Development",
     date: "Ongoing",
     description:
-      "Certified in Generative AI Fundamentals by Chai Code. Actively building with LLMs, LangChain and agentic SDKs to create autonomous AI systems.",
-    tags: ["Generative AI", "LangChain", "Agent SDK", "OpenAI"],
+      "Certified in Generative AI Fundamentals by Chai Code. Now learning to build with LLM APIs — OpenAI and LangChain — in side projects.",
+    tags: ["Generative AI", "OpenAI API", "LangChain"],
   },
 ];
 
@@ -96,14 +96,14 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
 const ExperienceCard = memo(({ data }: { data: (typeof experiences)[0] }) => (
   <motion.div
     {...fadeUp}
-    className="group relative border-l border-white/10 pl-8 md:pl-12 py-8 transition-colors hover:border-emerald-500/50"
+    className="group relative border-l border-white/10 pl-6 md:pl-12 py-6 md:py-8 transition-colors hover:border-emerald-500/50"
   >
     <span
       aria-hidden="true"
-      className="absolute -left-[5px] top-10 h-2.5 w-2.5 rounded-full bg-neutral-800 ring-4 ring-neutral-950 transition-colors group-hover:bg-emerald-500"
+      className="absolute -left-[5px] top-8 md:top-10 h-2.5 w-2.5 rounded-full bg-neutral-800 ring-4 ring-neutral-950 transition-colors group-hover:bg-emerald-500"
     />
 
-    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-4">
+    <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-2 mb-3 md:mb-4">
       <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
         {data.title}
       </h4>
@@ -116,7 +116,7 @@ const ExperienceCard = memo(({ data }: { data: (typeof experiences)[0] }) => (
       {data.company}
     </p>
 
-    <p className="text-neutral-300 leading-relaxed max-w-xl mb-6">{data.description}</p>
+    <p className="text-[15px] md:text-base text-neutral-300 leading-relaxed max-w-xl mb-4 md:mb-6">{data.description}</p>
 
     <div className="flex flex-wrap gap-2">
       {data.tags.map((tag) => (
@@ -147,12 +147,12 @@ export default function AboutSection() {
       id="about"
       ref={containerRef}
       aria-labelledby="about-heading"
-      className="relative bg-neutral-950 py-32 text-white overflow-hidden"
+      className="relative bg-neutral-950 py-20 md:py-32 text-white overflow-hidden"
     >
       <GrainOverlay />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="mb-24">
+        <div className="mb-12 md:mb-24">
           <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
             02 / ABOUT ME
           </motion.span>
@@ -167,7 +167,7 @@ export default function AboutSection() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5 relative">
             <motion.div
               style={reduce ? undefined : { y, willChange: "transform" }}
@@ -176,25 +176,25 @@ export default function AboutSection() {
               {/* A real <figure>/<figcaption> pair. The caption is what tells
                   Google Images who the face belongs to — an alt attribute alone
                   is a weaker signal than alt plus adjacent visible text. */}
-              <figure className="m-0">
-                <div className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-sm bg-neutral-900 border border-white/10">
+              <figure className="m-0 flex items-end gap-4 sm:block">
+                <div className="group relative aspect-[3/4] w-36 shrink-0 overflow-hidden rounded-sm bg-neutral-900 border border-white/10 sm:w-full sm:max-w-md">
                   <Image
                     src={PORTRAIT.portrait.src}
                     alt={PORTRAIT.alt}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    sizes="(max-width: 640px) 144px, (max-width: 1024px) 100vw, 40vw"
                     className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                   />
                   <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-neutral-950/20 z-10" />
                   <div aria-hidden="true" className="absolute top-2 left-2 h-4 w-4 border-l-2 border-t-2 border-white/80 z-20" />
                   <div aria-hidden="true" className="absolute bottom-2 right-2 h-4 w-4 border-r-2 border-b-2 border-white/80 z-20" />
                 </div>
-                <figcaption className="mt-3 max-w-md text-xs leading-relaxed text-neutral-400">
+                <figcaption className="max-w-md text-xs leading-relaxed text-neutral-400 sm:mt-3">
                   {PORTRAIT.caption}
                 </figcaption>
               </figure>
 
-              <dl className="mt-8 grid grid-cols-3 gap-4">
+              <dl className="mt-6 grid grid-cols-3 gap-3 sm:mt-8 sm:gap-4">
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
@@ -234,7 +234,7 @@ export default function AboutSection() {
           <div className="lg:col-span-7">
             <motion.div
               {...fadeUp}
-              className="mb-20 space-y-8 text-lg md:text-xl font-light leading-relaxed text-neutral-300"
+              className="mb-12 md:mb-20 space-y-6 md:space-y-8 text-[17px] md:text-xl font-light leading-relaxed text-neutral-300"
             >
               <p>
                 I am a{" "}
@@ -298,7 +298,7 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <div className="mt-20 border-t border-white/10 pt-10">
+            <div className="mt-12 md:mt-20 border-t border-white/10 pt-10">
               <p className="mb-4 text-neutral-300">Interested in working together?</p>
               <Link
                 href="#contact"
