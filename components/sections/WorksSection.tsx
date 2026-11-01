@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import RevealHeading from "@/components/ui/RevealHeading";
+import SwipeDots, { useSnapIndex } from "@/components/ui/SwipeDots";
 import { FeaturedProjectCard, ProjectCard } from "@/components/work/ProjectCards";
 import { projects, projectCategories } from "@/lib/projects";
 import { AUTHOR, STUDIO } from "@/lib/site";
@@ -22,6 +24,8 @@ export default function WorksSection() {
   );
   // "All" leads with the flagship; a filtered view is a plain grid.
   const [lead, rest] = activeFilter === "All" ? [filtered[0], filtered.slice(1)] : [undefined, filtered];
+  const rowRef = useRef<HTMLDivElement>(null);
+  const activeCard = useSnapIndex(rowRef, rest.length);
 
   return (
     <section id="works" aria-labelledby="works-heading" className="relative overflow-hidden bg-black py-20 text-white md:py-32">
@@ -33,11 +37,11 @@ export default function WorksSection() {
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               01 / PORTFOLIO
             </motion.span>
-            <motion.h2 id="works-heading" {...fadeUp} className="text-5xl font-bold tracking-tighter text-white md:text-7xl">
-              Selected
-              <br />
-              <span className="text-neutral-500">Works.</span>
-            </motion.h2>
+            <RevealHeading
+              id="works-heading"
+              className="text-5xl font-bold tracking-tighter text-white md:text-7xl"
+              lines={[{ text: "Selected" }, { text: "Works.", className: "text-neutral-500" }]}
+            />
             <motion.p {...fadeUp} className="mt-6 max-w-xl text-lg font-light leading-relaxed text-neutral-300">
               {projects.length} products from the last year — {atGravitones} as lead developer at Gravitones,{" "}
               {freelance} for my own {freelance === 1 ? "client" : "clients"} and {personal} personal{" "}
@@ -45,22 +49,42 @@ export default function WorksSection() {
             </motion.p>
           </div>
 
-          {/* Derived from the data, so a filter can never exist without results. */}
-          <div className="flex flex-wrap gap-3" role="group" aria-label="Filter projects">
-            {projectCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                aria-pressed={activeFilter === cat}
-                className={`rounded-full border px-5 py-2 text-xs uppercase tracking-widest transition-all duration-300 ${
-                  activeFilter === cat
-                    ? "border-white bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                    : "border-neutral-700 bg-transparent text-neutral-400 hover:border-neutral-500 hover:text-white"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Derived from the data, so a filter can never exist without results.
+              Phones: one row to swipe (it was three wrapped rows of chips).
+              The white pill slides between chips instead of blinking. */}
+          <div
+            className="-mx-6 flex gap-2 overflow-x-auto px-6 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:gap-3 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden"
+            role="group"
+            aria-label="Filter projects"
+          >
+            {projectCategories.map((cat) => {
+              const active = activeFilter === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setActiveFilter(cat);
+                    rowRef.current?.scrollTo({ left: 0 });
+                  }}
+                  aria-pressed={active}
+                  className={`relative isolate shrink-0 rounded-full border px-5 py-2.5 text-xs uppercase tracking-widest transition-colors duration-300 ${
+                    active
+                      ? "border-white text-black"
+                      : "border-neutral-700 text-neutral-400 hover:border-neutral-500 hover:text-white"
+                  }`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="works-filter-pill"
+                      aria-hidden="true"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      className="absolute inset-0 -z-10 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                    />
+                  )}
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -73,6 +97,7 @@ export default function WorksSection() {
         {/* Phones: the rest of the work as a row to swipe through (cards peek
             in from the right); from md up, the grid. */}
         <motion.div
+          ref={rowRef}
           layout
           className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
         >
@@ -82,6 +107,7 @@ export default function WorksSection() {
             ))}
           </AnimatePresence>
         </motion.div>
+        <SwipeDots count={rest.length} active={activeCard} />
 
         <div className="mt-16 flex flex-col items-center justify-center gap-8 border-t border-white/10 pt-12 sm:flex-row md:mt-24 md:pt-16">
           <Link

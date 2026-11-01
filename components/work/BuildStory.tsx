@@ -39,7 +39,7 @@ const roleLabel = (role: string) => {
 
 export default function BuildStory({ project, story }: { project: Project; story: Story }) {
   return (
-    <main id="main" className="min-h-screen overflow-x-hidden bg-neutral-950 text-white selection:bg-emerald-500/30">
+    <main id="main" className="relative min-h-screen overflow-x-hidden bg-neutral-950 text-white selection:bg-emerald-500/30">
       <GrainOverlay />
 
       <nav className="fixed inset-x-0 top-0 z-50 h-16 border-b border-white/5 bg-black/80 md:h-20">

@@ -55,7 +55,7 @@ export default function ProjectReel() {
                       className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"
                     />
                     <span className="absolute inset-x-3 bottom-2.5 text-left">
-                      <span className="block font-mono text-[9px] uppercase tracking-widest text-emerald-400">
+                      <span className="block font-mono text-[10px] uppercase tracking-widest text-emerald-400">
                         {p.type}
                       </span>
                       <span className="block truncate text-[13px] font-semibold text-white">{p.title}</span>

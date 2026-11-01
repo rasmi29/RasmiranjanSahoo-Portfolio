@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import RevealHeading from "@/components/ui/RevealHeading";
 import ContactForm from "@/components/sections/ContactForm";
 import { AUTHOR, RESUME_URL, STUDIO } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
@@ -129,7 +130,6 @@ const ContactItem = ({ item }: { item: (typeof contactLinks)[0] }) => (
  * the homepage's section number is dropped.
  */
 export default function ContactSection({ standalone = false }: { standalone?: boolean }) {
-  const Heading = standalone ? motion.h1 : motion.h2;
   return (
     <section
       id="contact"
@@ -148,15 +148,12 @@ export default function ContactSection({ standalone = false }: { standalone?: bo
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               {standalone ? "/ CONTACT RASMIRANJAN SAHOO" : "06 / CONTACT"}
             </motion.span>
-            <Heading
+            <RevealHeading
+              as={standalone ? "h1" : "h2"}
               id="contact-heading"
-              {...fadeUp}
               className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9]"
-            >
-              Let&apos;s work
-              <br />
-              <span className="text-neutral-500">together.</span>
-            </Heading>
+              lines={[{ text: "Let’s work" }, { text: "together.", className: "text-neutral-500" }]}
+            />
           </div>
 
           <div className="mb-2">

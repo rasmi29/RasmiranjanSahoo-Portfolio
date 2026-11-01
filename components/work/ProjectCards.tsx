@@ -91,7 +91,7 @@ function Outcomes({ project, count }: { project: Project; count: number }) {
     <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
       {project.outcomes.slice(0, count).map((o) => (
         <div key={o.label}>
-          <dt className="text-[9px] uppercase tracking-widest text-neutral-400">{o.label}</dt>
+          <dt className="text-[10px] uppercase tracking-widest text-neutral-400">{o.label}</dt>
           <dd className="text-lg font-semibold tracking-tight text-white">{o.value}</dd>
         </div>
       ))}

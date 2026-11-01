@@ -80,8 +80,9 @@ export default function Footer() {
       <BackToTop />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-24">
-          <div className="md:col-span-2">
+        {/* Phones: Navigation and Socials side by side instead of stacked. */}
+        <div className="mb-16 grid grid-cols-2 gap-x-6 gap-y-12 md:mb-24 md:grid-cols-4 md:gap-12">
+          <div className="col-span-2">
             <div
               aria-hidden="true"
               className="mb-8 h-10 w-10 flex items-center justify-center border border-white/20 bg-white/5 font-mono text-sm font-bold text-emerald-500"
@@ -106,12 +107,12 @@ export default function Footer() {
             <h2 className="mb-6 font-mono text-xs text-neutral-400 uppercase tracking-widest">
               / NAVIGATION
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-1">
               {FOOTER_NAV.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
+                    className="group flex items-center gap-2 py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
                   >
                     <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
                     {link.name}
@@ -123,7 +124,7 @@ export default function Footer() {
                   href={STUDIO.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
+                  className="group flex items-center gap-2 py-1.5 text-sm text-neutral-300 hover:text-white transition-colors"
                 >
                   <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
                   Rathaworks — my studio ↗
@@ -136,7 +137,7 @@ export default function Footer() {
             <h2 className="mb-6 font-mono text-xs text-neutral-400 uppercase tracking-widest">
               / SOCIALS
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-1">
               {socialLinks.map((link) => (
                 <li key={link.name}>
                   <a
@@ -149,7 +150,7 @@ export default function Footer() {
                             : "noopener noreferrer",
                         }
                       : {})}
-                    className="text-sm text-neutral-300 hover:text-emerald-400 transition-colors flex items-center gap-2 group"
+                    className="group flex items-center gap-2 py-1.5 text-sm text-neutral-300 transition-colors hover:text-emerald-400"
                   >
                     {link.name}
                     <svg

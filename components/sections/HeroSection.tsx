@@ -11,7 +11,6 @@ import {
   type MotionValue,
 } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { EASE } from "@/lib/motion";
 import { STATS, STUDIO } from "@/lib/site";
 import { projects } from "@/lib/projects";
 import ProjectReel from "@/components/ui/ProjectReel";
@@ -22,6 +21,11 @@ const heroStats = [
   { value: STATS.apps, label: "Mobile apps" },
   { value: projects.filter((p) => p.engagement === "Gravitones").length, label: "Platforms led at Gravitones" },
 ];
+
+const FIRST_NAME = "RASMIRANJAN".split("");
+
+/** Stagger for the CSS entrance: sets the `--d` delay that `.hero-in` reads. */
+const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 /** Ambient aurora. Skipped entirely under prefers-reduced-motion. */
 const AuroraBackground = () => {
@@ -171,11 +175,12 @@ export default function HeroSection() {
         style={{ y: reduce ? 0 : y1, opacity }}
         className="relative px-6 text-center max-w-7xl mx-auto flex flex-col items-center gap-5 md:gap-6"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl shadow-2xl hover:border-emerald-500/30 transition-colors duration-500"
+        {/* The entrance is CSS (`hero-in` & co. in globals.css), not JS: the
+            hero is in the HTML and visible without waiting for React, and it
+            plays as the intro curtain lifts instead of hidden beneath it. */}
+        <div
+          style={delay(0)}
+          className="hero-in inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl shadow-2xl hover:border-emerald-500/30 transition-colors duration-500"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -184,7 +189,7 @@ export default function HeroSection() {
           <span className="text-[10px] font-mono text-neutral-300 tracking-[0.2em] uppercase">
             Available for new projects
           </span>
-        </motion.div>
+        </div>
 
         {/*
           The only <h1> on the page. It previously read just "RASMIRANJAN
@@ -193,29 +198,35 @@ export default function HeroSection() {
           keywords too.
         */}
         <div className="relative">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: EASE.out }}
-            className="text-[13vw] sm:text-[11vw] lg:text-[7.2vw] leading-[0.85] font-black tracking-tighter"
-          >
+          <h1 className="text-[13vw] sm:text-[11vw] lg:text-[7.2vw] leading-[0.85] font-black tracking-tighter">
             <span className="sr-only">
               Rasmiranjan Sahoo — Full-Stack and React Native Developer,
               Founder of Rathaworks
             </span>
-            <span
-              aria-hidden="true"
-              className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-400"
-            >
-              RASMIRANJAN
+            {/* Letter by letter. The gradient sits on each letter, not the
+                word: background-clip:text does not reach transformed
+                children. A top-to-bottom gradient looks identical either way. */}
+            {/* nowrap: separate inline-block letters are each a line-break
+                opportunity, and on a phone the name broke as "RASMIRANJA / N". */}
+            <span aria-hidden="true" className="block whitespace-nowrap">
+              {FIRST_NAME.map((ch, i) => (
+                <span
+                  key={i}
+                  style={{ "--i": i } as React.CSSProperties}
+                  className="hero-letter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-400"
+                >
+                  {ch}
+                </span>
+              ))}
             </span>
             <span
               aria-hidden="true"
-              className="block mt-2 outline-text hover:text-white/5 transition-colors duration-700 cursor-default"
+              style={delay(520)}
+              className="hero-track block mt-2 outline-text hover:text-white/5 transition-colors duration-700 cursor-default"
             >
               SAHOO
             </span>
-          </motion.h1>
+          </h1>
 
           <div
             aria-hidden="true"
@@ -237,11 +248,9 @@ export default function HeroSection() {
 
         {/* Leads with a concrete, checkable claim — the kind of sentence an
             answer engine can cite — instead of "engineering digital excellence". */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="text-base md:text-xl font-light text-neutral-300 max-w-3xl leading-relaxed mt-1"
+        <p
+          style={delay(700)}
+          className="hero-in text-base md:text-xl font-light text-neutral-300 max-w-3xl leading-relaxed mt-1"
         >
           {/* The counts live in the stats row below, so they are not said twice. */}
           Full-stack developer and founder of{" "}
@@ -252,13 +261,11 @@ export default function HeroSection() {
           <span className="text-emerald-400 font-medium">Next.js</span>,{" "}
           <span className="text-emerald-400 font-medium">React Native</span> and{" "}
           <span className="text-emerald-400 font-medium">Node.js</span>. Available worldwide.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6"
+        <div
+          style={delay(820)}
+          className="hero-in flex flex-col sm:flex-row gap-4 sm:gap-6"
         >
           <MagneticButton href="#works" primary>
             View Case Studies
@@ -266,29 +273,27 @@ export default function HeroSection() {
           {/* Previously labelled "Get In Touch" but linked to a Google Drive PDF. */}
           {/* Client projects go to the studio, which has the full brief form. */}
           <MagneticButton href={STUDIO.contact}>Start a Project</MagneticButton>
-        </motion.div>
+        </div>
 
         {/* The numbers that used to wait deep in About. */}
-        <motion.dl
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-white/[0.03]"
+        <dl
+          style={delay(940)}
+          className="hero-in grid grid-cols-3 divide-x divide-white/10 rounded-2xl border border-white/10 bg-white/[0.03]"
         >
           {heroStats.map((s) => (
-            <div key={s.label} className="flex flex-col-reverse px-4 py-3 sm:px-7">
-              <dt className="mt-1 font-mono text-[9px] uppercase tracking-widest text-neutral-400 sm:text-[10px]">
+            <div key={s.label} className="flex flex-col-reverse px-3 py-3 sm:px-7">
+              <dt className="mt-1 font-mono text-[10px] uppercase leading-snug tracking-wider text-neutral-400 sm:tracking-widest">
                 {s.label}
               </dt>
               <dd className="text-2xl font-bold tabular-nums text-white md:text-3xl">{s.value}</dd>
             </div>
           ))}
-        </motion.dl>
+        </dl>
       </motion.div>
       </div>
 
       {/* The work itself, on the first screen. */}
-      <div className="relative z-30 mt-2 w-full md:mt-4">
+      <div style={delay(1080)} className="hero-in relative z-30 mt-2 w-full md:mt-4">
         <ProjectReel />
       </div>
 

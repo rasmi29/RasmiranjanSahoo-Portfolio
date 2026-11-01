@@ -7,13 +7,15 @@ import {
   useTransform,
   useInView,
   useReducedMotion,
+  useSpring,
   animate,
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import RevealHeading from "@/components/ui/RevealHeading";
 import { PORTRAIT, RESUME_URL, STATS, STUDIO } from "@/lib/site";
-import { fadeIn, fadeUp } from "@/lib/motion";
+import { EASE, fadeIn, fadeUp } from "@/lib/motion";
 
 /* Each project name links to its own page: descriptive internal anchors are
    how Google learns what /works/bookiee etc. are about. */
@@ -103,9 +105,14 @@ const ExperienceCard = memo(({ data }: { data: (typeof experiences)[0] }) => (
     {...fadeUp}
     className="group relative border-l border-white/10 pl-6 md:pl-12 py-6 md:py-8 transition-colors hover:border-emerald-500/50"
   >
-    <span
+    {/* Lights up as the drawn timeline line reaches it. */}
+    <motion.span
       aria-hidden="true"
-      className="absolute -left-[5px] top-8 md:top-10 h-2.5 w-2.5 rounded-full bg-neutral-800 ring-4 ring-neutral-950 transition-colors group-hover:bg-emerald-500"
+      initial={{ backgroundColor: "#262626", scale: 1 }}
+      whileInView={{ backgroundColor: "#10b981", scale: [1, 1.6, 1] }}
+      viewport={{ once: true, margin: "0px 0px -40% 0px" }}
+      transition={{ duration: 0.6, ease: EASE.out }}
+      className="absolute -left-[5px] top-8 md:top-10 z-10 h-2.5 w-2.5 rounded-full ring-4 ring-neutral-950"
     />
 
     <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-2 mb-3 md:mb-4">
@@ -147,6 +154,13 @@ export default function AboutSection() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: timelineProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 75%", "end 55%"],
+  });
+  const timelineDraw = useSpring(timelineProgress, { stiffness: 120, damping: 30, mass: 0.4 });
+
   return (
     <section
       id="about"
@@ -161,15 +175,11 @@ export default function AboutSection() {
           <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
             02 / ABOUT ME
           </motion.span>
-          <motion.h2
+          <RevealHeading
             id="about-heading"
-            {...fadeUp}
             className="text-5xl md:text-7xl font-bold tracking-tighter"
-          >
-            Engineer.
-            <br />
-            <span className="text-neutral-500">Problem Solver.</span>
-          </motion.h2>
+            lines={[{ text: "Engineer." }, { text: "Problem Solver.", className: "text-neutral-500" }]}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -199,7 +209,9 @@ export default function AboutSection() {
                 </figcaption>
               </figure>
 
-              <dl className="mt-6 grid grid-cols-3 gap-3 sm:mt-8 sm:gap-4">
+              {/* Phones skip this row: the hero already shows the same three
+                  numbers one scroll up. */}
+              <dl className="mt-6 hidden grid-cols-3 gap-3 sm:mt-8 sm:grid sm:gap-4">
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
@@ -314,7 +326,14 @@ export default function AboutSection() {
 
             <div>
               <h3 className="mb-8 font-mono text-sm text-emerald-400">/ CAREER_HISTORY</h3>
-              <div className="space-y-0">
+              {/* The timeline draws itself as you scroll through it: an emerald
+                  line grows over the grey rail, lighting each dot it reaches. */}
+              <div ref={timelineRef} className="relative">
+                <motion.span
+                  aria-hidden="true"
+                  style={{ scaleY: reduce ? 1 : timelineDraw }}
+                  className="pointer-events-none absolute left-0 top-0 h-full w-px origin-top bg-gradient-to-b from-emerald-400 via-emerald-500/70 to-emerald-500/10"
+                />
                 {experiences.map((exp) => (
                   <ExperienceCard key={exp.id} data={exp} />
                 ))}

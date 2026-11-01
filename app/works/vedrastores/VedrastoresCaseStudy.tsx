@@ -425,7 +425,7 @@ const AppCard = ({ app }: { app: (typeof mobileApps)[0] }) => {
               />
             </svg>
           </div>
-          <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-neutral-500">
+          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-500">
             Screenshots
           </span>
         </button>
@@ -567,7 +567,7 @@ export default function VedrastoresCaseStudy() {
                 ].map((t) => (
                   <span
                     key={t}
-                    className="px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] text-[9px] font-black tracking-widest text-neutral-400 uppercase hover:text-white hover:border-white/30 hover:bg-white/5 transition-all cursor-default"
+                    className="px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-black tracking-widest text-neutral-400 uppercase hover:text-white hover:border-white/30 hover:bg-white/5 transition-all cursor-default"
                   >
                     {t}
                   </span>
@@ -608,7 +608,7 @@ export default function VedrastoresCaseStudy() {
                   <h3 className="text-xl md:text-3xl font-bold tracking-tight text-white mb-1">
                     The Ecosystem
                   </h3>
-                  <p className="text-white/50 font-mono text-[9px] uppercase tracking-[0.3em]">
+                  <p className="text-white/50 font-mono text-[10px] uppercase tracking-[0.3em]">
                     6 connected products
                   </p>
                 </div>

@@ -28,9 +28,19 @@ const jsonLd = jsonLdScript([
   profilePageSchema(SITE_URL, `${SITE_NAME} — ${SITE_TAGLINE}`),
 ]);
 
+/*
+ * Runs during HTML parsing, before anything below it paints. It decides
+ * whether this visit gets the intro, so the loader and the hero's CSS
+ * entrance agree from the very first frame — no flash of the loader on
+ * repeat visits, no hero animation wasted underneath it on the first.
+ * See the "Intro → hero choreography" block in globals.css.
+ */
+const INTRO_SCRIPT = `(function(){var m="play";try{if(matchMedia("(prefers-reduced-motion: reduce)").matches||sessionStorage.getItem("intro-seen")==="1")m="skip";sessionStorage.setItem("intro-seen","1")}catch(e){}document.documentElement.dataset.intro=m})();`;
+
 export default function Home() {
   return (
     <>
+      <script dangerouslySetInnerHTML={{ __html: INTRO_SCRIPT }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd }}

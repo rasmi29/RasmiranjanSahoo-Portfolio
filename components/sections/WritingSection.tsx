@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import RevealHeading from "@/components/ui/RevealHeading";
+import SwipeDots, { useSnapIndex } from "@/components/ui/SwipeDots";
 import { articles, INSIGHTS_URL } from "@/lib/writing";
 import { fadeIn, fadeUp } from "@/lib/motion";
 
@@ -12,6 +14,8 @@ import { fadeIn, fadeUp } from "@/lib/motion";
  * text an answer engine can cite.
  */
 export default function WritingSection() {
+  const rowRef = useRef<HTMLOListElement>(null);
+  const active = useSnapIndex(rowRef, articles.length);
   return (
     <section id="writing" aria-labelledby="writing-heading" className="relative overflow-hidden bg-black py-20 text-white md:py-32">
       <GrainOverlay opacity="opacity-[0.12]" />
@@ -22,11 +26,11 @@ export default function WritingSection() {
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               04 / WRITING
             </motion.span>
-            <motion.h2 id="writing-heading" {...fadeUp} className="text-5xl font-bold tracking-tighter md:text-7xl">
-              How the hard
-              <br />
-              <span className="text-neutral-500">parts get built.</span>
-            </motion.h2>
+            <RevealHeading
+              id="writing-heading"
+              className="text-5xl font-bold tracking-tighter md:text-7xl"
+              lines={[{ text: "How the hard" }, { text: "parts get built.", className: "text-neutral-500" }]}
+            />
           </div>
           <motion.a
             {...fadeUp}
@@ -41,7 +45,7 @@ export default function WritingSection() {
         </div>
 
         {/* Phones: all six as a row to swipe through; from md up, the grid. */}
-        <ol className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
+        <ol ref={rowRef} className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
           {articles.map((a, i) => (
             <motion.li
               key={a.url}
@@ -82,6 +86,7 @@ export default function WritingSection() {
             </motion.li>
           ))}
         </ol>
+        <SwipeDots count={articles.length} active={active} />
       </div>
     </section>
   );

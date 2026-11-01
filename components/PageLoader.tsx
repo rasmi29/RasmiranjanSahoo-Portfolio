@@ -56,6 +56,9 @@ export default function PageLoader() {
   const [isLoading, setIsLoading] = useState(true);
   /** Repeat visit or reduced motion: leave instantly, no slide-out. */
   const [skip, setSkip] = useState(false);
+  /** True once this visit is confirmed to play the intro; keeps the loader
+      visible through its exit (CSS hides `.page-loader` otherwise). */
+  const [playing, setPlaying] = useState(false);
   const [currentLogIndex, setCurrentLogIndex] = useState(0);
 
   // Motion values for animations (bypasses React state)
@@ -65,20 +68,38 @@ export default function PageLoader() {
   useEffect(() => {
     // The intro plays once per browser session. It used to hold every visit
     // for 3.3 s (2.5 s count + 0.8 s exit), which is where visitors bounced.
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem("intro-seen") === "1";
-      sessionStorage.setItem("intro-seen", "1");
-    } catch {
-      // Storage blocked — just play it.
+    //
+    // On a full page load the inline script in app/page.tsx has already
+    // decided ("play" / "skip"). On a client-side navigation back to the
+    // homepage that script does not run, so decide here the same way.
+    const html = document.documentElement;
+    let mode = html.dataset.intro;
+    if (mode !== "play" && mode !== "skip") {
+      let seen = false;
+      try {
+        seen = sessionStorage.getItem("intro-seen") === "1";
+        sessionStorage.setItem("intro-seen", "1");
+      } catch {
+        // Storage blocked — just play it.
+      }
+      mode = seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "skip" : "play";
+      html.dataset.intro = mode;
     }
-    if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    /** Lets the hero's paused CSS entrance run (globals.css). */
+    const release = () => {
+      html.dataset.intro = "done";
+    };
+
+    if (mode === "skip") {
       const frame = requestAnimationFrame(() => {
         setSkip(true);
         setIsLoading(false);
+        release();
       });
       return () => cancelAnimationFrame(frame);
     }
+
+    const playFrame = requestAnimationFrame(() => setPlaying(true));
 
     // 1. Lock Body Scroll
     document.body.style.overflow = "hidden";
@@ -89,6 +110,8 @@ export default function PageLoader() {
       duration: INTRO_SECONDS,
       ease: "easeInOut",
       onComplete: () => {
+        // The hero starts its entrance as the curtain starts to lift.
+        release();
         setIsLoading(false);
         document.body.style.overflow = "unset";
       }
@@ -101,9 +124,12 @@ export default function PageLoader() {
     }, (INTRO_SECONDS * 1000) / LOG_MESSAGES.length);
 
     return () => {
+      cancelAnimationFrame(playFrame);
       controls.stop();
       clearInterval(logInterval);
       document.body.style.overflow = "unset";
+      // Unmounted mid-intro (navigated away): never leave the hero paused.
+      release();
     };
   }, [progress]);
 
@@ -120,7 +146,8 @@ export default function PageLoader() {
           role="status"
           aria-live="polite"
           aria-label="Loading"
-          className="fixed inset-0 z-9999 flex flex-col justify-between bg-neutral-950 text-white px-6 py-8 md:px-12 md:py-12"
+          // `page-loader` keeps it display:none unless <html data-intro="play">.
+          className={`page-loader ${playing ? "is-playing" : ""} fixed inset-0 z-9999 flex flex-col justify-between bg-neutral-950 text-white px-6 py-8 md:px-12 md:py-12`}
         >
           <GrainOverlay />
           

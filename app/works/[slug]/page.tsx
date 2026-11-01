@@ -119,7 +119,8 @@ export default async function ProjectPage({ params }: Props) {
     ]),
   ]);
 
-  const facts: { term: string; detail: React.ReactNode }[] = [
+  /** `wide` facts take a full row on phones, where the grid is two columns. */
+  const facts: { term: string; detail: React.ReactNode; wide?: boolean }[] = [
     {
       term: "Developer",
       detail: (
@@ -128,14 +129,14 @@ export default async function ProjectPage({ params }: Props) {
         </Link>
       ),
     },
-    { term: "Role", detail: project.role },
+    { term: "Role", detail: project.role, wide: true },
     { term: "Timeline", detail: project.duration },
     ...(project.client ? [{ term: "Client", detail: project.client }] : []),
     { term: "Status", detail: project.status },
   ];
 
   return (
-    <main id="main" className="min-h-screen overflow-x-hidden bg-neutral-950 text-white selection:bg-emerald-500/30">
+    <main id="main" className="relative min-h-screen overflow-x-hidden bg-neutral-950 text-white selection:bg-emerald-500/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <GrainOverlay />
 
@@ -217,9 +218,9 @@ export default async function ProjectPage({ params }: Props) {
             )}
           </div>
 
-          <dl className="mt-12 grid gap-x-8 gap-y-5 border-t border-white/10 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/10 pt-8 lg:grid-cols-3 lg:gap-x-8">
             {facts.map((f) => (
-              <div key={f.term}>
+              <div key={f.term} className={f.wide ? "col-span-2 lg:col-span-1" : undefined}>
                 <dt className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">{f.term}</dt>
                 <dd className="mt-2 text-sm leading-relaxed text-neutral-200">{f.detail}</dd>
               </div>

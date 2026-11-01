@@ -1,9 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import RevealHeading from "@/components/ui/RevealHeading";
+import SwipeDots, { useSnapIndex } from "@/components/ui/SwipeDots";
 import { fadeIn, fadeUp, stagger, staggerChild } from "@/lib/motion";
 
 /**
@@ -137,6 +139,8 @@ function SkillChip({ skill, color }: { skill: Skill; color: string }) {
 }
 
 export default function SkillsSection() {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const active = useSnapIndex(rowRef, categories.length);
   return (
     <section id="skills" aria-labelledby="skills-heading" className="relative overflow-hidden bg-black py-20 text-white md:py-32">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
@@ -151,13 +155,16 @@ export default function SkillsSection() {
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               03 / STACK
             </motion.span>
-            <motion.h2
+            <RevealHeading
               id="skills-heading"
-              {...fadeUp}
-              className="bg-gradient-to-b from-white to-neutral-600 bg-clip-text text-5xl font-bold tracking-tighter text-transparent md:text-7xl"
-            >
-              Tech Stack.
-            </motion.h2>
+              className="text-5xl font-bold tracking-tighter md:text-7xl"
+              lines={[
+                {
+                  text: "Tech Stack.",
+                  className: "bg-gradient-to-b from-white to-neutral-600 bg-clip-text text-transparent",
+                },
+              ]}
+            />
           </div>
           <motion.p {...fadeUp} className="max-w-md text-lg font-light leading-relaxed text-neutral-400">
             Mainstream, well-supported tools, so any competent developer can pick a project up after me.
@@ -165,7 +172,12 @@ export default function SkillsSection() {
           </motion.p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {/* Phones: a row to swipe through — six stacked cards were about
+            three screens of scrolling. From md up, the bento grid. */}
+        <div
+          ref={rowRef}
+          className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
+        >
           {categories.map((c, i) => (
             <motion.article
               key={c.id}
@@ -173,7 +185,7 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
-              className={`group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-5 transition-colors duration-500 hover:border-white/20 sm:p-7 ${c.span}`}
+              className={`group relative w-[85%] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-5 transition-colors duration-500 hover:border-white/20 sm:p-7 md:w-auto ${c.span}`}
             >
               <div
                 aria-hidden="true"
@@ -200,6 +212,7 @@ export default function SkillsSection() {
             </motion.article>
           ))}
         </div>
+        <SwipeDots count={categories.length} active={active} />
       </div>
     </section>
   );

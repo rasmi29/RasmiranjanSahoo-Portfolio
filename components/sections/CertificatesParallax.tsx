@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import RevealHeading from "@/components/ui/RevealHeading";
 import { fadeIn, fadeUp, stagger, staggerChild } from "@/lib/motion";
 
 const certificates = [
@@ -53,13 +54,19 @@ export default function CertificatesParallax() {
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
               05 / LEARNING
             </motion.span>
-            <motion.h2
+            <RevealHeading
               id="certificates-heading"
-              {...fadeUp}
               className="text-4xl font-bold tracking-tighter md:text-6xl"
-            >
-              Certifications<span className="text-neutral-600">.</span>
-            </motion.h2>
+              lines={[
+                {
+                  text: (
+                    <>
+                      Certifications<span className="text-neutral-600">.</span>
+                    </>
+                  ),
+                },
+              ]}
+            />
           </div>
           <motion.p {...fadeUp} className="max-w-sm text-base font-light text-neutral-400 md:text-lg">
             Courses completed alongside client work. Each one can be checked with its issuer.
