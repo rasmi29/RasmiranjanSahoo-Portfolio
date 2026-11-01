@@ -27,7 +27,9 @@ export const AUTHOR = {
   country: "IN",
   github: "https://github.com/rasmi29",
   linkedin: "https://www.linkedin.com/in/rasmiranjansahoo702/",
-  twitter: "@rasmiranjan29",
+  // The active account (324 posts). @RasmiRanjan29 is an empty duplicate —
+  // pointing sameAs at it told Google the wrong profile was this person.
+  twitter: "@Rasmiranjan09",
 } as const;
 
 /**
@@ -67,7 +69,7 @@ export const ALTERNATE_NAMES = [
 export const PROFILES: { name: string; url: string }[] = [
   { name: "GitHub", url: AUTHOR.github },
   { name: "LinkedIn", url: AUTHOR.linkedin },
-  { name: "X", url: "https://x.com/RasmiRanjan29" },
+  { name: "X", url: "https://x.com/Rasmiranjan09" },
   // The handle carries no part of the name, so this link (plus the profile's
   // Name field) is what ties @mr_rasmi_ to Rasmiranjan Sahoo for Google.
   { name: "Instagram", url: "https://www.instagram.com/mr_rasmi_/" },

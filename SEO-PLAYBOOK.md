@@ -144,9 +144,10 @@ you, and it is genuinely about ten minutes per profile.
   in your About section as plain text too. Set your headline to
   "Freelance Full-Stack & React Native Developer". Your LinkedIn will almost
   certainly outrank your site for your name at first; make sure it points home.
-- **X** ([@RasmiRanjan29](https://x.com/RasmiRanjan29)) — currently 0 posts, 0
-  followers, no bio, no link. Add the URL field, a bio, and the headshot. Even
-  a dormant profile is a corroborating edge once it links back.
+- **X** ([@Rasmiranjan09](https://x.com/Rasmiranjan09)) — the active account
+  (324 posts). The site used to point at @RasmiRanjan29, an empty duplicate
+  with 0 posts; delete that one or leave it untouched. Update the bio (it still
+  says "aspiring developer"), add the website URL, and use the headshot.
 
 ### 3. Use the same photo everywhere
 
