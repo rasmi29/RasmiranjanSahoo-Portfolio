@@ -15,6 +15,11 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 import { PORTRAIT, RESUME_URL, STATS, STUDIO } from "@/lib/site";
 import { fadeIn, fadeUp } from "@/lib/motion";
 
+/* Each project name links to its own page: descriptive internal anchors are
+   how Google learns what /works/bookiee etc. are about. */
+const inlineLink =
+  "text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500";
+
 const experiences = [
   {
     id: "01",
@@ -237,11 +242,11 @@ export default function AboutSection() {
               className="mb-12 md:mb-20 space-y-6 md:space-y-8 text-[17px] md:text-xl font-light leading-relaxed text-neutral-300"
             >
               <p>
-                I am a{" "}
+                I&apos;m Rasmiranjan Sahoo, <span className="text-white">Rasmi</span> to most people: a{" "}
                 <span className="text-white font-normal underline decoration-emerald-500/30 underline-offset-8">
                   full-stack developer
                 </span>{" "}
-                based in <span className="text-white">Odisha, India</span>, and the founder of{" "}
+                based in <span className="text-white">Bhubaneswar, Odisha</span>, and the founder of{" "}
                 <a href={STUDIO.url} className="text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500">
                   Rathaworks
                 </a>
@@ -257,11 +262,29 @@ export default function AboutSection() {
                 >
                   Vedrastores marketplace
                 </Link>{" "}
-                for Kenya, the Bookiee bus-booking platform, a five-app restaurant delivery system, the
-                Zyrilo creator app and the Bidyasagar Classes coaching platform — and built a
-                CMS-driven corporate site for my own client, QCS.{" "}
+                for Kenya, the{" "}
+                <Link href="/works/bookiee" className={inlineLink}>
+                  Bookiee bus-booking platform
+                </Link>
+                , a{" "}
+                <Link href="/works/restaurant-delivery" className={inlineLink}>
+                  five-app restaurant delivery system
+                </Link>
+                , the{" "}
+                <Link href="/works/zyrilo" className={inlineLink}>
+                  Zyrilo creator app
+                </Link>{" "}
+                and the{" "}
+                <Link href="/works/bidyasagar" className={inlineLink}>
+                  Bidyasagar Classes coaching platform
+                </Link>{" "}
+                — and built a{" "}
+                <Link href="/works/qcs" className={inlineLink}>
+                  CMS-driven corporate site
+                </Link>{" "}
+                for my own client, QCS.{" "}
                 <Link
-                  href="#works"
+                  href="/works"
                   className="text-white underline decoration-emerald-500/30 underline-offset-8 hover:decoration-emerald-500"
                 >
                   See them all

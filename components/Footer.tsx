@@ -4,7 +4,19 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { AUTHOR, NAV_ITEMS, PROFILES, RESUME_URL, STUDIO } from "@/lib/site";
+import { AUTHOR, PROFILES, RESUME_URL, STUDIO } from "@/lib/site";
+
+/* Real pages only. The old list linked to /#works-style fragments, which
+   Google collapses into the homepage, so they never counted as site structure.
+   Descriptive anchors ("About Rasmiranjan Sahoo") also tell a crawler what
+   each page is for. */
+const FOOTER_NAV = [
+  { name: "Home", href: "/" },
+  { name: "Case Studies", href: "/works" },
+  { name: "About Rasmiranjan Sahoo", href: "/about" },
+  { name: "Writing", href: "/writing" },
+  { name: "Contact", href: "/contact" },
+];
 
 /*
  * `me` in the rel attribute is the identity claim: "this profile is the same
@@ -95,10 +107,10 @@ export default function Footer() {
               / NAVIGATION
             </h2>
             <ul className="space-y-4">
-              {NAV_ITEMS.map((link) => (
-                <li key={link.name}>
+              {FOOTER_NAV.map((link) => (
+                <li key={link.href}>
                   <Link
-                    href={`/${link.href}`}
+                    href={link.href}
                     className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
                   >
                     <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
@@ -106,24 +118,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/works"
-                  className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
-                >
-                  <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
-                  All Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="group flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors"
-                >
-                  <span className="h-px w-4 bg-neutral-700 group-hover:bg-emerald-500 group-hover:w-6 transition-all" />
-                  About Rasmiranjan Sahoo
-                </Link>
-              </li>
               <li>
                 <a
                   href={STUDIO.url}

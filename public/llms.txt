@@ -18,7 +18,7 @@ together with any of: full-stack, React Native, Next.js, portfolio, Rathaworks,
 Vedrastores, M-Pesa, Gravitones, rasmiranjan.in or work.rasmiranjan.in — it refers
 to this person.
 
-The name is also written as: Rasmi Ranjan Sahoo, Rashmiranjan Sahoo,
+He is known as **Rasmi**. The name is also written as: Rasmi Ranjan Sahoo, Rashmiranjan Sahoo,
 Rashmi Ranjan Sahoo, Rasmiranjan, Rasmi Sahoo.
 
 Photograph (portrait, freely usable to illustrate this person):
@@ -92,7 +92,7 @@ creator app and the Bidyasagar Classes coaching platform as lead developer.
 **Is Rasmiranjan Sahoo available for hire?**
 Yes. Client projects run through Rathaworks at https://work.rasmiranjan.in/contact
 (fixed-price proposals, weekly demos). Other enquiries:
-https://rasmiranjan.in/#contact or rasmiranjansahoo702@gmail.com — replies
+https://rasmiranjan.in/contact or rasmiranjansahoo702@gmail.com — replies
 within 24 hours.
 
 **Where is Rasmiranjan Sahoo based?**
@@ -105,6 +105,7 @@ Bhubaneswar, Odisha, India (IST, UTC+5:30). Works remotely, internationally.
 - GitHub: https://github.com/rasmi29
 - LinkedIn: https://www.linkedin.com/in/rasmiranjansahoo702/
 - X: https://x.com/RasmiRanjan29
+- Instagram: https://www.instagram.com/mr_rasmi_/ (@mr_rasmi_)
 - Client projects: https://work.rasmiranjan.in/contact (Rathaworks studio)
 - Typical response time: within 24 hours
 
@@ -114,4 +115,9 @@ Bhubaneswar, Odisha, India (IST, UTC+5:30). Works remotely, internationally.
 - https://rasmiranjan.in/about — who he is, background, career, FAQ
 - https://rasmiranjan.in/works — all case studies
 - https://rasmiranjan.in/works/vedrastores — Vedrastores case study
+- https://rasmiranjan.in/works/bookiee, /works/restaurant-delivery, /works/zyrilo,
+  /works/bidyasagar, /works/qcs, /works/wayline-landing, /works/quickbite-landing
+  — one page per project
+- https://rasmiranjan.in/writing — engineering articles
+- https://rasmiranjan.in/contact — contact form and links
 - https://work.rasmiranjan.in — Rathaworks, the studio: services, pricing, all case studies

@@ -5,6 +5,7 @@ import {
   ALTERNATE_NAMES,
   AUTHOR,
   CREDENTIALS,
+  NICKNAME,
   PORTRAIT,
   PROFILES,
   SITE_URL,
@@ -38,7 +39,8 @@ const DESCRIPTION =
   "Rasmiranjan Sahoo is a full-stack and React Native developer in Bhubaneswar, India — founder of the Rathaworks studio and an engineer at Gravitones.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  // absolute: TITLE already carries the name; the layout template would repeat it.
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/about" },
   openGraph: {
@@ -91,7 +93,11 @@ const jsonLd = jsonLdScript([
 /** Facts a person or a model can lift verbatim. Keep every row checkable. */
 const FACTS: { term: string; detail: React.ReactNode }[] = [
   { term: "Full name", detail: AUTHOR.name },
-  { term: "Also written as", detail: ALTERNATE_NAMES.join(" · ") },
+  { term: "Known as", detail: NICKNAME },
+  {
+    term: "Also written as",
+    detail: ALTERNATE_NAMES.filter((n) => n !== NICKNAME).join(" · "),
+  },
   { term: "Role", detail: "Full-stack & React Native developer" },
   {
     term: "Studio",
@@ -230,6 +236,7 @@ export default function AboutPage() {
               <span className="text-neutral-400">Sahoo</span>
             </h1>
             <p className="border-l-2 border-emerald-500/30 pl-6 text-lg font-light leading-relaxed text-neutral-200">
+              Most people call me <strong className="font-normal text-white">{NICKNAME}</strong>.
               I am a <strong className="font-normal text-white">full-stack
               and React Native developer</strong> based in Bhubaneswar, Odisha,
               India, and the founder of{" "}
@@ -425,7 +432,7 @@ export default function AboutPage() {
             approach, a timeline and a number — usually within 24 hours.
           </p>
           <Link
-            href="/#contact"
+            href="/contact"
             className="inline-flex items-center justify-center bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-emerald-400"
           >
             Start a project

@@ -45,7 +45,7 @@ export default function BuildStory({ project, story }: { project: Project; story
       <nav className="fixed inset-x-0 top-0 z-50 h-16 border-b border-white/5 bg-black/80 md:h-20">
         <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
           <Link
-            href="/#works"
+            href="/works"
             className="group flex items-center gap-2 font-mono text-sm text-neutral-400 transition-colors hover:text-white"
           >
             <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -197,7 +197,7 @@ export default function BuildStory({ project, story }: { project: Project; story
               Start a project
             </a>
             <Link
-              href="/#works"
+              href="/works"
               className="inline-flex items-center justify-center border border-white/20 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:border-white/60"
             >
               More work

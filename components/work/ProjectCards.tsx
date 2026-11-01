@@ -14,8 +14,8 @@ const ENGAGEMENT: Record<Project["engagement"], string> = {
 };
 
 /**
- * The whole card is one link — to this site's case study, or in a new tab to
- * the studio's full write-up or, failing that, the live site. A soft emerald spotlight follows the cursor;
+ * The whole card is one link to the project's page on this site, which in turn
+ * links to the studio's full write-up and the live product. A soft emerald spotlight follows the cursor;
  * it's driven by CSS variables, so moving the mouse never re-renders React.
  */
 function CardLink({
@@ -76,25 +76,12 @@ export function ProjectMeta({ project }: { project: Project }) {
 }
 
 function Cta({ project }: { project: Project }) {
-  const external = !project.hasCaseStudy;
-  const writeUp = project.hasCaseStudy || Boolean(project.links.caseStudy);
   return (
     <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors group-hover:text-emerald-400">
-      {writeUp ? "Read case study" : "Visit live site"}
-      {external ? (
-        <svg aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17 17 7M9 7h8v8" />
-        </svg>
-      ) : (
-        <svg aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      )}
-      {external && (
-        <span className="sr-only">
-          {writeUp ? "(opens the full write-up on work.rasmiranjan.in)" : "(opens in a new tab)"}
-        </span>
-      )}
+      {project.hasCaseStudy ? "Read case study" : "View project"}
+      <svg aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
     </span>
   );
 }

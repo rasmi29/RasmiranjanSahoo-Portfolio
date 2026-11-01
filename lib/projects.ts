@@ -46,7 +46,12 @@ export interface Project {
     caseStudy?: string;
   };
   cover: { src: string; alt: string; illustration?: boolean };
-  /** True only for projects with their own /works/[slug] page on this site. */
+  /**
+   * True for projects with a full, hand-built case study here (their own
+   * folder under app/works). Every other project still gets a page at
+   * /works/[slug] — a summary of the role and outcomes that links to the full
+   * write-up on the studio site rather than duplicating it.
+   */
   hasCaseStudy: boolean;
 }
 
@@ -325,7 +330,14 @@ export const featuredProjects = projects.filter((p) => p.featured);
 
 export const caseStudyProjects = projects.filter((p) => p.hasCaseStudy);
 
+/** Projects rendered by the shared app/works/[slug] summary page. */
+export const summaryProjects = projects.filter((p) => !p.hasCaseStudy);
+
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 
-export const projectHref = (p: Project) =>
-  p.hasCaseStudy ? `/works/${p.slug}` : (p.links.caseStudy ?? p.links.live ?? "#works");
+/**
+ * Every project has a page on this site. Cards used to send most of them
+ * straight to the studio site, which left this domain with five indexable
+ * URLs — too little structure for Google to build sitelinks from.
+ */
+export const projectHref = (p: Project) => `/works/${p.slug}`;

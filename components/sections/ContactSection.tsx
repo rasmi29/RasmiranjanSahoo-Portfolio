@@ -31,6 +31,13 @@ const contactLinks = [
   },
   {
     id: "04",
+    label: "Instagram",
+    value: "@mr_rasmi_",
+    href: "https://www.instagram.com/mr_rasmi_/",
+    external: true,
+  },
+  {
+    id: "05",
     label: "Resume",
     value: "View PDF",
     href: RESUME_URL,
@@ -117,7 +124,12 @@ const ContactItem = ({ item }: { item: (typeof contactLinks)[0] }) => (
   </motion.a>
 );
 
-export default function ContactSection() {
+/**
+ * `standalone` is the /contact page: the heading becomes the page's <h1> and
+ * the homepage's section number is dropped.
+ */
+export default function ContactSection({ standalone = false }: { standalone?: boolean }) {
+  const Heading = standalone ? motion.h1 : motion.h2;
   return (
     <section
       id="contact"
@@ -134,9 +146,9 @@ export default function ContactSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <motion.span {...fadeIn} className="mb-4 block font-mono text-sm text-emerald-400">
-              06 / CONTACT
+              {standalone ? "/ CONTACT RASMIRANJAN SAHOO" : "06 / CONTACT"}
             </motion.span>
-            <motion.h2
+            <Heading
               id="contact-heading"
               {...fadeUp}
               className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9]"
@@ -144,7 +156,7 @@ export default function ContactSection() {
               Let&apos;s work
               <br />
               <span className="text-neutral-500">together.</span>
-            </motion.h2>
+            </Heading>
           </div>
 
           <div className="mb-2">

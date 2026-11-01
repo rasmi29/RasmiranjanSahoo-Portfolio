@@ -62,3 +62,27 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tells Bing (and Yandex, Seznam, Naver — IndexNow is shared) about every
+  # URL the moment a deploy lands, instead of waiting for a crawl. Bing's
+  # index is what ChatGPT search, DuckDuckGo and Yahoo read.
+  # The key is public by design: it must be served at /<key>.txt, which is
+  # how IndexNow verifies the site is ours.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    env:
+      HOST: rasmiranjan.in
+      KEY: 1167a3da504ac49a237eded4fbd8394d
+    steps:
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          urls=$(curl -fsSL "https://$HOST/sitemap.xml" | grep -o '<loc>[^<]*</loc>' | sed -e 's/<loc>//' -e 's#</loc>##')
+          body=$(printf '%s\n' "$urls" | jq -R . | jq -s --arg host "$HOST" --arg key "$KEY" \
+            '{host: $host, key: $key, keyLocation: "https://\($host)/\($key).txt", urlList: .}')
+          echo "$body" | jq '.urlList | length' | xargs echo "Submitting URLs:"
+          curl -sS -o /dev/null -w "IndexNow HTTP %{http_code}\n" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data "$body"

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { PORTRAIT, SITE_URL } from "@/lib/site";
-import { caseStudyProjects, projects } from "@/lib/projects";
+import { projectHref, projects } from "@/lib/projects";
 
 export const dynamic = "force-static";
 
@@ -14,7 +14,9 @@ export const dynamic = "force-static";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const abs = (p: string) => `${SITE_URL}${p}`;
+  // encodeURI: some screenshots have spaces in their filenames, and a raw
+  // space makes the <image:loc> entry an invalid URL.
+  const abs = (p: string) => `${SITE_URL}${encodeURI(p)}`;
 
   const portraits = [
     abs(PORTRAIT.square.src),
@@ -46,11 +48,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       images: projects.map((p) => abs(p.cover.src)),
     },
-    ...caseStudyProjects.map((p) => ({
-      url: `${SITE_URL}/works/${p.slug}`,
+    {
+      url: `${SITE_URL}/contact`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/writing`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    /* Every project has a page now — full case studies at 0.8, the summary
+       pages (which defer to the studio's write-up) a step below. */
+    ...projects.map((p) => ({
+      url: `${SITE_URL}${projectHref(p)}`,
       lastModified,
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      priority: p.hasCaseStudy ? 0.8 : 0.7,
       images: [abs(p.cover.src)],
     })),
   ];

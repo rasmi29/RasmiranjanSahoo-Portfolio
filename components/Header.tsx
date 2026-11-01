@@ -29,7 +29,7 @@ export default function Header() {
      getBoundingClientRect() for every section on every scroll event. */
   useEffect(() => {
     const sections = NAV_ITEMS.map((i) =>
-      document.getElementById(i.href.slice(1)),
+      document.getElementById(i.section),
     ).filter((el): el is HTMLElement => Boolean(el));
     if (!sections.length) return;
 
@@ -104,10 +104,14 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
+  /* Each item is a real link to a real page (that's what crawlers follow and
+     what sitelinks are built from). On the homepage a plain click scrolls to
+     the matching section instead; modified clicks open the page as normal. */
   const scrollToSection = useCallback(
-    (href: string) => (e: React.MouseEvent) => {
+    (section: string) => (e: React.MouseEvent) => {
+      const el = document.getElementById(section);
+      if (!el || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
-      const el = document.getElementById(href.slice(1));
       setIsMenuOpen(false);
       // Let the scroll lock unwind before scrolling.
       requestAnimationFrame(() =>
@@ -151,11 +155,12 @@ export default function Header() {
 
           <nav aria-label="Main" className="hidden md:flex items-center gap-8">
             {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.href.slice(1);
+              const isActive = activeSection === item.section;
               return (
-                <button
+                <a
                   key={item.name}
-                  onClick={scrollToSection(item.href)}
+                  href={item.href}
+                  onClick={scrollToSection(item.section)}
                   aria-current={isActive ? "true" : undefined}
                   className={`text-xs font-medium tracking-widest uppercase transition-colors hover:text-white ${
                     isActive ? "text-white" : "text-neutral-400"
@@ -170,7 +175,7 @@ export default function Header() {
                       />
                     )}
                   </span>
-                </button>
+                </a>
               );
             })}
             <a
@@ -229,9 +234,10 @@ export default function Header() {
             <div className="relative z-30 flex flex-1 flex-col justify-center px-6">
               <nav aria-label="Mobile" className="flex flex-col space-y-6">
                 {NAV_ITEMS.map((item, i) => (
-                  <motion.button
+                  <motion.a
                     key={item.name}
-                    onClick={scrollToSection(item.href)}
+                    href={item.href}
+                    onClick={scrollToSection(item.section)}
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.1, duration: 0.5, ease: "easeOut" }}
@@ -243,7 +249,7 @@ export default function Header() {
                     <span className="text-5xl font-bold tracking-tighter text-neutral-300 transition-colors group-hover:translate-x-4 group-hover:text-white duration-300">
                       {item.name}
                     </span>
-                  </motion.button>
+                  </motion.a>
                 ))}
               </nav>
             </div>

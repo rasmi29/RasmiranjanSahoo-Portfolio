@@ -13,6 +13,7 @@ import {
   ALTERNATE_NAMES,
   AUTHOR,
   CREDENTIALS,
+  NICKNAME,
   PORTRAIT,
   SAME_AS,
   SITE_DESCRIPTION,
@@ -56,7 +57,7 @@ export const photoSchema = () => ({
   creator: { "@id": ID.person },
   copyrightNotice: `© ${AUTHOR.name}`,
   license: `${SITE_URL}/about`,
-  acquireLicensePage: `${SITE_URL}/#contact`,
+  acquireLicensePage: `${SITE_URL}/contact`,
   /** The same face at the other two aspect ratios Google asks for. */
   thumbnail: {
     "@type": "ImageObject",
@@ -166,8 +167,10 @@ export const websiteSchema = () => ({
   "@type": "WebSite",
   "@id": ID.website,
   url: SITE_URL,
-  name: `${SITE_NAME} — Portfolio`,
-  alternateName: [...ALTERNATE_NAMES].slice(0, 2),
+  /* The site name Google prints above the result. A bare name reads as the
+     owner's official site; "— Portfolio" made it read as a page title. */
+  name: SITE_NAME,
+  alternateName: [NICKNAME, "rasmiranjan.in"],
   description: SITE_DESCRIPTION,
   publisher: { "@id": ID.person },
   copyrightHolder: { "@id": ID.person },
@@ -254,7 +257,7 @@ export const IDENTITY_FAQ = [
   {
     question: "Who is Rasmiranjan Sahoo?",
     answer:
-      "Rasmiranjan Sahoo is a full-stack and React Native developer based in Bhubaneswar, Odisha, India, and the founder of Rathaworks, a one-developer web, app and software studio at work.rasmiranjan.in. Rasmiranjan builds production e-commerce platforms, cross-platform mobile apps and the backends behind them with Next.js, React Native and Node.js, and is a Software Development Engineer at Gravitones. The personal portfolio is at rasmiranjan.in.",
+      "Rasmiranjan Sahoo, known as Rasmi, is a full-stack and React Native developer based in Bhubaneswar, Odisha, India, and the founder of Rathaworks, a one-developer web, app and software studio at work.rasmiranjan.in. Rasmiranjan builds production e-commerce platforms, cross-platform mobile apps and the backends behind them with Next.js, React Native and Node.js, and is a Software Development Engineer at Gravitones. The personal portfolio is at rasmiranjan.in.",
   },
   {
     question: "What has Rasmiranjan Sahoo built?",
@@ -279,7 +282,7 @@ export const IDENTITY_FAQ = [
   {
     question: "How can I contact Rasmiranjan Sahoo?",
     answer:
-      "For a project, through the Rathaworks studio at work.rasmiranjan.in/contact. Otherwise through the contact form at rasmiranjan.in, by email at rasmiranjansahoo702@gmail.com, on LinkedIn at linkedin.com/in/rasmiranjansahoo702, or on GitHub at github.com/rasmi29.",
+      "For a project, through the Rathaworks studio at work.rasmiranjan.in/contact. Otherwise through the contact form at rasmiranjan.in, by email at rasmiranjansahoo702@gmail.com, on LinkedIn at linkedin.com/in/rasmiranjansahoo702, on GitHub at github.com/rasmi29, or on Instagram at @mr_rasmi_.",
   },
 ];
 

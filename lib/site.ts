@@ -38,7 +38,15 @@ export const AUTHOR = {
  * `h` ("Rashmi") and with the first name split in two. Every variant here is a
  * spelling of the same human, which is exactly what `alternateName` is for.
  */
+/**
+ * What people actually call him. It leads `alternateName` and appears in
+ * visible copy on / and /about — schema alone never ranks a name, so the
+ * nickname has to be readable on the page too.
+ */
+export const NICKNAME = "Rasmi";
+
 export const ALTERNATE_NAMES = [
+  NICKNAME,
   "Rasmi Ranjan Sahoo",
   "Rashmiranjan Sahoo",
   "Rashmi Ranjan Sahoo",
@@ -60,6 +68,9 @@ export const PROFILES: { name: string; url: string }[] = [
   { name: "GitHub", url: AUTHOR.github },
   { name: "LinkedIn", url: AUTHOR.linkedin },
   { name: "X", url: "https://x.com/RasmiRanjan29" },
+  // The handle carries no part of the name, so this link (plus the profile's
+  // Name field) is what ties @mr_rasmi_ to Rasmiranjan Sahoo for Google.
+  { name: "Instagram", url: "https://www.instagram.com/mr_rasmi_/" },
   // Add as you create them — each verified profile that links back is another
   // corroborating edge in the entity graph:
   // { name: "Peerlist", url: "https://peerlist.io/…" },
@@ -146,12 +157,19 @@ export const RESUME_URL =
  */
 export const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
 
+/**
+ * `href` is a real, crawlable URL; `section` is the homepage block the header
+ * smooth-scrolls to instead. Google builds sitelinks from links to separate
+ * pages — the menu used to be <button>s that pointed nowhere a crawler could
+ * follow, so it contributed nothing.
+ */
 export const NAV_ITEMS = [
-  { name: "Home", href: "#home", index: "01" },
-  { name: "Works", href: "#works", index: "02" },
-  { name: "About", href: "#about", index: "03" },
-  { name: "Skills", href: "#skills", index: "04" },
-  { name: "Contact", href: "#contact", index: "05" },
+  { name: "Home", href: "/", section: "home", index: "01" },
+  { name: "Works", href: "/works", section: "works", index: "02" },
+  { name: "About", href: "/about", section: "about", index: "03" },
+  { name: "Skills", href: "/#skills", section: "skills", index: "04" },
+  { name: "Writing", href: "/writing", section: "writing", index: "05" },
+  { name: "Contact", href: "/contact", section: "contact", index: "06" },
 ] as const;
 
 export const absoluteUrl = (path = "") =>
