@@ -13,6 +13,7 @@ import {
 import { articles } from "@/lib/writing";
 import { AUTHOR, SITE_URL, STUDIO } from "@/lib/site";
 import { ID, breadcrumbSchema, jsonLdScript } from "@/lib/seo";
+import Footer from "@/components/Footer";
 
 /*
  * One page per project that has no hand-built case study here.
@@ -136,6 +137,7 @@ export default async function ProjectPage({ params }: Props) {
   ];
 
   return (
+    <>
     <main id="main" className="relative min-h-screen overflow-x-hidden bg-neutral-950 text-white selection:bg-emerald-500/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <GrainOverlay />
@@ -375,5 +377,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

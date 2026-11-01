@@ -4,6 +4,7 @@ import { articles, INSIGHTS_URL } from "@/lib/writing";
 import { projectHref, projects } from "@/lib/projects";
 import { AUTHOR, SITE_URL, STUDIO } from "@/lib/site";
 import { ID, breadcrumbSchema, jsonLdScript } from "@/lib/seo";
+import Footer from "@/components/Footer";
 
 /*
  * An index of the engineering articles, each linking to its one canonical
@@ -68,6 +69,7 @@ const dateLabel = (iso: string) =>
 
 export default function WritingPage() {
   return (
+    <>
     <main id="main" className="min-h-screen bg-black text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
@@ -139,5 +141,7 @@ export default function WritingPage() {
         </ol>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

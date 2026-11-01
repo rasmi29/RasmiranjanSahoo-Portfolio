@@ -4,6 +4,7 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 import type { Project } from "@/lib/projects";
 import type { BuildStory as Story, StoryImage } from "@/lib/buildStories";
 import { STUDIO } from "@/lib/site";
+import Footer from "@/components/Footer";
 
 /**
  * A "how I built it" page for a design-led project: the idea, the signature
@@ -39,6 +40,7 @@ const roleLabel = (role: string) => {
 
 export default function BuildStory({ project, story }: { project: Project; story: Story }) {
   return (
+    <>
     <main id="main" className="relative min-h-screen overflow-x-hidden bg-neutral-950 text-white selection:bg-emerald-500/30">
       <GrainOverlay />
 
@@ -207,5 +209,7 @@ export default function BuildStory({ project, story }: { project: Project; story
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

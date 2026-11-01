@@ -20,6 +20,7 @@ import {
   jsonLdScript,
   profilePageSchema,
 } from "@/lib/seo";
+import Footer from "@/components/Footer";
 
 /*
  * The entity hub.
@@ -164,6 +165,7 @@ const CAREER = [
 
 export default function AboutPage() {
   return (
+    <>
     <main id="main" className="min-h-screen bg-black text-white">
       <script
         type="application/ld+json"
@@ -440,5 +442,7 @@ export default function AboutPage() {
         </section>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

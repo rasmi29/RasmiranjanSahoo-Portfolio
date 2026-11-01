@@ -132,7 +132,9 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 flex h-20 items-center border-b border-white/5 bg-black/60 backdrop-blur-md"
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6">
-          <Link href="/" className="group flex items-center gap-4">
+          {/* aria-label: on phones the name text is hidden and the logo image
+              is decorative, which left this link with no accessible name. */}
+          <Link href="/" aria-label="Rasmiranjan Sahoo — home" className="group flex items-center gap-4">
             <div className="relative flex h-10 w-10 overflow-hidden items-center justify-center border border-white/20 bg-white/5 transition-colors group-hover:border-emerald-500 group-hover:bg-emerald-500/10">
               <Image
                 src="/logo-mark.webp"

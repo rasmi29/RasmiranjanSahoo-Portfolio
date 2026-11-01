@@ -23,6 +23,7 @@ const heroStats = [
 ];
 
 const FIRST_NAME = "RASMIRANJAN".split("");
+const LAST_NAME = "SAHOO".split("");
 
 /** Stagger for the CSS entrance: sets the `--d` delay that `.hero-in` reads. */
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
@@ -221,10 +222,13 @@ export default function HeroSection() {
             </span>
             <span
               aria-hidden="true"
-              style={delay(520)}
-              className="hero-track block mt-2 outline-text hover:text-white/5 transition-colors duration-700 cursor-default"
+              className="block mt-2 whitespace-nowrap outline-text hover:text-white/5 transition-colors duration-700 cursor-default"
             >
-              SAHOO
+              {LAST_NAME.map((ch, i) => (
+                <span key={i} style={{ "--i": i } as React.CSSProperties} className="hero-spread">
+                  {ch}
+                </span>
+              ))}
             </span>
           </h1>
 

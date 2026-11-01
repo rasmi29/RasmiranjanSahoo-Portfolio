@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContactSection from "@/components/sections/ContactSection";
 import { AUTHOR, SITE_URL } from "@/lib/site";
 import { ID, breadcrumbSchema, jsonLdScript } from "@/lib/seo";
+import Footer from "@/components/Footer";
 
 /*
  * A real /contact URL. "Contact" is one of the most common sitelinks Google
@@ -52,6 +53,7 @@ const jsonLd = jsonLdScript([
 
 export default function ContactPage() {
   return (
+    <>
     <main id="main" className="min-h-screen bg-black text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
@@ -75,5 +77,7 @@ export default function ContactPage() {
 
       <ContactSection standalone />
     </main>
+    <Footer />
+    </>
   );
 }

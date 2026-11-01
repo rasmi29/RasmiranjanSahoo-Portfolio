@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import { AUTHOR, STUDIO, WORKS_FOR } from "@/lib/site";
+import Footer from "@/components/Footer";
 
 const webPlatforms = [
   {
@@ -482,6 +483,7 @@ const AppCard = ({ app }: { app: (typeof mobileApps)[0] }) => {
 
 export default function VedrastoresCaseStudy() {
   return (
+    <>
     <main id="main" className="min-h-screen bg-neutral-950 text-white selection:bg-emerald-500/30 overflow-x-hidden">
       <GrainOverlay />
 
@@ -799,5 +801,7 @@ export default function VedrastoresCaseStudy() {
         </div>
       </footer>
     </main>
+    <Footer />
+    </>
   );
 }

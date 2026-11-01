@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import RevealHeading from "@/components/ui/RevealHeading";
 import SwipeDots, { useSnapIndex } from "@/components/ui/SwipeDots";
-import { fadeIn, fadeUp, stagger, staggerChild } from "@/lib/motion";
+import Marquee from "@/components/ui/Marquee";
+import { fadeIn, fadeUp, stagger } from "@/lib/motion";
 
 /**
  * One bento screen instead of five full-height category slides. Every tool
@@ -106,10 +107,41 @@ const categories: Category[] = [
   },
 ];
 
+/** Chips spring in one after another when their card scrolls into view. */
+const chipPop = {
+  hidden: { opacity: 0, scale: 0.6, y: 14 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 420, damping: 22 } },
+} as const;
+
+/** Every tool, for the two logo bands that drift across the top. */
+const allSkills = categories.flatMap((c) => c.skills.map((s) => ({ ...s, color: c.color })));
+const bandA = allSkills.slice(0, Math.ceil(allSkills.length / 2));
+const bandB = allSkills.slice(Math.ceil(allSkills.length / 2));
+
+function TechPill({ skill }: { skill: Skill & { color: string } }) {
+  return (
+    <span className="group/pill flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-2.5 transition-colors duration-300 hover:border-white/25 md:px-5 md:py-3">
+      <span className="relative grid h-8 w-8 place-items-center rounded-xl bg-neutral-900">
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-xl opacity-30 blur-md transition-opacity duration-300 group-hover/pill:opacity-70"
+          style={{ backgroundColor: skill.color }}
+        />
+        {skill.icon ? (
+          <Image src={`/icons/${skill.icon}.svg`} alt="" width={18} height={18} className="relative h-[18px] w-[18px]" />
+        ) : (
+          <span className="relative font-mono text-xs font-bold text-white">{skill.name.charAt(0)}</span>
+        )}
+      </span>
+      <span className="whitespace-nowrap text-base font-medium text-neutral-200 md:text-lg">{skill.name}</span>
+    </span>
+  );
+}
+
 function SkillChip({ skill, color }: { skill: Skill; color: string }) {
   return (
     <motion.li
-      variants={staggerChild}
+      variants={chipPop}
       className="group/chip flex items-center gap-2 rounded-xl border border-white/5 bg-neutral-900/50 py-1.5 pl-1.5 pr-3 transition-colors hover:border-white/15 hover:bg-white/[0.04] sm:gap-3 sm:px-3 sm:py-2.5"
     >
       <span className="relative grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-neutral-800 sm:h-8 sm:w-8">
@@ -120,7 +152,7 @@ function SkillChip({ skill, color }: { skill: Skill; color: string }) {
             aria-hidden="true"
             width={16}
             height={16}
-            className="h-4 w-4 opacity-70 transition-opacity group-hover/chip:opacity-100"
+            className="h-4 w-4 opacity-70 transition-[opacity,transform] duration-300 group-hover/chip:-translate-y-0.5 group-hover/chip:-rotate-12 group-hover/chip:scale-125 group-hover/chip:opacity-100"
           />
         ) : (
           <span aria-hidden="true" className="font-mono text-[11px] font-bold text-neutral-300">
@@ -137,6 +169,13 @@ function SkillChip({ skill, color }: { skill: Skill; color: string }) {
     </motion.li>
   );
 }
+
+/** Feeds the card spotlight through CSS variables — no React re-render per move. */
+const spotlight = (e: React.MouseEvent<HTMLElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
 
 export default function SkillsSection() {
   const rowRef = useRef<HTMLDivElement>(null);
@@ -171,9 +210,27 @@ export default function SkillsSection() {
             Each one is in production somewhere on this page — except the LLM APIs, which I&apos;m still learning.
           </motion.p>
         </div>
+      </div>
 
+      {/* Two bands of logos drifting in opposite directions, full-bleed.
+          Decorative: the cards below carry the same tools as real content. */}
+      <div aria-hidden="true" className="relative z-10 mb-10 space-y-3 md:mb-16 md:space-y-4">
+        <Marquee seconds={42} itemClassName="gap-3 pr-3 md:gap-4 md:pr-4">
+          {bandA.map((s) => (
+            <TechPill key={s.name} skill={s} />
+          ))}
+        </Marquee>
+        <Marquee seconds={48} reverse itemClassName="gap-3 pr-3 md:gap-4 md:pr-4">
+          {bandB.map((s) => (
+            <TechPill key={s.name} skill={s} />
+          ))}
+        </Marquee>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Phones: a row to swipe through — six stacked cards were about
-            three screens of scrolling. From md up, the bento grid. */}
+            three screens of scrolling. From md up, the bento grid. The card
+            in focus is full size; the rest step back. */}
         <div
           ref={rowRef}
           className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
@@ -185,8 +242,19 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (i % 3) * 0.08 }}
-              className={`group relative w-[85%] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-5 transition-colors duration-500 hover:border-white/20 sm:p-7 md:w-auto ${c.span}`}
+              onMouseMove={spotlight}
+              className={`group relative w-[85%] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-950/70 p-5 transition-[border-color,scale,filter] duration-500 ease-out hover:border-white/20 sm:p-7 md:w-auto ${
+                i === active ? "" : "max-md:scale-[0.93] max-md:brightness-[0.55]"
+              } ${c.span}`}
             >
+              {/* Cursor spotlight in the category's colour (desktop). */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{
+                  background: `radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), ${c.color}26, transparent 45%)`,
+                }}
+              />
               <div
                 aria-hidden="true"
                 className="absolute -top-20 -right-20 h-48 w-48 rounded-full opacity-10 blur-3xl transition-opacity duration-700 group-hover:opacity-25"

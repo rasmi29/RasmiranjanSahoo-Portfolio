@@ -420,11 +420,15 @@ html[data-intro="play"] .page-loader,
   animation: hero-letter-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: calc(120ms + var(--i, 0) * 45ms);
 }
-.hero-track {
-  animation: hero-track-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: var(--d, 0ms);
+/* "SAHOO": each letter slides in toward the centre from a wide spread. Done
+   with transform per letter — animating letter-spacing re-laid-out the page
+   on every frame, which Lighthouse flagged as main-thread time on phones. */
+.hero-spread {
+  display: inline-block;
+  animation: hero-spread-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(480ms + var(--i, 0) * 40ms);
 }
-html[data-intro="play"] :is(.hero-in, .hero-letter, .hero-track) {
+html[data-intro="play"] :is(.hero-in, .hero-letter, .hero-spread) {
   animation-play-state: paused;
 }
 /* The global reduced-motion rule shortens durations but keeps delays, which
@@ -432,7 +436,7 @@ html[data-intro="play"] :is(.hero-in, .hero-letter, .hero-track) {
 @media (prefers-reduced-motion: reduce) {
   .hero-in,
   .hero-letter,
-  .hero-track {
+  .hero-spread {
     animation: none;
   }
 }
@@ -461,14 +465,16 @@ html[data-intro="play"] :is(.hero-in, .hero-letter, .hero-track) {
     filter: none;
   }
 }
-/* "SAHOO" settles in from wide tracking. */
-@keyframes hero-track-in {
+/* --i is the letter's index (0–4); the middle letter (2) doesn't travel. */
+@keyframes hero-spread-in {
   from {
     opacity: 0;
-    letter-spacing: 0.45em;
+    transform: translateX(calc((var(--i, 2) - 2) * 0.35em)) scale(0.92);
+    filter: blur(6px);
   }
   to {
     opacity: 1;
-    letter-spacing: 0.05em;
+    transform: none;
+    filter: none;
   }
 }

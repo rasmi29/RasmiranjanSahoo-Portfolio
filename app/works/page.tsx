@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FeaturedProjectCard, ProjectCard } from "@/components/work/ProjectCards";
 import { projects, projectHref } from "@/lib/projects";
 import { SITE_URL, STUDIO } from "@/lib/site";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Case Studies — Marketplaces, Mobile Apps & Platforms",
@@ -50,6 +51,7 @@ const jsonLd = {
 
 export default function WorksIndexPage() {
   return (
+    <>
     <main id="main" className="min-h-screen bg-black text-white">
       <script
         type="application/ld+json"
@@ -129,5 +131,7 @@ export default function WorksIndexPage() {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }
