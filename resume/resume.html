@@ -96,8 +96,41 @@
     font-weight: 500;
     color: var(--accent-bright);
   }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 6mm;
+  }
+  .stats { display: flex; }
+  .stat {
+    padding: 0 4.2mm;
+    border-left: 0.25mm solid #2a2e33;
+  }
+  .stat:first-child { border-left: 0; padding-left: 0; }
+  .stat:last-child { padding-right: 0; }
+  .stat b {
+    display: block;
+    font-size: 20pt;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--accent-bright);
+  }
+  .stat span {
+    display: block;
+    margin-top: 1.1mm;
+    font-size: 6.2pt;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9aa1a9;
+    white-space: nowrap;
+  }
+
   .summary {
-    margin-top: 2.2mm;
+    margin-top: 2.6mm;
     font-size: 8.15pt;
     line-height: 1.48;
     color: #c5cad0;
@@ -269,13 +302,22 @@
     <img src="../public/rasmiranjan-sahoo-square.jpg" alt="Rasmiranjan Sahoo">
   </div>
   <div>
-    <h1>Rasmiranjan Sahoo</h1>
-    <p class="role">Full-Stack &amp; React Native Developer</p>
+    <div class="top">
+      <div>
+        <h1>Rasmiranjan Sahoo</h1>
+        <p class="role">Full-Stack &amp; React Native Developer</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>17</b><span>Websites<br>shipped</span></div>
+        <div class="stat"><b>8</b><span>Mobile apps<br>shipped</span></div>
+        <div class="stat"><b>5</b><span>Client platforms<br>led</span></div>
+      </div>
+    </div>
     <p class="summary">
       Full-stack and mobile developer who owns the whole build — architecture, API, web portals,
-      iOS/Android apps and release. <b>Lead developer on five client platforms at Gravitones</b>,
-      including a Kenyan multi-vendor marketplace with live M-Pesa payments, built solo in four months.
-      Founder of the Rathaworks studio · <b style="white-space:nowrap">17 websites and 8 apps shipped.</b>
+      iOS/Android apps and release — across e-commerce, booking, delivery, creator and EdTech products.
+      <b>Lead developer on five client platforms at Gravitones</b> and founder of the Rathaworks studio,
+      building for clients worldwide.
     </p>
   </div>
   <div class="contact">
