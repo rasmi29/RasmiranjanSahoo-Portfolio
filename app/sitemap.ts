@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { PORTRAIT, SITE_URL } from "@/lib/site";
+import { PORTRAIT, RESUME, SITE_URL } from "@/lib/site";
 import { projectHref, projects } from "@/lib/projects";
 
 export const dynamic = "force-static";
@@ -53,6 +53,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "yearly",
       priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/resume`,
+      lastModified: new Date(RESUME.updated),
+      changeFrequency: "monthly",
+      priority: 0.7,
+      images: [abs(RESUME.preview.src)],
     },
     {
       url: `${SITE_URL}/writing`,

@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import RevealHeading from "@/components/ui/RevealHeading";
 import ContactForm from "@/components/sections/ContactForm";
-import { AUTHOR, RESUME_URL, STUDIO } from "@/lib/site";
+import { AUTHOR, RESUME, STUDIO } from "@/lib/site";
+import { openResume, preloadResume } from "@/components/resume/resumeEvents";
 import { fadeIn, fadeUp } from "@/lib/motion";
 import { motion } from "framer-motion";
 
@@ -40,9 +41,10 @@ const contactLinks = [
   {
     id: "05",
     label: "Resume",
-    value: "View PDF",
-    href: RESUME_URL,
-    external: true,
+    value: "View & download PDF",
+    href: RESUME.page,
+    external: false,
+    resume: true,
   },
 ];
 
@@ -95,6 +97,9 @@ const ContactItem = ({ item }: { item: (typeof contactLinks)[0] }) => (
     href={item.href}
     // mailto: no longer opens a blank orphan tab.
     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    {...(item.resume
+      ? { onClick: (e: React.MouseEvent) => openResume(e), onPointerEnter: preloadResume, onFocus: preloadResume }
+      : {})}
     {...fadeUp}
     className="group flex items-center gap-4 border-t border-white/10 px-2 py-5 transition-colors hover:bg-white/5 sm:gap-6 sm:px-4"
   >

@@ -13,7 +13,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import Marquee from "@/components/ui/Marquee";
-import { AUTHOR, PROFILES, RESUME_URL, STUDIO } from "@/lib/site";
+import { AUTHOR, PROFILES, RESUME, STUDIO } from "@/lib/site";
+import { openResume, preloadResume } from "@/components/resume/resumeEvents";
 import { EASE } from "@/lib/motion";
 
 /* Real pages only. The old list linked to /#works-style fragments, which
@@ -36,7 +37,7 @@ const FOOTER_NAV = [
 const socialLinks = [
   ...PROFILES.map((p) => ({ name: p.name, href: p.url, external: true, me: true })),
   { name: "Email", href: `mailto:${AUTHOR.email}`, external: false, me: false },
-  { name: "Resume", href: RESUME_URL, external: true, me: false },
+  { name: "Resume", href: RESUME.page, external: false, me: false },
 ];
 
 /** What gets built — every item is backed by a project on this site. */
@@ -218,11 +219,15 @@ function FooterLink({
   children,
   external = false,
   rel,
+  onClick,
+  onPointerEnter,
 }: {
   href: string;
   children: React.ReactNode;
   external?: boolean;
   rel?: string;
+  onClick?: (e: React.MouseEvent) => void;
+  onPointerEnter?: () => void;
 }) {
   const inner = (
     <>
@@ -245,7 +250,7 @@ function FooterLink({
     "group/link inline-flex items-center gap-1.5 py-1.5 text-[15px] text-neutral-300 transition-colors hover:text-white";
 
   return href.startsWith("/") ? (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} onClick={onClick} onPointerEnter={onPointerEnter}>
       {inner}
     </Link>
   ) : (
@@ -347,6 +352,9 @@ export default function Footer() {
                     href={link.href}
                     external={link.external}
                     rel={link.me ? "me noopener noreferrer" : "noopener noreferrer"}
+                    {...(link.href === RESUME.page
+                      ? { onClick: (e: React.MouseEvent) => openResume(e), onPointerEnter: preloadResume }
+                      : {})}
                   >
                     {link.name}
                   </FooterLink>

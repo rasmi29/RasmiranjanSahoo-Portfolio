@@ -1,0 +1,438 @@
+<!doctype html>
+<!--
+  Source of public/rasmiranjan-sahoo-resume.pdf. Edit the text here, then run
+  `npm run resume`.
+  Every claim matches the site (lib/projects.ts, lib/site.ts, app/about) —
+  keep the two in step when a project ships. The layout is one A4 page; after
+  adding anything, check the PDF still has a single page.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rasmiranjan Sahoo — Resume</title>
+<meta name="author" content="Rasmiranjan Sahoo">
+<meta name="description" content="Resume of Rasmiranjan Sahoo, full-stack and React Native developer in Bhubaneswar, India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --ink: #121417;
+    --body: #2a2f36;
+    --muted: #5b636d;
+    --faint: #868e98;
+    --rule: #e2e5e9;
+    --accent: #047857;
+    --accent-bright: #34d399;
+    --band: #0c0d0e;
+    --side: #f5f6f7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #fff;
+    width: 210mm;
+    height: 296.9mm; /* a hair under A4, so rounding never adds a blank page */
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 8.25pt;
+    line-height: 1.4;
+    color: var(--body);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  a { color: inherit; text-decoration: none; }
+  b, strong { color: var(--ink); font-weight: 600; }
+
+  .mono { font-family: "JetBrains Mono", Consolas, monospace; }
+
+  /* ---------- Header band ---------- */
+  .band {
+    background: var(--band);
+    color: #e9ecef;
+    padding: 7.5mm 12mm 6mm;
+    display: grid;
+    grid-template-columns: 28mm 1fr;
+    column-gap: 6.5mm;
+    align-items: center;
+  }
+
+  .photo {
+    width: 28mm;
+    height: 28mm;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 0.45mm var(--band), 0 0 0 0.8mm var(--accent-bright);
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transform: scale(1.55);
+    transform-origin: 50% 18%;
+  }
+
+  h1 {
+    font-size: 21pt;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: #fff;
+  }
+  .role {
+    margin-top: 1.3mm;
+    font-size: 9.6pt;
+    font-weight: 500;
+    color: var(--accent-bright);
+  }
+  .summary {
+    margin-top: 2.2mm;
+    font-size: 8.15pt;
+    line-height: 1.48;
+    color: #c5cad0;
+  }
+  .summary b { color: #fff; font-weight: 600; }
+
+  .contact {
+    grid-column: 1 / -1;
+    margin-top: 4.5mm;
+    padding-top: 3mm;
+    border-top: 0.25mm solid #2a2e33;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 1.25fr;
+    row-gap: 1.1mm;
+    font-size: 7.7pt;
+    color: #c5cad0;
+  }
+  .contact span { white-space: nowrap; }
+  .contact span::before {
+    content: "";
+    display: inline-block;
+    width: 1mm;
+    height: 1mm;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    margin: 0 2.2mm 0.4mm 0;
+    vertical-align: middle;
+  }
+
+  /* ---------- Columns ---------- */
+  .cols {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 63mm;
+  }
+  main { padding: 5.5mm 6.5mm 6mm 12mm; }
+  aside {
+    background: var(--side);
+    padding: 5.5mm 9mm 6mm 6.5mm;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    font-size: 7.4pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.4mm;
+  }
+  h2::after {
+    content: "";
+    flex: 1;
+    height: 0.25mm;
+    background: var(--rule);
+  }
+  aside h2::after { background: #dfe3e7; }
+
+  section + section { margin-top: 4.4mm; }
+
+  /* ---------- Experience ---------- */
+  .job + .job { margin-top: 3.6mm; }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 3mm;
+  }
+  h3 {
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  h3 .org { font-weight: 500; color: var(--muted); }
+  .when {
+    font-size: 7.1pt;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .lede {
+    margin-top: 0.6mm;
+    color: var(--muted);
+  }
+
+  .items { list-style: none; margin-top: 1.8mm; }
+  .items li {
+    position: relative;
+    padding-left: 3.4mm;
+  }
+  .items li + li { margin-top: 1.9mm; }
+  .items li::before {
+    content: "";
+    position: absolute;
+    left: 0.3mm;
+    top: 1.6mm;
+    width: 1.2mm;
+    height: 1.2mm;
+    border-radius: 0.3mm;
+    background: var(--accent);
+  }
+  section > .items { margin-top: 0; }
+  .tag {
+    display: inline-block;
+    margin-left: 1mm;
+    padding: 0 1.3mm;
+    border-radius: 0.8mm;
+    background: #e7f4ee;
+    color: var(--accent);
+    font-size: 6.5pt;
+    font-weight: 600;
+    line-height: 1.5;
+    vertical-align: 0.2mm;
+  }
+  .stack {
+    margin-top: 0.3mm;
+    font-size: 6.7pt;
+    color: var(--faint);
+    letter-spacing: -0.015em;
+  }
+  .url { color: var(--accent); }
+
+  /* ---------- Sidebar ---------- */
+  aside { font-size: 7.9pt; }
+
+  .skill + .skill { margin-top: 1.7mm; }
+  .skill dt {
+    font-size: 6.7pt;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .skill dd { margin-top: 0.2mm; }
+
+  .entry + .entry { margin-top: 2mm; }
+  .entry b { display: block; font-size: 8pt; line-height: 1.3; }
+  .entry .where { display: block; color: var(--muted); line-height: 1.35; }
+  .entry .meta {
+    display: block;
+    margin-top: 0.2mm;
+    font-size: 6.8pt;
+    color: var(--accent);
+  }
+
+  .plain { list-style: none; }
+  .plain li { position: relative; padding-left: 2.8mm; line-height: 1.35; }
+  .plain li + li { margin-top: 1mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 5mm; }
+  .grid2 li + li { margin-top: 0; }
+  .plain li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.75mm;
+    width: 1.1mm;
+    height: 0.25mm;
+    background: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="photo">
+    <img src="../public/rasmiranjan-sahoo-square.jpg" alt="Rasmiranjan Sahoo">
+  </div>
+  <div>
+    <h1>Rasmiranjan Sahoo</h1>
+    <p class="role">Full-Stack &amp; React Native Developer</p>
+    <p class="summary">
+      Full-stack and mobile developer who owns the whole build — architecture, API, web portals,
+      iOS/Android apps and release. <b>Lead developer on five client platforms at Gravitones</b>,
+      including a Kenyan multi-vendor marketplace with live M-Pesa payments, built solo in four months.
+      Founder of the Rathaworks studio · <b style="white-space:nowrap">17 websites and 8 apps shipped.</b>
+    </p>
+  </div>
+  <div class="contact">
+    <span>Bhubaneswar, Odisha, India</span>
+    <span><a href="tel:+917328004152">+91 73280 04152</a></span>
+    <span><a href="mailto:rasmiranjansahoo702@gmail.com">rasmiranjansahoo702@gmail.com</a></span>
+    <span><a href="https://rasmiranjan.in">rasmiranjan.in</a></span>
+    <span><a href="https://github.com/rasmi29">github.com/rasmi29</a></span>
+    <span><a href="https://www.linkedin.com/in/rasmiranjansahoo702/">linkedin.com/in/rasmiranjansahoo702</a></span>
+  </div>
+</header>
+
+<div class="cols">
+  <main>
+    <section>
+      <h2>Experience</h2>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Software Development Engineer <span class="org">· Gravitones</span></h3>
+          <span class="when mono">Oct 2025 – Present</span>
+        </div>
+        <p class="lede">Lead developer on client platforms — architecture, backend, web portals and mobile apps, through to release.</p>
+        <ul class="items">
+          <li>
+            <p><b>Vedrastores, Kenya</b><span class="tag">Live</span> — Sole developer of a multi-vendor
+            e-commerce ecosystem: marketing site, buyer portal, vendor dashboard and admin panel, plus buyer
+            and rider React Native apps, with live M-Pesa (Daraja) payments. Six codebases shipped in
+            4 months; buyer app on Google Play.</p>
+            <p class="stack mono">Next.js · Shadcn UI · React Native · Expo · Node.js · Firebase · AWS S3 + CloudFront</p>
+          </li>
+          <li>
+            <p><b>Bookiee — bus booking</b><span class="tag">3 months</span> — Passenger app, operator portal,
+            admin portal and website on one API: 110+ screens, 160+ endpoints. Redis seat holds rule out
+            double-booking; visual bus-layout designer, Razorpay payments, SMS tickets and a tracked refund queue.</p>
+            <p class="stack mono">React Native · Expo · React · Node.js · PostgreSQL · Redis · Razorpay · OpenAPI</p>
+          </li>
+          <li>
+            <p><b>Restaurant delivery platform</b><span class="tag">2 months</span> — Five connected apps that
+            let one restaurant run its own delivery: customer app and website, rider app, kitchen portal and
+            owner panel. 130+ screens, 150+ endpoints, 7 user roles; Socket.IO live tracking, real-road
+            delivery fees, bag codes and cash settlement.</p>
+            <p class="stack mono">React Native · Expo · React · Node.js · PostgreSQL · Socket.IO · Google Maps</p>
+          </li>
+          <li>
+            <p><b>Zyrilo — creator food app</b><span class="tag">In development</span> — Food reels, restaurant
+            offers redeemed by QR and a creator campaign marketplace. 80+ app and 50+ admin screens on a
+            PostgreSQL ledger with MongoDB read models; search across 9 Indic scripts.</p>
+            <p class="stack mono">React Native · Expo Router · TypeScript · Node.js · PostgreSQL · PostGIS · MongoDB</p>
+          </li>
+          <li>
+            <p><b>Bidyasagar Classes — EdTech</b><span class="tag">Lead since May 2026</span> — Took over a live
+            coaching platform: admin, teacher and student portals, 100+ screens, 400+ API routes. Live classes
+            auto-allocated from a Zoom licence pool, a negative-marking exam engine with 6 question types and
+            a referral wallet.</p>
+            <p class="stack mono">React · Vite · TanStack Query · Node.js · PostgreSQL · Razorpay · Zoom API</p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Founder <span class="org">· Rathaworks</span></h3>
+          <span class="when mono">2026 – Present</span>
+        </div>
+        <p class="lede">One-developer studio for websites, apps and business software, for clients worldwide —
+        fixed-price proposals, weekly demos, code the client owns · <a class="url" href="https://work.rasmiranjan.in">work.rasmiranjan.in</a></p>
+        <ul class="items">
+          <li>
+            <p><b>QCS website &amp; CMS</b><span class="tag">Delivered</span> — 32-page corporate website,
+            careers portal and blog driven by a 12-module admin CMS, so the client's team edits every page,
+            job post and article themselves.</p>
+            <p class="stack mono">React · Vite · Node.js · Express · MongoDB · JWT · Cloudinary · GSAP</p>
+          </li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>MERN Intern <span class="org">· Gravity Engineering Services</span></h3>
+          <span class="when mono">Sept 2025 – Oct 2025</span>
+        </div>
+        <p class="lede">Shipped features and hardened the data layer on a multi-tenant platform.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Personal UI builds</h2>
+      <ul class="items">
+        <li>
+          <p><b>Wayline</b> — Bus-booking brand site: 12 story-led sections and a live seat-lock demo.</p>
+          <p class="stack mono">React 19 · TypeScript · GSAP · Lottie · <a class="url" href="https://bus-booking-murex.vercel.app">bus-booking-murex.vercel.app</a></p>
+        </li>
+        <li>
+          <p><b>QuickBite</b> — Food-reels landing page with 16 animated sections and 3D tilt cards.</p>
+          <p class="stack mono">Next.js · TypeScript · GSAP · Motion · <a class="url" href="https://quickbyte-xi.vercel.app">quickbyte-xi.vercel.app</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Beyond code</h2>
+      <ul class="plain grid2">
+        <li>Competed in 2 state-level hackathons</li>
+        <li>Tutored 20+ peers in CN, OS and web dev</li>
+        <li>Led 3+ campus events and blood drives</li>
+        <li>Languages: English, Hindi, Odia</li>
+      </ul>
+    </section>
+  </main>
+
+  <aside>
+    <section>
+      <h2>Skills</h2>
+      <dl>
+        <div class="skill"><dt>Frontend</dt><dd>React, Next.js, TypeScript, Tailwind CSS, Shadcn UI, Vite, TanStack Query, GSAP</dd></div>
+        <div class="skill"><dt>Mobile</dt><dd>React Native, Expo, Expo Router</dd></div>
+        <div class="skill"><dt>Backend</dt><dd>Node.js, Express, REST APIs, OpenAPI, Socket.IO, JWT auth</dd></div>
+        <div class="skill"><dt>Data</dt><dd>PostgreSQL, PostGIS, MongoDB, Redis, Firebase</dd></div>
+        <div class="skill"><dt>Payments &amp; cloud</dt><dd>M-Pesa (Daraja), Razorpay, AWS S3, CloudFront, Google Cloud, Cloudinary</dd></div>
+        <div class="skill"><dt>Tools</dt><dd>Git, GitHub, Postman, Apidog, Android Studio</dd></div>
+        <div class="skill"><dt>Learning</dt><dd>LLM APIs — OpenAI, LangChain (side projects)</dd></div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <b>Master of Computer Applications</b>
+        <span class="where">Biju Patnaik University of Technology, Rourkela</span>
+        <span class="meta mono">2023 – 2025 · 84%</span>
+      </div>
+      <div class="entry">
+        <b>Bachelor of Computer Science</b>
+        <span class="where">Ravenshaw University, Cuttack</span>
+        <span class="meta mono">2020 – 2023 · 88%</span>
+      </div>
+      <div class="entry">
+        <b>Class XII, Science</b>
+        <span class="where">Vyasanagar Autonomous College, Jajpur Road</span>
+        <span class="meta mono">2018 – 2020 · 85%</span>
+      </div>
+      <div class="entry">
+        <b>Class X</b>
+        <span class="where">Hingula High School, Sankhachilla</span>
+        <span class="meta mono">2018 · 78%</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <div class="entry"><b>Generative AI Fundamentals</b><span class="meta mono">Chai Code · May 2026</span></div>
+      <div class="entry"><b>Full-Stack Web Development (MERN)</b><span class="meta mono">Chai Code · Jul 2025</span></div>
+      <div class="entry"><b>Frontend Development</b><span class="meta mono">Meta, Coursera · Oct 2024</span></div>
+    </section>
+  </aside>
+</div>
+
+</body>
+</html>

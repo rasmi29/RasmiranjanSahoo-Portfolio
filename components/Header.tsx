@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import { NAV_ITEMS, RESUME_URL } from "@/lib/site";
+import ResumeLink from "@/components/resume/ResumeLink";
+import { NAV_ITEMS, RESUME } from "@/lib/site";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -180,14 +181,13 @@ export default function Header() {
                 </a>
               );
             })}
-            <a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-4 px-5 py-2 text-xs font-bold text-black bg-white hover:bg-emerald-400 transition-colors uppercase tracking-wider"
-            >
-              Resume
-            </a>
+            <ResumeLink className="group relative ml-4 overflow-hidden bg-white px-5 py-2 text-xs font-bold uppercase tracking-wider text-black">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 origin-bottom scale-y-0 bg-emerald-400 transition-transform duration-300 ease-out group-hover:scale-y-100"
+              />
+              <span className="relative">Resume</span>
+            </ResumeLink>
           </nav>
 
           <button
@@ -256,14 +256,22 @@ export default function Header() {
               </nav>
             </div>
 
-            <div className="relative z-30 border-t border-white/10 p-6">
-              <a
-                href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 bg-white py-4 text-sm font-bold uppercase tracking-widest text-black hover:bg-emerald-400 transition-colors"
+            <div className="relative z-30 flex gap-2 border-t border-white/10 p-6">
+              <ResumeLink
+                before={() => setIsMenuOpen(false)}
+                className="flex flex-1 items-center justify-center gap-2 bg-white py-4 text-sm font-bold uppercase tracking-widest text-black hover:bg-emerald-400 transition-colors"
               >
-                Download Resume
+                View Resume
+              </ResumeLink>
+              <a
+                href={RESUME.pdf}
+                download={RESUME.fileName}
+                aria-label="Download resume (PDF)"
+                className="flex w-14 shrink-0 items-center justify-center border border-white/20 text-white transition-colors hover:border-emerald-400 hover:text-emerald-400"
+              >
+                <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
+                </svg>
               </a>
             </div>
           </motion.div>

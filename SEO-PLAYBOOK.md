@@ -198,9 +198,9 @@ The deploy workflow now passes these, but the secrets do not exist yet
 - `GOOGLE_SITE_VERIFICATION` / `BING_SITE_VERIFICATION` — only needed if you
   verify by HTML tag rather than DNS.
 
-Also in `lib/site.ts`: `RESUME_URL` still points at Google Drive. Dropping the
-PDF at `public/resume.pdf` and switching the constant makes the download
-attribute work and stops the link rotting.
+The resume is self-hosted at `/rasmiranjan-sahoo-resume.pdf` (`RESUME_URL` in
+`lib/site.ts`), generated from `resume/resume.html` by `npm run resume`. Update
+it whenever a project ships, so it never drifts from the site again.
 
 ### 7. Wikidata — later, honestly
 

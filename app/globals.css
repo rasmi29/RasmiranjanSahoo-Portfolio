@@ -478,3 +478,11 @@ html[data-intro="play"] :is(.hero-in, .hero-letter, .hero-spread) {
     filter: none;
   }
 }
+/* Resume download arrow: a small repeating nudge while its button is hovered. */
+@keyframes resume-nudge {
+  0%, 100% { transform: translateY(-1px); }
+  50% { transform: translateY(2px); }
+}
+.group:hover .resume-nudge {
+  animation: resume-nudge 0.9s ease-in-out infinite;
+}

@@ -14,7 +14,8 @@ import Image from "next/image";
 import Link from "next/link";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import RevealHeading from "@/components/ui/RevealHeading";
-import { PORTRAIT, RESUME_URL, STATS, STUDIO } from "@/lib/site";
+import ResumeLink from "@/components/resume/ResumeLink";
+import { PORTRAIT, STATS, STUDIO } from "@/lib/site";
 import { EASE, fadeIn, fadeUp } from "@/lib/motion";
 
 /* Each project name links to its own page: descriptive internal anchors are
@@ -227,24 +228,23 @@ export default function AboutSection() {
                 ))}
               </dl>
 
-              {/* No `download` attribute: it is silently ignored on
-                  cross-origin URLs, so it only ever looked like it worked. */}
-              <a
-                href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 flex w-full items-center justify-center gap-2 border border-white/20 bg-transparent py-4 text-sm font-medium uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300"
-              >
-                <span>View Resume</span>
-                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
+              {/* Opens the animated viewer, which has the Download button. */}
+              <ResumeLink className="group relative mt-8 flex w-full items-center justify-center gap-3 overflow-hidden border border-white/20 bg-transparent py-4 text-sm font-medium uppercase tracking-widest text-white transition-colors duration-300 hover:border-white hover:text-black">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover:scale-x-100"
+                />
+                <span className="relative">View Resume</span>
+                <svg
+                  aria-hidden="true"
+                  className="relative h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7m0 0H8m9 0v9" />
                 </svg>
-              </a>
+              </ResumeLink>
             </motion.div>
           </div>
 

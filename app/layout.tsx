@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import CursorEffect from "@/components/CursorEffect";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import ResumeViewer from "@/components/resume/ResumeViewer";
 import {
   AUTHOR,
   SAME_AS,
@@ -142,6 +143,8 @@ export default function RootLayout({
             lands on, who then stares at a black overlay before seeing a word.
             It now lives in app/page.tsx, where the brand moment belongs. */}
         {children}
+        {/* One overlay for the whole site; every Resume button opens it. */}
+        <ResumeViewer />
       </body>
     </html>
   );

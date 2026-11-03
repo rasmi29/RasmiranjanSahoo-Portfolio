@@ -3,6 +3,8 @@
  * Never hardcode the domain anywhere else — import SITE_URL.
  */
 
+import resumeMeta from "@/resume/meta.json";
+
 export const SITE_URL = "https://rasmiranjan.in";
 
 export const SITE_NAME = "Rasmiranjan Sahoo";
@@ -139,18 +141,32 @@ export const VERIFICATION = {
 } as const;
 
 /**
- * Single canonical resume link.
+ * The resume — self-hosted, so it can't rot when Drive sharing settings
+ * change, and so the Download button's `download` attribute actually works
+ * (browsers ignore it on cross-origin URLs like Google Drive).
  *
- * The site previously shipped TWO different Google Drive file IDs — the header
- * pointed at one resume, every other link pointed at another.
+ * Every artefact is generated from resume/resume.html by `npm run resume`:
+ * the PDF, the preview image the viewer animates, and meta.json (updated date
+ * and size). Edit the HTML, never the outputs.
  *
- * TODO: drop your PDF at `public/resume.pdf` and change this to "/resume.pdf".
- * Self-hosting makes the `download` attribute actually work (it is silently
- * ignored on cross-origin URLs) and stops the link rotting if Drive sharing
- * settings change.
+ * `page` is what every "Resume" button links to. With JavaScript it opens the
+ * animated viewer in place; without it (or on a middle-click) it is a real
+ * page at /resume.
  */
-export const RESUME_URL =
-  "https://drive.google.com/file/d/1ppX0jXZ7ipvF5q_grkefQOPvcpDLU2LY/view";
+export const RESUME = {
+  page: "/resume",
+  pdf: "/rasmiranjan-sahoo-resume.pdf",
+  /** What the file is saved as. Carries the name, like the headshots. */
+  fileName: "Rasmiranjan-Sahoo-Resume.pdf",
+  preview: {
+    src: "/rasmiranjan-sahoo-resume.webp",
+    width: resumeMeta.preview.width,
+    height: resumeMeta.preview.height,
+  },
+  /** ISO date of the last `npm run resume`. */
+  updated: resumeMeta.updated,
+  pdfKB: resumeMeta.pdfKB,
+} as const;
 
 /**
  * Web3Forms access key. Set NEXT_PUBLIC_WEB3FORMS_KEY in .env.local
