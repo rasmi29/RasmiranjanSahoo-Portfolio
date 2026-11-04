@@ -116,6 +116,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        {/* A refresh starts at the top: moving there as the page unloads leaves the browser
+            nothing to restore. In-site links never unload the page, so Back and Forward still
+            return you to where you were, and pageshow puts you back after a real page change.
+            history.scrollRestoration can't do this: it must be set before the refresh, which
+            would also stop Back restoring your place. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"&&location.hash)history.replaceState(history.state,"",location.pathname+location.search);var y=0;addEventListener("pagehide",function(){y=scrollY;scrollTo({top:0,left:0,behavior:"instant"})});addEventListener("pageshow",function(e){if(e.persisted)scrollTo({top:y,left:0,behavior:"instant"})})}catch(e){}})();`,
+          }}
+        />
         {/* rel="me" is the machine-readable half of identity verification.
             It only pays off once each profile links back here — see
             SEO-PLAYBOOK.md, step 3. */}
