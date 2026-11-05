@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 
 const TITLE = "Resume — Rasmiranjan Sahoo, Full-Stack & React Native Developer";
 const DESCRIPTION =
-  "View or download the one-page resume of Rasmiranjan Sahoo: 17 websites and 8 apps shipped, lead developer on five client platforms at Gravitones, founder of Rathaworks.";
+  "View or download the one-page resume of Rasmiranjan Sahoo: 17 websites and 8 apps shipped, lead developer on five client platforms at Gravitones, frontend developer on Hike Cinema.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

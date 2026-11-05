@@ -8,9 +8,9 @@
  *   npm run resume
  *
  * Needs Chrome or Edge (set CHROME_PATH if it lives somewhere unusual) and,
- * for the preview, ffmpeg on PATH. The HTML pulls Inter and JetBrains Mono from
- * Google Fonts, so run this online — offline, it silently falls back to system
- * fonts.
+ * for the preview, ffmpeg on PATH. The resume is set in Calibri, which ships with
+ * Windows and gets embedded in the PDF. On a machine without it, install Carlito
+ * (same metrics) so the page still breaks the same way.
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";

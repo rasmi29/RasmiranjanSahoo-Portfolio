@@ -133,7 +133,7 @@ export default function ResumeSheet({ delay = 0.2 }: { delay?: number }) {
                 // "not visible", so it would never load and never print.
                 loading="eager"
                 fetchPriority="high"
-                alt="Rasmiranjan Sahoo's one-page resume: experience at Gravitones and Rathaworks, skills, education and certifications"
+                alt="Rasmiranjan Sahoo's one-page resume: experience at Gravitones, freelance and personal projects, skills, education and certifications"
                 sizes="(max-width: 900px) 100vw, 860px"
                 draggable={false}
                 onLoad={() => setLoaded(true)}
@@ -182,35 +182,20 @@ export default function ResumeSheet({ delay = 0.2 }: { delay?: number }) {
 function SheetSkeleton() {
   const bar = "rounded-full bg-neutral-200";
   return (
-    <div aria-hidden="true" className="absolute inset-0 flex animate-pulse flex-col bg-white">
-      <div className="flex h-[15%] items-center gap-[4%] bg-neutral-900 px-[6%]">
-        <div className="aspect-square w-[13%] rounded-full bg-neutral-700" />
-        <div className="flex flex-1 flex-col gap-[0.6em] text-[10px]">
-          <div className="h-[1.6em] w-1/2 rounded-full bg-neutral-700" />
-          <div className="h-[0.8em] w-1/3 rounded-full bg-emerald-700/60" />
-          <div className="h-[0.6em] w-11/12 rounded-full bg-neutral-800" />
-          <div className="h-[0.6em] w-4/5 rounded-full bg-neutral-800" />
-        </div>
+    <div aria-hidden="true" className="absolute inset-0 flex animate-pulse flex-col bg-white px-[6%] py-[3%]">
+      <div className="flex flex-col items-center gap-[0.5em] pb-[2.5%] text-[10px]">
+        <div className="h-[1.8em] w-2/5 rounded-full bg-neutral-300" />
+        <div className="h-[0.8em] w-1/3 rounded-full bg-neutral-200" />
+        <div className="h-[0.7em] w-3/5 rounded-full bg-neutral-200" />
       </div>
-      <div className="grid flex-1 grid-cols-[1fr_30%]">
-        <div className="flex flex-col gap-[1.6%] px-[6%] py-[4%]">
-          {Array.from({ length: 22 }, (_, i) => (
-            <div
-              key={i}
-              className={`${bar} h-[0.9%] min-h-1`}
-              style={{ width: i % 5 === 0 ? "45%" : `${70 + ((i * 37) % 28)}%` }}
-            />
-          ))}
-        </div>
-        <div className="flex flex-col gap-[2%] bg-neutral-100 px-[10%] py-[8%]">
-          {Array.from({ length: 16 }, (_, i) => (
-            <div
-              key={i}
-              className={`${bar} h-[1%] min-h-1`}
-              style={{ width: i % 4 === 0 ? "50%" : `${65 + ((i * 29) % 30)}%` }}
-            />
-          ))}
-        </div>
+      <div className="flex flex-1 flex-col gap-[1.25%]">
+        {Array.from({ length: 34 }, (_, i) => (
+          <div
+            key={i}
+            className={`${bar} h-[0.8%] min-h-1`}
+            style={{ width: i % 7 === 0 ? "28%" : `${70 + ((i * 37) % 28)}%` }}
+          />
+        ))}
       </div>
     </div>
   );
