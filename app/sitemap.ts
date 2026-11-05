@@ -49,6 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: projects.map((p) => abs(p.cover.src)),
     },
     {
+      url: `${SITE_URL}/projects`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/contact`,
       lastModified,
       changeFrequency: "yearly",

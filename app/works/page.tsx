@@ -99,6 +99,12 @@ export default function WorksIndexPage() {
             architecture decisions, and what actually shipped. Each card says
             whether it was built at Gravitones or for my own client.
           </p>
+          <Link
+            href="/projects"
+            className="mt-8 inline-block font-mono text-sm text-emerald-400 underline underline-offset-4 hover:text-emerald-300"
+          >
+            See every app and portal, with links →
+          </Link>
         </div>
       </section>
 

@@ -24,6 +24,7 @@ import { EASE } from "@/lib/motion";
 const FOOTER_NAV = [
   { name: "Home", href: "/" },
   { name: "Case Studies", href: "/works" },
+  { name: "All Projects", href: "/projects" },
   { name: "About Rasmiranjan Sahoo", href: "/about" },
   { name: "Writing", href: "/writing" },
   { name: "Contact", href: "/contact" },
