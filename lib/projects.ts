@@ -124,7 +124,7 @@ export const projects: Project[] = [
     ],
     tech: ["React Native", "Expo", "React", "Node.js", "PostgreSQL", "Redis", "Razorpay", "OpenAPI"],
     keywords: ["bus booking app developer", "seat locking Redis", "React Native booking app"],
-    links: { caseStudy: `${STUDIO_WORK}/bookiee-bus-booking-platform` },
+    links: { live: "https://bookiee.co", caseStudy: `${STUDIO_WORK}/bookiee-bus-booking-platform` },
     cover: {
       src: "/Projects/bookiee/cover.webp",
       alt: "Illustration of the Bookiee bus booking platform: passenger seat map and operator bus-layout designer",
@@ -147,7 +147,7 @@ export const projects: Project[] = [
     featured: true,
     role: "Lead developer at Gravitones — API, customer, rider, kitchen and owner apps",
     duration: "2 months",
-    client: "Name withheld at the client's request",
+    client: "Devee Kitchen (India)",
     outcomes: [
       { label: "Connected apps", value: "5" },
       { label: "Screens", value: "130+" },
@@ -156,7 +156,11 @@ export const projects: Project[] = [
     ],
     tech: ["React Native", "Expo", "React", "Node.js", "PostgreSQL", "Socket.IO", "Razorpay", "Google Maps"],
     keywords: ["restaurant delivery app developer", "food delivery app", "Socket.IO live tracking"],
-    links: { caseStudy: `${STUDIO_WORK}/restaurant-delivery-platform` },
+    links: {
+      live: "https://deveekitchen.com",
+      playStore: "https://play.google.com/store/apps/details?id=com.deveekitchen.app",
+      caseStudy: `${STUDIO_WORK}/restaurant-delivery-platform`,
+    },
     cover: {
       src: "/Projects/restaurant-delivery/cover.webp",
       alt: "Illustration of a restaurant delivery platform: customer live tracking, rider pickup code and kitchen order board",

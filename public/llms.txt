@@ -28,7 +28,8 @@ https://rasmiranjan.in/rasmiranjan-sahoo-square.jpg
 
 Rasmiranjan Sahoo is a full-stack and mobile developer and the founder of
 Rathaworks, a one-developer studio that takes client projects worldwide at
-https://work.rasmiranjan.in — 17 websites and 8 mobile apps shipped so far.
+https://work.rasmiranjan.in — 24 websites and portals and 8 mobile apps so far,
+2 of the apps still in development (full list: https://rasmiranjan.in/projects).
 As a Software Development Engineer at Gravitones, Rasmiranjan has been lead
 developer on five client platforms: a multi-vendor marketplace (Vedrastores,
 Kenya), a bus-booking marketplace (Bookiee), a five-app restaurant delivery
@@ -61,6 +62,7 @@ system, a creator-led food app (Zyrilo) and an online coaching platform
   three portals, automated Zoom live classes, negative-marking exam engine.
 - **QCS website & CMS** (2026, freelance) — 32-page corporate site, 12-module CMS.
 - Full case studies for all of these: https://work.rasmiranjan.in/work
+- Every app and portal, with links: https://rasmiranjan.in/projects
 
 ## Experience
 

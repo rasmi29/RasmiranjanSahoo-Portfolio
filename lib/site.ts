@@ -4,6 +4,7 @@
  */
 
 import resumeMeta from "@/resume/meta.json";
+import { inventoryTotals } from "@/lib/workInventory";
 
 export const SITE_URL = "https://rasmiranjan.in";
 
@@ -12,13 +13,18 @@ export const SITE_NAME = "Rasmiranjan Sahoo";
 export const SITE_TAGLINE = "Full-Stack Developer · Rathaworks";
 
 export const SITE_DESCRIPTION =
-  "Full-stack & React Native developer in Bhubaneswar, India, founder of Rathaworks. 17 websites and 8 apps shipped — marketplaces, booking, delivery, EdTech.";
+  "Full-stack & React Native developer in Bhubaneswar, India, founder of Rathaworks. 24 websites and portals, 8 mobile apps — marketplaces, booking, delivery, EdTech.";
 
 /**
- * Lifetime totals, as reported by Rasmiranjan — the same numbers the studio
- * site shows (studio repo lib/site.ts STATS). Keep the two in step.
+ * Counted from the itemised list behind /projects, so every number on the site
+ * can be checked against it. "websites" counts each portal separately, and
+ * "apps" includes the ones still in development: say so wherever it's shown.
  */
-export const STATS = { websites: 17, apps: 8 } as const;
+export const STATS = {
+  websites: inventoryTotals.web,
+  apps: inventoryTotals.mobile,
+  appsInDevelopment: inventoryTotals.mobileInDevelopment,
+} as const;
 
 export const AUTHOR = {
   name: "Rasmiranjan Sahoo",

@@ -17,7 +17,7 @@ export const RESUME_UPDATED = `${MONTHS[m - 1]} ${y}`;
 
 /** Every chip is a claim the resume itself backs up. */
 const HIGHLIGHTS = [
-  `${STATS.websites} websites · ${STATS.apps} apps shipped`,
+  `${STATS.websites} websites and portals · ${STATS.apps} apps`,
   "Lead on 5 client platforms",
   "E-commerce · booking · delivery · EdTech",
   "Next.js · React Native · Node.js",
@@ -81,8 +81,8 @@ export default function ResumeContent({
             ))}
           </Heading>
           <motion.p {...rise(0.3)} className="mt-4 max-w-md text-sm leading-relaxed text-neutral-400 sm:text-base">
-            Full-stack &amp; React Native developer with {STATS.websites} websites and{" "}
-            {STATS.apps} apps shipped. One page, fully current.
+            Full-stack &amp; React Native developer with {STATS.websites} websites and portals and{" "}
+            {STATS.apps} mobile apps. One page, fully current.
           </motion.p>
         </div>
 

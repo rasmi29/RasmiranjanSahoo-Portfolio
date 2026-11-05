@@ -262,7 +262,7 @@ export const IDENTITY_FAQ = [
   {
     question: "What has Rasmiranjan Sahoo built?",
     answer:
-      "Rasmiranjan Sahoo has shipped 17 websites and 8 mobile apps. As lead developer at Gravitones: the Vedrastores multi-vendor marketplace for Kenya (four web platforms and two React Native apps with M-Pesa, built as the sole developer in four months), the Bookiee bus-booking platform, a five-app restaurant delivery system, the Zyrilo creator app and the Bidyasagar Classes coaching platform. For clients of the Rathaworks studio: a 32-page corporate website and CMS for QCS.",
+      "Rasmiranjan Sahoo has built 24 websites and portals and 8 mobile apps, 2 of them still in development. As lead developer at Gravitones: the Vedrastores multi-vendor marketplace for Kenya (four web platforms and two React Native apps with M-Pesa, built as the sole developer in four months), the Bookiee bus-booking platform, a five-app restaurant delivery system, the Zyrilo creator app and the Bidyasagar Classes coaching platform. For clients of the Rathaworks studio: a 32-page corporate website and CMS for QCS.",
   },
   {
     question: "Is Rasmiranjan Sahoo available for hire?",

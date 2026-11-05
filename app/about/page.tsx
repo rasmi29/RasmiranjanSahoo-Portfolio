@@ -310,7 +310,8 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg font-light leading-relaxed text-neutral-200">
             <p>
-              {STATS.websites} websites and {STATS.apps} apps shipped so far. Over
+              {STATS.websites} websites and portals and {STATS.apps} mobile apps so
+              far, {STATS.appsInDevelopment} of the apps still in development (<Link href="/projects" className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">see the full list</Link>). Over
               the last year I&apos;ve led marketplace, booking, delivery and
               learning platforms at Gravitones: the{" "}
               <Link href="/works/vedrastores" className="text-white underline decoration-emerald-500/40 underline-offset-4 hover:decoration-emerald-500">

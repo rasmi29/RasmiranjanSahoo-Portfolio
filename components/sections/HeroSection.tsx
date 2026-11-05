@@ -17,7 +17,7 @@ import ProjectReel from "@/components/ui/ProjectReel";
 
 /** Proof on the first screen, from the same sources the rest of the site uses. */
 const heroStats = [
-  { value: STATS.websites, label: "Websites shipped" },
+  { value: STATS.websites, label: "Websites & portals" },
   { value: STATS.apps, label: "Mobile apps" },
   { value: projects.filter((p) => p.engagement === "Gravitones").length, label: "Platforms led at Gravitones" },
 ];

@@ -68,7 +68,7 @@ const experiences = [
  * history starting Sept 2025; "20+ Projects" above a single project.)
  */
 const stats = [
-  { value: STATS.websites, suffix: "", label: "Websites Shipped" },
+  { value: STATS.websites, suffix: "", label: "Websites & Portals" },
   { value: STATS.apps, suffix: "", label: "Mobile Apps" },
   { value: 5, suffix: "", label: "Platforms Led at Gravitones" },
 ];

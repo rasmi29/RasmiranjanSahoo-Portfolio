@@ -102,8 +102,7 @@ const webPlatforms = [
   },
   {
     title: "Admin Panel",
-    url: "admin.vedrastores.co.ke",
-    liveUrl: "https://admin.vedrastores.co.ke",
+    url: "Private staff panel",
     image: "/Projects/Vedrastore/Admin-banner.webp",
     gallery: [
       "/Projects/Vedrastore/Admin-panel-ss/Screenshot 2026-05-12 115145.webp",
@@ -180,7 +179,7 @@ const mobileApps = [
       "/Projects/Vedrastore/Buyer-app-screenshots/Screenshot_20260429_185854.jpg.webp",
     ],
     playStoreUrl:
-      "https://play.google.com/store/apps/details?id=co.ke.vedrastores.app",
+      "https://play.google.com/store/apps/details?id=com.nexus.buyer",
     appStoreUrl: "#",
     description:
       "Built with React Native and Expo. Features M-Pesa integration, Firebase Auth, and AWS CloudFront optimized images.",
@@ -274,14 +273,16 @@ const WebPlatformCard = ({
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <a
-              href={web.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-5 bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-emerald-500 transition-all shadow-xl hover:shadow-emerald-500/20"
-            >
-              Launch Live Site
-            </a>
+            {web.liveUrl && (
+              <a
+                href={web.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-5 bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-emerald-500 transition-all shadow-xl hover:shadow-emerald-500/20"
+              >
+                Launch Live Site
+              </a>
+            )}
             <button
               onClick={() => setShowGallery(!showGallery)}
               className={`w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 border ${showGallery ? "bg-white/10 border-white/20" : "border-white/10 hover:border-white/30"} text-[10px] font-bold uppercase tracking-[0.3em] transition-all group/btn`}
