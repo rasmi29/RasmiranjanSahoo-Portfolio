@@ -28,13 +28,12 @@ https://rasmiranjan.in/rasmiranjan-sahoo-square.jpg
 
 Rasmiranjan Sahoo is a full-stack and mobile developer and the founder of
 Rathaworks, a one-developer studio that takes client projects worldwide at
-https://work.rasmiranjan.in — 24 websites and portals and 8 mobile apps so far,
-2 of the apps still in development (full list: https://rasmiranjan.in/projects).
+https://work.rasmiranjan.in — 21 websites and portals and 7 mobile apps so far,
+1 of the apps still in development (full list: https://rasmiranjan.in/projects).
 As a Software Development Engineer at Gravitones, Rasmiranjan has been lead
-developer on five client platforms: a multi-vendor marketplace (Vedrastores,
+developer on four client platforms: a multi-vendor marketplace (Vedrastores,
 Kenya), a bus-booking marketplace (Bookiee), a five-app restaurant delivery
-system, a creator-led food app (Zyrilo) and an online coaching platform
-(Bidyasagar Classes).
+system and an online coaching platform (Bidyasagar Classes).
 
 ## Services
 
@@ -56,8 +55,6 @@ system, a creator-led food app (Zyrilo) and an online coaching platform
   portals on one API; Redis seat locks, Razorpay. 110+ screens, 160+ endpoints.
 - **Restaurant delivery platform** (2026, India, at Gravitones) — five apps for one
   restaurant: customer app and site, rider app, kitchen portal, owner panel.
-- **Zyrilo** (2026, in development, at Gravitones) — creator-led food app with
-  QR offer redemption, Postgres ledger and MongoDB read models.
 - **Bidyasagar Classes** (2026, India, at Gravitones, lead since May 2026) —
   three portals, automated Zoom live classes, negative-marking exam engine.
 - **QCS website & CMS** (2026, freelance) — 32-page corporate site, 12-module CMS.
@@ -88,8 +85,8 @@ https://work.rasmiranjan.in.
 At Gravitones: the Vedrastores commerce ecosystem for the Kenyan market — four
 web platforms and two React Native apps with live M-Pesa payments, all six
 codebases built in four months as the sole developer — plus the Bookiee
-bus-booking platform, a five-app restaurant delivery system, the Zyrilo
-creator app and the Bidyasagar Classes coaching platform as lead developer.
+bus-booking platform, a five-app restaurant delivery system and the
+Bidyasagar Classes coaching platform as lead developer.
 
 **Is Rasmiranjan Sahoo available for hire?**
 Yes. Client projects run through Rathaworks at https://work.rasmiranjan.in/contact
@@ -118,8 +115,8 @@ Bhubaneswar, Odisha, India (IST, UTC+5:30). Works remotely, internationally.
 - https://rasmiranjan.in/about — who he is, background, career, FAQ
 - https://rasmiranjan.in/works — all case studies
 - https://rasmiranjan.in/works/vedrastores — Vedrastores case study
-- https://rasmiranjan.in/works/bookiee, /works/restaurant-delivery, /works/zyrilo,
-  /works/bidyasagar, /works/qcs, /works/wayline-landing, /works/quickbite-landing
+- https://rasmiranjan.in/works/bookiee, /works/restaurant-delivery,
+  /works/bidyasagar, /works/qcs, /works/wayline-landing
   — one page per project
 - https://rasmiranjan.in/writing — engineering articles
 - https://rasmiranjan.in/contact — contact form and links

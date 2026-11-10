@@ -57,7 +57,7 @@ export interface Project {
 
 const STUDIO_WORK = "https://work.rasmiranjan.in/work";
 
-export const projects: Project[] = [
+const allProjects: Project[] = [
   {
     slug: "vedrastores",
     title: "Vedrastores Ecosystem",
@@ -326,6 +326,11 @@ export const projects: Project[] = [
     hasCaseStudy: false,
   },
 ];
+
+/** Hidden from the site for now. Remove a slug here to show it again. */
+const HIDDEN_PROJECTS = new Set(["zyrilo", "quickbite-landing"]);
+
+export const projects: Project[] = allProjects.filter((p) => !HIDDEN_PROJECTS.has(p.slug));
 
 /** Categories are derived, so a filter can never exist without results. */
 export const projectCategories = ["All", ...Array.from(new Set(projects.map((p) => p.type)))];

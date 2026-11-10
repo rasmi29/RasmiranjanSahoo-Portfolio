@@ -39,7 +39,7 @@ const experiences = [
     company: "Gravitones",
     date: "Oct 2025 — Present",
     description:
-      "Lead developer on client platforms: the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, a five-app restaurant delivery system and the Zyrilo creator app — and lead on the Bidyasagar Classes coaching platform since May 2026.",
+      "Lead developer on client platforms: the Vedrastores marketplace (sole developer), the Bookiee bus-booking platform, and a five-app restaurant delivery system — and lead on the Bidyasagar Classes coaching platform since May 2026.",
     tags: ["Architecture", "React Native", "MERN", "Leadership"],
   },
   {
@@ -266,7 +266,7 @@ export default function AboutSection() {
                 under real traffic.
               </p>
               <p>
-                In the last year I&apos;ve been lead developer on five client platforms at
+                In the last year I&apos;ve been lead developer on four client platforms at
                 Gravitones — the{" "}
                 <Link
                   href="/works/vedrastores"
@@ -282,10 +282,7 @@ export default function AboutSection() {
                 <Link href="/works/restaurant-delivery" className={inlineLink}>
                   five-app restaurant delivery system
                 </Link>
-                , the{" "}
-                <Link href="/works/zyrilo" className={inlineLink}>
-                  Zyrilo creator app
-                </Link>{" "}
+                {" "}
                 and the{" "}
                 <Link href="/works/bidyasagar" className={inlineLink}>
                   Bidyasagar Classes coaching platform

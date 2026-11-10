@@ -17,7 +17,7 @@ export interface Article {
 
 const INSIGHTS = "https://work.rasmiranjan.in/insights";
 
-export const articles: Article[] = [
+const allArticles: Article[] = [
   {
     title: "How to stop a booking app from selling the same seat twice",
     excerpt:
@@ -72,5 +72,8 @@ export const articles: Article[] = [
     category: "Guides",
   },
 ];
+
+/** Articles about hidden projects stay off the site for now. */
+export const articles: Article[] = allArticles.filter((a) => a.project !== "Zyrilo");
 
 export const INSIGHTS_URL = INSIGHTS;

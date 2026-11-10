@@ -13,7 +13,7 @@ export const SITE_NAME = "Rasmiranjan Sahoo";
 export const SITE_TAGLINE = "Full-Stack Developer · Rathaworks";
 
 export const SITE_DESCRIPTION =
-  "Full-stack & React Native developer in Bhubaneswar, India, founder of Rathaworks. 24 websites and portals, 8 mobile apps — marketplaces, booking, delivery, EdTech.";
+  "Full-stack & React Native developer in Bhubaneswar, India, founder of Rathaworks. 21 websites and portals, 7 mobile apps — marketplaces, booking, delivery, EdTech.";
 
 /**
  * Counted from the itemised list behind /projects, so every number on the site

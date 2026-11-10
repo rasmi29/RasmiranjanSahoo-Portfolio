@@ -39,7 +39,7 @@ export interface WorkEntry {
 
 const LOGIN_ONLY = "Staff login only. Walkthrough on request";
 
-export const workInventory: WorkEntry[] = [
+const allWork: WorkEntry[] = [
   {
     id: "hike-cinema",
     name: "Hike Cinema",
@@ -305,6 +305,11 @@ export const workInventory: WorkEntry[] = [
     ],
   },
 ];
+
+/** Hidden from the site for now. Remove an id here to show it again. */
+const HIDDEN_WORK = new Set(["zyrilo", "quickbite"]);
+
+export const workInventory: WorkEntry[] = allWork.filter((e) => !HIDDEN_WORK.has(e.id));
 
 const allSurfaces = workInventory.flatMap((entry) => entry.surfaces);
 
